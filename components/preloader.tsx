@@ -88,7 +88,7 @@ const Preloader = ({
         ref={topRef}
       >
         <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference text-[10vw]">
-          <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center">
+          <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
             <span>Ernyg®</span>
             <span>Ernyg®</span>
             Ernyg®
@@ -102,7 +102,7 @@ const Preloader = ({
         ref={centerRef}
       >
         <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference text-[10vw]">
-          <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center">
+          <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
             <span>Ernyg®</span>
             <span>Ernyg®</span>
             Ernyg®
@@ -116,7 +116,7 @@ const Preloader = ({
         ref={bottomRef}
       >
         <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference text-[10vw]">
-          <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center">
+          <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
             <span>Ernyg®</span>
             <span>Ernyg®</span>
             Ernyg®
