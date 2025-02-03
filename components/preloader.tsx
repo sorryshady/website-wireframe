@@ -73,8 +73,8 @@ const Preloader = ({
       gsap.to([centerRef.current?.querySelector(".marquee-container")], {
         duration: 1,
         delay: 6.5,
-        scale: 1.5,
-        y: -100, // Move up by 100 pixels
+        scale: 1.3,
+        y: -80, // Move up by 100 pixels
         ease: "power2.inOut",
         onComplete: () => setIsLoading(false),
       });
