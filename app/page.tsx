@@ -67,7 +67,7 @@ export default function Home() {
 
       {!isLoading && (
         <>
-          <div className="absolute top-0 w-full min-h-screen overflow-x-hidden z-[1] font-['PP_Neue_Montreal'] uppercase flex flex-col justify-between items-center text-sm">
+          <div className="absolute top-0 w-full min-h-screen overflow-x-hidden z-[1] font-mono uppercase flex flex-col justify-between items-center text-sm">
             <div className="w-full flex justify-between items-center text-center p-4">
               <div className="text-3xl font-medium">
                 <TextTrial className="text-black" disableHover={true}>
