@@ -5,8 +5,10 @@ import gsap from "gsap";
 
 const Preloader = ({
   setIsLoading,
+  colorMode,
 }: {
   setIsLoading: (value: boolean) => void;
+  colorMode: boolean;
 }) => {
   const loaderRef = useRef<HTMLDivElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
@@ -98,10 +100,16 @@ const Preloader = ({
         </div>
       </div>
       <div
-        className="top-1/3 w-full h-1/3 overflow-hidden relative bg-white"
+        className={`top-1/3 w-full h-1/3 overflow-hidden relative transition-colors duration-500 ${
+          !colorMode ? "bg-white" : "bg-black"
+        }`}
         ref={centerRef}
       >
-        <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference text-[10vw]">
+        <div
+          className={`marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] ${
+            colorMode ? "text-white" : "text-black"
+          }  text-[10vw]`}
+        >
           <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
             <span>Ernyg®</span>
             <span>Ernyg®</span>
