@@ -8,6 +8,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextGradient from "@/components/text-gradient";
 import Image from "next/image";
+import Horizontal from "@/components/horizontal";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -194,6 +195,9 @@ export default function Home() {
           <div className="fourth-section">
             <TextGradient text="This is some long ass random text message to see if this shit works. Hopefully it works. Coz if it does it will be nice else it will suck. But alas what can i do?" />
           </div>
+          <section className="w-full h-screen flex flex-nowrap items-center">
+            <Horizontal />
+          </section>
           <Footer />
         </>
       )}
