@@ -56,7 +56,6 @@ export default function Home() {
       ScrollTrigger.create({
         trigger: ".second-section",
         start: "top 75%",
-        markers: true,
         onEnter: () => setColorMode(true),
         onLeaveBack: () => setColorMode(false),
       });
@@ -70,7 +69,6 @@ export default function Home() {
       ScrollTrigger.create({
         trigger: ".fourth-section",
         start: "top 75%",
-        markers: true,
         onEnter: () => setColorMode(true),
         onLeaveBack: () => setColorMode(false),
       });
