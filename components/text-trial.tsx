@@ -5,6 +5,7 @@ interface TextTrialProps {
   className?: string;
   playOnMount?: boolean;
   disableHover?: boolean;
+  play?: boolean;
 }
 
 const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -16,6 +17,7 @@ const TextTrial = ({
   className = "",
   playOnMount = false,
   disableHover = false,
+  play = false,
 }: TextTrialProps) => {
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const [displayText, setDisplayText] = useState(children);
@@ -52,6 +54,13 @@ const TextTrial = ({
       scramble();
     }
   }, [playOnMount, scramble]);
+
+  // Play animation when play prop changes to true
+  useEffect(() => {
+    if (play) {
+      scramble();
+    }
+  }, [play, scramble]);
 
   return (
     <span

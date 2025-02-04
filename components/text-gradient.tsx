@@ -55,6 +55,7 @@ const TextGradient = ({ text }: { text: string }) => {
         scrub: true,
         start: "top",
         end: `+=${window.innerHeight / 1.5}`,
+        markers: true,
       },
       opacity: 1,
       ease: "none",

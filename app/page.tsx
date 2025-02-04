@@ -15,6 +15,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const textRef = useRef(null);
   const mainRef = useRef(null);
+  const tagRef = useRef(null);
 
   useGSAP(() => {
     if (!isLoading) {
@@ -24,6 +25,21 @@ export default function Home() {
         {
           opacity: 0,
           y: -100,
+        },
+        {
+          duration: 1,
+          opacity: 1,
+          y: 0,
+          ease: "power2.inOut",
+          delay: 0.5,
+        },
+      );
+
+      gsap.fromTo(
+        tagRef.current,
+        {
+          opacity: 0,
+          y: 100,
         },
         {
           duration: 1,
@@ -67,7 +83,7 @@ export default function Home() {
 
       {!isLoading && (
         <>
-          <div className="absolute top-0 w-full min-h-screen overflow-x-hidden z-[1] font-mono uppercase flex flex-col justify-between items-center text-sm">
+          <div className="absolute top-0 w-full min-h-screen overflow-x-hidden z-[1] font-mono flex uppercase flex-col justify-between items-center text-sm">
             <div className="w-full flex justify-between items-center text-center p-4">
               <div className="text-3xl font-medium">
                 <TextTrial className="text-black" disableHover={true}>
@@ -89,6 +105,13 @@ export default function Home() {
                 </a>
               </div>
             </div>
+            <div className=" absolute w-full top-[25%] left-1/2 transform -translate-x-1/2 text-black text-[1.5vw] font-medium leading-none p-4 overflow-hidden">
+              <div className="text-center" ref={tagRef}>
+                <h2 className="text-4xl tracking-wider font-bold">
+                  Design.Develop.Simplify
+                </h2>
+              </div>
+            </div>
             <div className=" absolute bottom-[35%] md:bottom-[30%] lg:bottom-[25%] left-1/2 transform -translate-x-1/2 text-black text-[5vw] font-medium leading-none tracking-tighter p-4 overflow-hidden">
               <div className="flex flex-col items-center gap-8" ref={textRef}>
                 <h1 className="text-4xl tracking-normal font-bold">
@@ -104,7 +127,7 @@ export default function Home() {
               <div className="absolute left-1/2 transform -translate-x-1/2">
                 <p>Based in India</p>
               </div>
-              <p>Ernyg © 2025</p>
+              <p>Ernyg © {new Date().getFullYear()}</p>
             </div>
           </div>
           <TextGradient text="This is some long ass random text message to see if this shit works. Hopefully it works. Coz if it does it will be nice else it will suck. But alas what can i do?" />
