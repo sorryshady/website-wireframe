@@ -170,7 +170,7 @@ const Horizontal = () => {
       {projects.map((project, index) => (
         <div
           key={project.id}
-          className="w-full h-screen overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 relative"
+          className="w-full h-screen overflow-hidden shrink-0 px-6 md:px-8 lg:px-16 relative"
           ref={(ref) => {
             if (ref) projectsRef.current[index] = ref;
           }}
