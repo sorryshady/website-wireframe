@@ -41,20 +41,20 @@ const Horizontal = () => {
             }
           }}
         >
-          <div className="w-full h-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16">
-            {/* Image Section */}
-            <div className="w-full md:w-1/2 h-[40vh] md:h-[60vh] relative rounded-2xl overflow-hidden">
+          <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-16">
+            {/* Image Section - adjusted for better tablet view */}
+            <div className="w-full lg:w-1/2 h-[40vh] md:h-[45vh] lg:h-[60vh] relative rounded-2xl overflow-hidden">
               <Image
                 src={project.image}
                 alt={project.projectName}
                 fill
                 className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
 
             {/* Content Section */}
-            <div className="w-full md:w-1/2 space-y-6 max-w-xl">
+            <div className="w-full lg:w-1/2 space-y-6 max-w-3xl">
               <div className="space-y-2">
                 <h3 className="text-xl md:text-2xl font-medium opacity-70">
                   {project.client}

@@ -30,7 +30,7 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    client: "Arun Kumar Vidhyadharan",
+    client: "Dr. Arun Kumar Vidhyadharan",
     projectName: "Ilili Dental Spa",
     description:
       "Ilili Dental Spa, the multi speciality dental clinic in Trivandrum, has been around for more than a decade. They required a website where they showed their specialties, team, and contact info. We made a simple website with clean and intuitive UI, along with a bright theme to resemble your teeth after you pay them a visit. This project took us less than a week.",
