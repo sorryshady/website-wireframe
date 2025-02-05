@@ -36,7 +36,7 @@ const Horizontal = () => {
         scrub: 1,
         snap: {
           snapTo: 1 / (totalSlides - 1),
-          duration: { min: 0.2, max: 0.3 },
+          duration: { min: 0.3, max: 0.5 },
           ease: "power1.inOut",
           inertia: false,
         },
@@ -82,7 +82,7 @@ const Horizontal = () => {
           end: "right center",
           containerAnimation: scrollTween,
           toggleActions: "play none none reverse",
-        //   markers: true,
+          //   markers: true,
         },
       });
 
