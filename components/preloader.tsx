@@ -76,7 +76,7 @@ const Preloader = ({
         duration: 1,
         delay: 6.5,
         scale: 1.3,
-        y: -80, // Move up by 100 pixels
+        y: -80,
         ease: "power2.inOut",
         onComplete: () => setIsLoading(false),
       });
@@ -86,16 +86,16 @@ const Preloader = ({
   return (
     <div className="loader w-screen h-screen" ref={loaderRef}>
       <div
-        className=" absolute top-0 w-full h-1/3 overflow-clip z-[10000] bg-black clip-path-[inset(0_0_0_0)]"
+        className="absolute top-0 w-full h-1/3 overflow-clip z-[10000] bg-black clip-path-[inset(0_0_0_0)]"
         ref={topRef}
       >
-        <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference text-[10vw]">
+        <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference">
           <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
-            <span>Ernyg®</span>
-            <span>Ernyg®</span>
-            Ernyg®
-            <span>Ernyg®</span>
-            <span>Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
           </div>
         </div>
       </div>
@@ -108,14 +108,14 @@ const Preloader = ({
         <div
           className={`marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] ${
             colorMode ? "text-white" : "text-black"
-          }  text-[10vw]`}
+          }`}
         >
           <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
-            <span>Ernyg®</span>
-            <span>Ernyg®</span>
-            Ernyg®
-            <span>Ernyg®</span>
-            <span>Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <div className="text-[max(3.5rem,10vw)]">Ernyg®</div>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
           </div>
         </div>
       </div>
@@ -123,13 +123,13 @@ const Preloader = ({
         className="absolute bottom-0 w-full h-1/3 overflow-clip z-[10000] bg-black clip-path-[inset(0_0_0_0)]"
         ref={bottomRef}
       >
-        <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference text-[10vw]">
+        <div className="marquee absolute top-[200%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200vw] text-white mix-blend-difference">
           <div className="marquee-container w-full pt-[0.2em] flex justify-between items-center tracking-tighter">
-            <span>Ernyg®</span>
-            <span>Ernyg®</span>
-            Ernyg®
-            <span>Ernyg®</span>
-            <span>Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
+            <span className="text-[max(3.5rem,10vw)]">Ernyg®</span>
           </div>
         </div>
       </div>
