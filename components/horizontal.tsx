@@ -18,7 +18,7 @@ const Horizontal = () => {
   const introRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const totalSlides = projectsRef.current.length + 1; // +1 for intro slide
+    const totalSlides = projectsRef.current.length + 1;
 
     const scrollTween = gsap.to([introRef.current, ...projectsRef.current], {
       xPercent: -100 * (totalSlides - 1),
@@ -27,7 +27,6 @@ const Horizontal = () => {
         trigger: ".projects-container",
         pin: true,
         start: "top top",
-        markers: true,
         end: () =>
           `+=${
             (document.querySelector(".projects-container") as HTMLDivElement)
@@ -37,21 +36,20 @@ const Horizontal = () => {
         scrub: 1,
         snap: {
           snapTo: 1 / (totalSlides - 1),
-          duration: { min: 0.2, max: 0.3 }, // Faster snap duration
-          ease: "power1.inOut", // Smoother snap easing
-          inertia: false, // Disable inertia for more precise snapping
+          duration: { min: 0.2, max: 0.3 },
+          ease: "power1.inOut",
+          inertia: false,
         },
         id: "projects-container",
       },
     });
 
-    // Animate intro elements when section enters viewport
+    // Animate intro elements when section is approaching viewport
     const introTl = gsap.timeline({
       scrollTrigger: {
-        trigger: introRef.current,
-        containerAnimation: scrollTween,
-        start: "left center",
-        markers: true,
+        trigger: ".projects-container", // Changed from introRef
+        start: "top top+=300", // Start when top of section is 200px from bottom of viewport
+        end: "top center",
         toggleActions: "play none none reverse",
       },
     });
@@ -84,6 +82,7 @@ const Horizontal = () => {
           end: "right center",
           containerAnimation: scrollTween,
           toggleActions: "play none none reverse",
+          markers: true,
         },
       });
 
@@ -243,8 +242,8 @@ const Horizontal = () => {
                 href={project.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-6 px-6 py-3 rounded-full border border-current
-                         hover:bg-current hover:text-[var(--bg-color)] transition-all duration-300"
+                className="inline-block mt-6 px-6 py-3 rounded-full border border-white
+                         hover:bg-white hover:text-black transition-all duration-300"
                 ref={(ref) => {
                   if (ref) buttonRef.current[index] = ref;
                 }}
