@@ -1,7 +1,32 @@
+import { useGSAP } from "@gsap/react";
 import React, { useRef } from "react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Horizontal = () => {
-  const projectsRef = useRef<[] | null>(null);
+  const projectsRef = useRef<HTMLDivElement[]>([]);
+
+  useGSAP(() => {
+    gsap.to(projectsRef.current, {
+      xPercent: -100 * (projectsRef.current.length - 1),
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".projects-container",
+        pin: true,
+        start: "top top",
+        end: () =>
+          `+=${
+            (document.querySelector(".projects-container") as HTMLDivElement)
+              .offsetWidth
+          }`,
+        scrub: 1,
+        snap: 1 / (projectsRef.current.length - 1),
+      },
+    });
+  });
+
   return (
     <>
       {[
@@ -13,6 +38,11 @@ const Horizontal = () => {
         <div
           key={index}
           className="w-full h-screen overflow-hidden shrink-0 rounded-md"
+          ref={(ref) => {
+            if (ref) {
+              projectsRef.current[index] = ref;
+            }
+          }}
         >
           <div className={`w-full h-full ${item.bg} text-4xl`}>
             Section {item.section}
