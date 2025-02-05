@@ -82,7 +82,7 @@ const Horizontal = () => {
           end: "right center",
           containerAnimation: scrollTween,
           toggleActions: "play none none reverse",
-          markers: true,
+        //   markers: true,
         },
       });
 
