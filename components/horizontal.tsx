@@ -170,7 +170,7 @@ const Horizontal = () => {
       {projects.map((project, index) => (
         <div
           key={project.id}
-          className="w-full h-screen overflow-hidden shrink-0 px-4 md:px-8 lg:px-16"
+          className="w-full h-screen overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 relative"
           ref={(ref) => {
             if (ref) projectsRef.current[index] = ref;
           }}
@@ -252,6 +252,28 @@ const Horizontal = () => {
               </a>
             </div>
           </div>
+
+          {/* Scroll Indicator - Added for each project */}
+          {index < projects.length - 1 && ( // Don't show on last project
+            <div className="absolute bottom-8 right-8 md:right-12 flex items-center gap-3 opacity-60">
+              <span className="text-sm font-medium">
+                Scroll for next project
+              </span>
+              <svg
+                className="w-5 h-5 animate-bounce"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </div>
+          )}
         </div>
       ))}
     </>
