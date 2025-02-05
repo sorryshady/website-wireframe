@@ -44,8 +44,10 @@ const Horizontal = () => {
             }
           }}
         >
-          <div className={`w-full h-full ${item.bg} text-4xl`}>
-            Section {item.section}
+          <div
+            className={`w-full h-full ${item.bg} text-4xl flex items-center justify-center`}
+          >
+            Projects {item.section}
           </div>
         </div>
       ))}

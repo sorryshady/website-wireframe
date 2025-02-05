@@ -54,7 +54,7 @@ const TextGradient = ({ text }: { text: string }) => {
         trigger: containerRef.current,
         scrub: true,
         start: "top",
-        end: `+=${window.innerHeight / 2}`,
+        end: `+=${window.innerHeight / 3}`,
         markers: true,
       },
       opacity: 1,
