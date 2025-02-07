@@ -18,7 +18,7 @@ const TextGradient = ({ text }: { text: string }) => {
 
       body.push(
         <p
-          className="text-[3.5vw] m-0 mr-[1.5vw] font-bold"
+          className="text-[max(2rem,3.5vw)] m-0 mr-[1.5vw] font-bold"
           key={word + "_" + i}
         >
           {letters}
@@ -66,7 +66,10 @@ const TextGradient = ({ text }: { text: string }) => {
       className="w-full h-screen bg-black flex justify-center items-center text-[rgb(211,211,211)]"
       ref={containerRef}
     >
-      <div ref={bodyRef} className="w-[90%] flex flex-wrap">
+      <div
+        ref={bodyRef}
+        className="w-[90%] flex flex-wrap justify-center text-center"
+      >
         {splitWords(text)}
       </div>
     </div>
