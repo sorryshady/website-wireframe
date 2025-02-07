@@ -13,39 +13,39 @@ export const projects: Project[] = [
     client: "Association of Engineers, Kerala",
     projectName: "AOEK",
     description:
-      "This project for the Association of Engineers Kerala was to redesign their website which has a legacy spanning over 2 decades, and to develop a user-friendly mobile application that keeps them up to date with the news and events within the association. Through intuitive design and seamless functionality, the users can now access a faster and more optimised website with no hassle.",
+      "Tasked with modernizing the Association of Engineers Kerala’s digital infrastructure, we redesigned their two-decade-old website and created a mobile application for real-time engagement. With a focus on speed, accessibility, and intuitive design, members now have a seamless way to stay updated. The AOEK app will soon be available on Google Play and the App Store.",
     services: ["UI/UX Design", "Development (Web & App)"],
     website: "https://www.aoek.org",
-    image: "/projects/aoek_thumbnail.png",
+    image: "/projects/aoek_thumbnail.webp",
   },
   {
     id: 2,
     client: "Cutlys",
     projectName: "Cutlys",
     description:
-      "Cutlys, a familiar name in the heart of Thrissur, wanted us to design a landing page and create a website for their chain of snack bars. Our fastest project yet, we created a website which conveys their heritage and brand identity. Oh, and all of this was done in just a couple of days, with a remarkable SEO implemented along with the website.",
+      "Cutlys, a renowned snack bar chain, needed a website that captured its legacy and brand presence. We delivered a sleek, high-performance site in record time, complete with cutting-edge SEO implementation—securing top rankings on Google from the moment it launched.",
     services: ["UI/UX Design", "Web Development"],
     website: "https://cutlys.com",
-    image: "/projects/aoek_thumbnail.png",
+    image: "/projects/cutlys_thumbnail.webp",
   },
   {
     id: 3,
     client: "Dr. Arun Kumar Vidhyadharan",
     projectName: "Ilili Dental Spa",
     description:
-      "Ilili Dental Spa, the multi speciality dental clinic in Trivandrum, has been around for more than a decade. They required a website where they showed their specialties, team, and contact info. We made a simple website with clean and intuitive UI, along with a bright theme to resemble your teeth after you pay them a visit. This project took us less than a week.",
+      "We transformed Ilili Dental Spa’s digital presence with a sleek and intuitive website for Dr. Arun. Prioritizing user experience, the site offers effortless access to their specialties, team, and contact details, all within a bright, visually appealing interface.",
     services: ["UI/UX Design", "Web Development"],
     website: "https://ililidentalspa.com",
-    image: "/projects/aoek_thumbnail.png",
+    image: "/projects/ilili_thumbnail.webp",
   },
   {
     id: 4,
     client: "Sarath Menon",
     projectName: "Sarath Menon Films",
     description:
-      "We had the opportunity to work with the talented artist and filmmaker Sarath Menon, who needed a portfolio to showcase his artworks, filmography, and the rest of his creative endeavours. We designed the website in a way where you won't encounter anything in the UI except his craft (and his contact info, of course).",
+      "We developed a tailored portfolio for Sarath Menon, a filmmaker and artist whose work spans film, poetry, and photography. Designed with an ultra-minimalist approach, the interface ensures nothing stands between his audience and his art—only his creations and contact details remain in focus.",
     services: ["UI/UX Design", "Web Development"],
     website: "https://sarathmenonfilms.com",
-    image: "/projects/aoek_thumbnail.png",
+    image: "/projects/sarath_thumbnail.webp",
   },
 ];
