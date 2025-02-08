@@ -36,9 +36,11 @@ const Horizontal = () => {
         scrub: 1,
         snap: {
           snapTo: 1 / (totalSlides - 1),
-          duration: { min: 0.3, max: 0.5 },
+          duration: { min: 0.2, max: 0.5 },
+          delay: 0.1,
           ease: "power1.inOut",
-          inertia: false,
+          inertia: true,
+          directional: true,
         },
         id: "projects-container",
       },
