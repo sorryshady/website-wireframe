@@ -175,13 +175,13 @@ const Contact = () => {
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-20">
         <h2
           ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-6"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-6 font-mont"
         >
           Let&apos;s Connect
         </h2>
         <p
           ref={descriptionRef}
-          className="text-xl sm:text-2xl text-gray-400 text-center mb-16 max-w-3xl mx-auto"
+          className="text-xl sm:text-2xl text-gray-400 text-center mb-16 max-w-3xl mx-auto font-mont"
         >
           We are always happy to listen and discuss new projects, ideas, and
           opportunities.
@@ -192,9 +192,9 @@ const Contact = () => {
           className="max-w-3xl mx-auto space-y-8"
           onSubmit={handleSubmit}
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 font-mont">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">
+              <label className="text-sm md:text-base font-medium text-gray-300">
                 Full Name
               </label>
               <input
@@ -211,11 +211,15 @@ const Contact = () => {
                 placeholder="John Doe"
               />
               {errors.fullName && (
-                <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
+                <p className="text-red-500 text-sm md:text-base mt-1">
+                  {errors.fullName}
+                </p>
               )}
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-gray-300">Email</label>
+              <label className="text-sm md:text-base font-medium text-gray-300">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
@@ -230,13 +234,15 @@ const Contact = () => {
                 placeholder="john@example.com"
               />
               {errors.email && (
-                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+                <p className="text-red-500 text-sm md:text-base mt-1">
+                  {errors.email}
+                </p>
               )}
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">
+          <div className="space-y-2 font-mont">
+            <label className="text-sm md:text-base font-medium text-gray-300">
               Phone Number (Optional)
             </label>
             <input
@@ -253,12 +259,16 @@ const Contact = () => {
               placeholder="+1 (555) 000-0000"
             />
             {errors.phone && (
-              <p className="text-red-500 text-sm mt-1">{errors.phone}</p>
+              <p className="text-red-500 text-sm md:text-base mt-1">
+                {errors.phone}
+              </p>
             )}
           </div>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-300">Message</label>
+          <div className="space-y-2 font-mont">
+            <label className="text-sm md:text-base font-medium text-gray-300">
+              Message
+            </label>
             <textarea
               name="message"
               value={formData.message}
@@ -273,7 +283,9 @@ const Contact = () => {
               placeholder="Tell us about your project..."
             />
             {errors.message && (
-              <p className="text-red-500 text-sm mt-1">{errors.message}</p>
+              <p className="text-red-500 text-sm md:text-base mt-1">
+                {errors.message}
+              </p>
             )}
           </div>
 
@@ -281,9 +293,8 @@ const Contact = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-4 bg-white text-black rounded-full font-medium
-              hover:bg-gray-200 transition-colors duration-300 text-lg
-              disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-8 py-4 border border-white bg-white text-black
+                         hover:bg-transparent hover:text-white transition-all duration-300 rounded-full font-mediumtext-lg disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide font-semibold font-oxygen text-base"
             >
               {isSubmitting ? "Sending..." : "Send Message"}
             </button>

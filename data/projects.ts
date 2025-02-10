@@ -43,7 +43,7 @@ export const projects: Project[] = [
     client: "Sarath Menon",
     projectName: "Sarath Menon Films",
     description:
-      "We developed a tailored portfolio for Sarath Menon, a filmmaker and artist whose work spans film, poetry, and photography. Designed with an ultra-minimalist approach, the interface ensures nothing stands between his audience and his art—only his creations and contact details remain in focus.",
+      "We developed a tailored portfolio for Sarath Menon, a filmmaker and artist whose creative work spans film, poetry, and photography. Designed with an ultra-minimalist approach, the interface ensures nothing stands between his audience and his art. Only his creative works and contact details remain in focus.",
     services: ["UI/UX Design", "Web Development"],
     website: "https://sarathmenonfilms.com",
     image: "/projects/sarath_thumbnail.webp",

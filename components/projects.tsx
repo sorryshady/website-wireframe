@@ -217,16 +217,16 @@ const Projects = () => {
                   if (ref) titleRef.current[index] = ref;
                 }}
               >
-                <h3 className="text-xl md:text-2xl font-medium opacity-70">
+                <h3 className="text-xl md:text-2xl font-medium opacity-70 font-mont">
                   {project.client}
                 </h3>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-mont">
                   {project.projectName}
                 </h2>
               </div>
 
               <p
-                className="text-base md:text-lg opacity-80 leading-relaxed"
+                className="text-base sm:text-lg md:text-xl opacity-80 font-oxygen tracking-widest"
                 ref={(ref) => {
                   if (ref) descRef.current[index] = ref;
                 }}
@@ -243,7 +243,7 @@ const Projects = () => {
                 {project.services.map((service, idx) => (
                   <span
                     key={idx}
-                    className="px-4 py-2 rounded-full text-sm border border-current opacity-70"
+                    className="px-4 py-2 rounded-full text-base border border-current opacity-70 font-oxygen"
                   >
                     {service}
                   </span>
@@ -254,8 +254,8 @@ const Projects = () => {
                 href={project.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mt-6 px-6 py-3 rounded-full border border-white
-                         hover:bg-white hover:text-black transition-all duration-300"
+                className="inline-block mt-6 px-6 py-3 rounded-full border border-white bg-white text-black
+                         hover:bg-transparent hover:text-white transition-all duration-300 font-oxygen text-base tracking-wide font-semibold uppercase"
                 ref={(ref) => {
                   if (ref) buttonRef.current[index] = ref;
                 }}
