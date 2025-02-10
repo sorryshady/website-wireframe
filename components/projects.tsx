@@ -153,12 +153,12 @@ const Projects = () => {
         ref={introRef}
         className="w-full h-[100svh] overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center"
       >
-        <h1 className="intro-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
+        <h1 className="intro-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8 font-mont">
           Projects
         </h1>
-        <p className="intro-text text-xl md:text-2xl text-center max-w-2xl opacity-80 mb-12">
+        <p className="intro-text text-xl md:text-2xl text-center max-w-2xl opacity-80 mb-12 font-mont">
           Explore our portfolio of innovative digital solutions and creative
-          endeavors
+          endeavors.
         </p>
         <div className="scroll-indicator flex items-center gap-4 opacity-70">
           <span className="text-lg">Scroll to explore</span>
@@ -290,11 +290,11 @@ const Projects = () => {
             // Show "Scroll to contact" for the last project
             <div
               ref={scrollIndicatorRef}
-              className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-12 flex flex-col items-center gap-2 text-white/60
+              className="absolute bottom-4 sm:bottom-8 md:left-1/2 md:-translate-x-1/2 right-4 md:right-auto flex flex-col items-center gap-2 text-white/60
                transition-opacity duration-300 mb-safe"
             >
               <span className="text-sm sm:text-base font-medium tracking-wider">
-                SCROLL TO CONTACT
+                Scroll to contact
               </span>
               <svg
                 className="w-5 h-5 sm:w-6 sm:h-6"

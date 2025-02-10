@@ -13,7 +13,7 @@ export const projects: Project[] = [
     client: "Association of Engineers, Kerala",
     projectName: "AOEK",
     description:
-      "Tasked with modernizing the Association of Engineers Kerala’s digital infrastructure, we redesigned their two-decade-old website and created a mobile application for real-time engagement. With a focus on speed, accessibility, and intuitive design, members now have a seamless way to stay updated. The AOEK app will soon be available on Google Play and the App Store.",
+      "Tasked with modernizing the Association of Engineers Kerala’s digital presence, we redesigned their two-decade-old website and created a mobile application for real-time updates. With a focus on speed, accessibility, and intuitive design, members now have a seamless way to stay connected. The AOEK app will soon be available on Google Play and the App Store.",
     services: ["UI/UX Design", "Development (Web & App)"],
     website: "https://www.aoek.org",
     image: "/projects/aoek_thumbnail.webp",

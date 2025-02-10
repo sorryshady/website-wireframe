@@ -3,7 +3,7 @@ export const services = [
     id: 1,
     title: "UI/UX Design",
     description:
-      "Crafting intuitive and engaging user experiences with pixel-perfect designs",
+      "Crafting intuitive and engaging user experiences with pixel-perfect designs.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +26,7 @@ export const services = [
   {
     id: 2,
     title: "Full Stack Development",
-    description: "End-to-end web solutions using cutting-edge technologies",
+    description: "End-to-end web solutions using cutting-edge technologies.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +49,7 @@ export const services = [
   {
     id: 3,
     title: "Mobile App Development",
-    description: "Native and cross-platform mobile applications that perform",
+    description: "Native and cross-platform mobile applications that perform.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +71,7 @@ export const services = [
   {
     id: 4,
     title: "Brand Identity",
-    description: "Creating distinctive visual identities that tell your story",
+    description: "Creating distinctive visual identities that tell your story.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +94,7 @@ export const services = [
   {
     id: 5,
     title: "SaaS Development",
-    description: "Your SaaS ideas brought to life. Your idea, our execution",
+    description: "Your SaaS ideas brought to life. Your idea, our execution.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +118,7 @@ export const services = [
     id: 6,
     title: "Personal Portfolios",
     description:
-      "Stand out as a creative professional with your personal portfolio that expresses who you are",
+      "Stand out as a creative professional with your personal portfolio that expresses who you are.",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
