@@ -34,7 +34,7 @@ export const AutoReplyEmail = ({ fullName }: AutoReplyEmailProps) => {
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
             <Section className="mt-[32px]">
               <Img
-                src={`${baseUrl}/logo.svg`}
+                src={`${baseUrl}/logo.png`}
                 width="95"
                 height="31"
                 alt="ErnyG"
