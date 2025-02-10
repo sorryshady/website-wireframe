@@ -36,9 +36,8 @@ export const AutoReplyEmail = ({ fullName }: AutoReplyEmailProps) => {
               <Img
                 src={`${baseUrl}/logo.png`}
                 width="95"
-                height="31"
                 alt="ErnyG"
-                className="my-0 mx-auto bg-black p-2 rounded"
+                className="my-0 mx-auto object-contain"
               />
             </Section>
             <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
