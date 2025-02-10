@@ -69,18 +69,18 @@ const About = () => {
 
   return (
     <div
-      className="about-section min-h-screen bg-black text-white flex flex-col justify-center items-center py-10 sm:py-20 relative"
+      className="about-section h-[100svh] bg-black text-white flex flex-col justify-center items-center py-10 sm:py-20 relative"
       ref={containerRef}
     >
       <div className="max-w-[90vw] xl:max-w-[80vw] mx-auto px-4 sm:px-6 lg:px-8">
         <h2
           ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 sm:mb-16 md:mb-20 text-center"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 sm:mb-16 md:mb-20 text-center font-mont"
         >
-          About Us
+          About
         </h2>
 
-        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-loose sm:leading-loose md:leading-loose lg:leading-loose tracking-wider mb-20 sm:mb-24">
+        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-loose sm:leading-loose md:leading-loose lg:leading-loose tracking-wider mb-20 sm:mb-24 font-oxygenMono">
           {splitWords(text)}
         </p>
       </div>

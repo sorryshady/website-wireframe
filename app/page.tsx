@@ -171,12 +171,14 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="w-full absolute bottom-0 left-0 flex justify-between items-start text-center p-8 text-xs sm:text-sm md:text-base uppercase">
+            <div className="w-full absolute bottom-0 left-0 flex justify-between items-start text-center p-8 text-xs sm:text-sm md:text-base uppercase font-mont">
               <p className="w-1/2 sm:w-1/3 text-left tracking-tighter">
                 Born in India. Built for the Globe.
               </p>
               <p className="hidden sm:block w-1/3 mx-auto tracking-tighter">
-                UI/UX DESIGN | FULL STACK DEVELOPMENT | ILLUSTRATIONS
+                UI/UX DESIGN <span className="mx-2 font-semibold">|</span> FULL
+                STACK DEVELOPMENT <span className="mx-2 font-semibold">|</span>
+                ILLUSTRATIONS
               </p>
               <p className="w-1/2 sm:w-1/3 text-right tracking-tighter">
                 Ernyg © {new Date().getFullYear()}

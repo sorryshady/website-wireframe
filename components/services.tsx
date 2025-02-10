@@ -11,7 +11,6 @@ const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const iconsRef = useRef<HTMLDivElement[]>([]);
-  const textsRef = useRef<HTMLDivElement[]>([]);
   const scrollIndicatorRef = useRef(null);
 
   useGSAP(() => {
@@ -59,7 +58,6 @@ const Services = () => {
     // Hover animations
     cardsRef.current.forEach((card, index) => {
       const icon = iconsRef.current[index];
-      const text = textsRef.current[index];
 
       card.addEventListener("mouseenter", () => {
         gsap.to(card, {
@@ -69,12 +67,6 @@ const Services = () => {
         });
         gsap.to(icon, {
           scale: 1.05,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-        gsap.to(text, {
-          x: 0,
-          opacity: 1,
           duration: 0.3,
           ease: "power2.out",
         });
@@ -88,12 +80,6 @@ const Services = () => {
         });
         gsap.to(icon, {
           scale: 1,
-          duration: 0.3,
-          ease: "power2.out",
-        });
-        gsap.to(text, {
-          x: -20,
-          opacity: 0,
           duration: 0.3,
           ease: "power2.out",
         });
@@ -112,15 +98,15 @@ const Services = () => {
 
   return (
     <div
-      className="services-section min-h-screen bg-black text-white py-24 relative"
+      className="services-section min-h-[100svh] bg-black text-white py-24 relative"
       ref={containerRef}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="services-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-center">
+          <h2 className="services-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 text-center font-mont">
             Services
           </h2>
-          <p className="services-description text-xl sm:text-2xl text-gray-400">
+          <p className="services-description text-xl sm:text-2xl text-gray-400 font-mont">
             Comprehensive solutions for your digital needs
           </p>
         </div>
@@ -157,28 +143,6 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-400 mb-4 flex-grow">
                 {services[0].description}
               </p>
-
-              <div
-                ref={(el) => {
-                  if (el) textsRef.current[0] = el;
-                }}
-                className="flex items-center gap-2 text-sm font-medium text-white opacity-0 -translate-x-5"
-              >
-                Learn more
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </div>
             </div>
 
             <div
@@ -217,28 +181,6 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-400 mb-4 flex-grow">
                 {services[1].description}
               </p>
-
-              <div
-                ref={(el) => {
-                  if (el) textsRef.current[1] = el;
-                }}
-                className="flex items-center gap-2 text-sm font-medium text-white opacity-0 -translate-x-5"
-              >
-                Learn more
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </div>
             </div>
 
             <div
@@ -279,28 +221,6 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-400 mb-4 flex-grow">
                 {services[2].description}
               </p>
-
-              <div
-                ref={(el) => {
-                  if (el) textsRef.current[2] = el;
-                }}
-                className="flex items-center gap-2 text-sm font-medium text-white opacity-0 -translate-x-5"
-              >
-                Learn more
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </div>
             </div>
 
             <div
@@ -339,28 +259,6 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-400 mb-4 flex-grow">
                 {services[3].description}
               </p>
-
-              <div
-                ref={(el) => {
-                  if (el) textsRef.current[3] = el;
-                }}
-                className="flex items-center gap-2 text-sm font-medium text-white opacity-0 -translate-x-5"
-              >
-                Learn more
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </div>
             </div>
 
             <div
@@ -401,28 +299,6 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-400 mb-4 flex-grow">
                 {services[4].description}
               </p>
-
-              <div
-                ref={(el) => {
-                  if (el) textsRef.current[4] = el;
-                }}
-                className="flex items-center gap-2 text-sm font-medium text-white opacity-0 -translate-x-5"
-              >
-                Learn more
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </div>
             </div>
 
             <div
@@ -461,28 +337,6 @@ const Services = () => {
               <p className="text-sm sm:text-base text-gray-400 mb-4 flex-grow">
                 {services[5].description}
               </p>
-
-              <div
-                ref={(el) => {
-                  if (el) textsRef.current[5] = el;
-                }}
-                className="flex items-center gap-2 text-sm font-medium text-white opacity-0 -translate-x-5"
-              >
-                Learn more
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </div>
             </div>
 
             <div

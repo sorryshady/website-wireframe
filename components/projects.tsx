@@ -154,7 +154,7 @@ const Projects = () => {
         className="w-full h-[100svh] overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center"
       >
         <h1 className="intro-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
-          Our Projects
+          Projects
         </h1>
         <p className="intro-text text-xl md:text-2xl text-center max-w-2xl opacity-80 mb-12">
           Explore our portfolio of innovative digital solutions and creative
@@ -182,7 +182,7 @@ const Projects = () => {
       {projects.map((project, index) => (
         <div
           key={project.id}
-          className="w-full h-screen overflow-hidden shrink-0 px-6 md:px-8 lg:px-16 relative"
+          className="w-full h-[100svh] overflow-hidden shrink-0 px-6 md:px-8 lg:px-16 relative"
           ref={(ref) => {
             if (ref) projectsRef.current[index] = ref;
           }}
@@ -190,7 +190,7 @@ const Projects = () => {
           <div className="w-full h-full flex flex-col lg:flex-row items-center justify-center gap-8 md:gap-16">
             {/* Image Section */}
             <div
-              className="w-full lg:w-1/2 h-[40vh] md:h-[45vh] lg:h-[60vh] relative rounded-2xl overflow-hidden"
+              className="w-full lg:w-1/2 h-[40svh] md:h-[45svh] lg:h-[60svh] relative rounded-2xl overflow-hidden"
               ref={(ref) => {
                 if (ref) imagesRef.current[index] = ref;
               }}
@@ -290,7 +290,7 @@ const Projects = () => {
             // Show "Scroll to contact" for the last project
             <div
               ref={scrollIndicatorRef}
-              className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
+              className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-12 flex flex-col items-center gap-2 text-white/60
                transition-opacity duration-300 mb-safe"
             >
               <span className="text-sm sm:text-base font-medium tracking-wider">
