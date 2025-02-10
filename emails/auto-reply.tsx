@@ -30,7 +30,7 @@ export const AutoReplyEmail = ({ fullName }: AutoReplyEmailProps) => {
             <Section className="mt-[32px]">
               <Link href="https://www.ernyg.com">
                 <Img
-                  src="https://www.ernyg.com/logo.svg"
+                  src="/logo.svg"
                   width="95"
                   height="31"
                   alt="ErnyG"
