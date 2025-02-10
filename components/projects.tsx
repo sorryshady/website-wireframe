@@ -7,7 +7,7 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Horizontal = () => {
+const Projects = () => {
   const projectsRef = useRef<HTMLDivElement[]>([]);
   const imagesRef = useRef<HTMLDivElement[]>([]);
   const contentRef = useRef<HTMLDivElement[]>([]);
@@ -282,4 +282,4 @@ const Horizontal = () => {
   );
 };
 
-export default Horizontal;
+export default Projects;

@@ -7,7 +7,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const Bento = () => {
+const Services = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const iconsRef = useRef<HTMLDivElement[]>([]);
@@ -111,7 +111,7 @@ const Bento = () => {
   }, []);
 
   return (
-    <section
+    <div
       className="bento-section min-h-[100dvh] bg-black text-white py-12 relative"
       ref={containerRef}
     >
@@ -517,8 +517,8 @@ const Bento = () => {
           />
         </svg>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default Bento;
+export default Services;

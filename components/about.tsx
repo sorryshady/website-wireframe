@@ -68,7 +68,7 @@ const About = () => {
   }, []);
 
   return (
-    <section
+    <div
       className="about-section min-h-[100dvh] bg-black text-white flex flex-col justify-center items-center py-10 sm:py-20 relative"
       ref={containerRef}
     >
@@ -108,7 +108,7 @@ const About = () => {
           />
         </svg>
       </div>
-    </section>
+    </div>
   );
 };
 

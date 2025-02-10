@@ -7,9 +7,10 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Horizontal from "@/components/horizontal";
-import Bento from "@/components/bento";
+import Projects from "@/components/projects";
+import Services from "@/components/services";
 import About from "@/components/about";
+import { useLenis } from "lenis/react";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -20,7 +21,18 @@ export default function Home() {
   const mainRef = useRef(null);
   const tagRef = useRef(null);
   const [colorMode, setColorMode] = useState(false); // false = light, true = dark
+  const lenis = useLenis();
 
+  const navigationHandler = (target: string) => {
+    const element = document.getElementById(target);
+    if (element) {
+      lenis!.scrollTo(element, {
+        offset: 0,
+        duration: 1,
+        easing: (t) => t * (2 - t),
+      });
+    }
+  };
   useGSAP(() => {
     if (!isLoading) {
       // Text animation
@@ -88,10 +100,11 @@ export default function Home() {
 
       {!isLoading && (
         <>
-          <div
+          <section
             className={`absolute top-0 w-full min-h-screen overflow-x-hidden z-[1] font-mono flex flex-col justify-between items-center text-sm ${
               colorMode ? "text-white" : "text-black"
             }`}
+            id="hero"
           >
             <div
               className={`w-full fixed top-0 left-0 flex justify-between items-center text-center p-4 md:p-6 backdrop-blur-md bg-opacity-70 ${colorMode ? "bg-black" : "bg-white"} z-50`}
@@ -102,22 +115,23 @@ export default function Home() {
                   alt="ERNYG Logo"
                   width={95}
                   height={31}
-                  className={`transition-colors duration-500 ${colorMode ? "invert-0" : "invert"}`}
+                  className={`transition-colors duration-500 ${colorMode ? "invert-0" : "invert"} cursor-pointer`}
+                  onClick={() => navigationHandler("hero")}
                 />
               </div>
               <div className="nav-items hidden md:flex">
                 {["About", "Services", "Projects", "Contact"].map((item) => (
-                  <a
+                  <button
                     key={item}
-                    href="#"
                     className={`no-underline text-[16px] px-6 lg:px-16 ${colorMode ? "text-white" : "text-black"}`}
+                    onClick={() => navigationHandler(item.toLowerCase())}
                   >
                     <TextTrial
                       className={colorMode ? "text-white" : "text-black"}
                     >
                       {item}
                     </TextTrial>
-                  </a>
+                  </button>
                 ))}
               </div>
             </div>
@@ -166,15 +180,18 @@ export default function Home() {
                 Ernyg © {new Date().getFullYear()}
               </p>
             </div>
-          </div>
-          <section className="relative">
+          </section>
+          <section className="relative" id="about">
             <About />
           </section>
-          <section className="relative">
-            <Bento />
+          <section className="relative" id="services">
+            <Services />
           </section>
-          <section className="w-full h-screen flex flex-nowrap items-center projects-container">
-            <Horizontal />
+          <section
+            className="w-full h-screen flex flex-nowrap items-center projects-container"
+            id="projects"
+          >
+            <Projects />
           </section>
           <Footer />
         </>
