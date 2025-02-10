@@ -9,6 +9,7 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import SmoothScroller from "@/components/smooth-scroller";
+import { ToastProvider } from "@/components/toast-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -107,7 +108,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${workSans.variable} ${montserrat.variable} ${oxygen.variable} ${oxygenMono.variable} antialiased`}
       >
-        <SmoothScroller>{children}</SmoothScroller>
+        <SmoothScroller>
+          <ToastProvider>{children}</ToastProvider>
+        </SmoothScroller>
       </body>
     </html>
   );

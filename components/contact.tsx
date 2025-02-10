@@ -3,6 +3,7 @@ import React, { useRef, useState, FormEvent } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { useToast } from "@/components/toast-context";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,6 +37,8 @@ const Contact = () => {
 
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const { showToast } = useToast();
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -78,21 +81,35 @@ const Contact = () => {
 
     if (validateForm()) {
       try {
-        // For now, just console log the form data
-        console.log("Form submitted successfully:", formData);
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
 
-        // Clear form after successful submission
+        if (!response.ok) {
+          throw new Error("Failed to send message");
+        }
+
+        // Clear form and show success message
         setFormData({
           fullName: "",
           email: "",
           phone: "",
           message: "",
         });
-
-        // You could add a success message here
+        showToast(
+          "Message sent successfully! We'll get back to you soon.",
+          "success",
+        );
       } catch (error) {
-        console.error("Error submitting form:", error);
+        console.error("Contact form submission failed:", error);
+        showToast("Failed to send message. Please try again later.", "error");
       }
+    } else {
+      showToast("Please fix the errors in the form.", "error");
     }
 
     setIsSubmitting(false);
