@@ -6,10 +6,10 @@ import TextTrial from "@/components/text-trial";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import TextGradient from "@/components/text-gradient";
 import Image from "next/image";
 import Horizontal from "@/components/horizontal";
 import Bento from "@/components/bento";
+import About from "@/components/about";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -106,21 +106,19 @@ export default function Home() {
                 />
               </div>
               <div className="nav-items hidden md:flex">
-                {["About", "Services", "Projects", "Team", "Contact"].map(
-                  (item) => (
-                    <a
-                      key={item}
-                      href="#"
-                      className={`no-underline text-[16px] px-6 lg:px-16 ${colorMode ? "text-white" : "text-black"}`}
+                {["About", "Services", "Projects", "Contact"].map((item) => (
+                  <a
+                    key={item}
+                    href="#"
+                    className={`no-underline text-[16px] px-6 lg:px-16 ${colorMode ? "text-white" : "text-black"}`}
+                  >
+                    <TextTrial
+                      className={colorMode ? "text-white" : "text-black"}
                     >
-                      <TextTrial
-                        className={colorMode ? "text-white" : "text-black"}
-                      >
-                        {item}
-                      </TextTrial>
-                    </a>
-                  ),
-                )}
+                      {item}
+                    </TextTrial>
+                  </a>
+                ))}
               </div>
             </div>
             <div
@@ -169,22 +167,11 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <section className="about-section pt-20 flex flex-col justify-center items-center h-screen">
-            <div className="text-center">
-              <h2 className="about-title text-3xl sm:text-4xl md:text-5xl font-bold text-white">
-                About Us
-              </h2>
-            </div>
-            <TextGradient text="Elevate your digital presence with precision and care. From business websites and institutional apps to personal portfolios, we craft solutions that blend functionality with aesthetics. Leave the complexity to us—we transform ideas into reality, seamlessly and efficiently." />
+          <section className="relative">
+            <About />
           </section>
-          <section className="w-full h-screen flex flex-col justify-center items-center">
+          <section className="relative">
             <Bento />
-          </section>
-          <section className="w-full h-screen flex flex-col justify-center items-center third-section">
-            <div className="text-2xl sm:text-3xl md:text-4xl">Third Random</div>
-          </section>
-          <section className="w-full h-screen flex flex-col justify-center items-center second-section">
-            <div className="text-2xl sm:text-3xl md:text-4xl">Random</div>
           </section>
           <section className="w-full h-screen flex flex-nowrap items-center projects-container">
             <Horizontal />
