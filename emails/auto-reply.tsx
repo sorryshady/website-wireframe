@@ -19,10 +19,10 @@ interface AutoReplyEmailProps {
   fullName: string;
 }
 
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://www.ernyg.com"
-    : "http://localhost:3000";
+// const baseUrl =
+//   process.env.NODE_ENV === "production"
+//     ? "https://www.ernyg.com"
+//     : "http://localhost:3000";
 
 export const AutoReplyEmail = ({ fullName }: AutoReplyEmailProps) => {
   return (
@@ -34,7 +34,7 @@ export const AutoReplyEmail = ({ fullName }: AutoReplyEmailProps) => {
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
             <Section className="mt-[32px]">
               <Img
-                src={`${baseUrl}/logo.svg`}
+                src="https://85ngqrrmcp.ufs.sh/f/uzdNUoOFHRlaOkfUZgJm0F9CwQpLXN5EZIrP62hDaYWyb3Vs"
                 width="95"
                 height="31"
                 alt="ErnyG"
