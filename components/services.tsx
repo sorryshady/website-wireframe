@@ -112,7 +112,7 @@ const Services = () => {
 
   return (
     <div
-      className="services-section min-h-[100svh] bg-black text-white py-24 relative"
+      className="services-section min-h-screen bg-black text-white py-24 relative"
       ref={containerRef}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

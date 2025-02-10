@@ -151,7 +151,7 @@ const Projects = () => {
       {/* Intro Slide */}
       <div
         ref={introRef}
-        className="w-full h-[100svh] overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center"
+        className="w-full h-screen overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center"
       >
         <h1 className="intro-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
           Our Projects
