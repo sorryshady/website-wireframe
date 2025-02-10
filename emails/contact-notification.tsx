@@ -5,8 +5,11 @@ import {
   Heading,
   Hr,
   Html,
+  Img,
+  Link,
   Preview,
   Section,
+  Tailwind,
   Text,
 } from "@react-email/components";
 import * as React from "react";
@@ -28,76 +31,52 @@ export const ContactEmail = ({
     <Html>
       <Head />
       <Preview>New Contact Form Submission from {fullName}</Preview>
-      <Body style={main}>
-        <Container style={container}>
-          <Heading style={h1}>New Contact Form Submission</Heading>
-          <Section style={section}>
-            <Text style={text}>
-              <strong>Name:</strong> {fullName}
-            </Text>
-            <Text style={text}>
-              <strong>Email:</strong> {email}
-            </Text>
-            <Text style={text}>
-              <strong>Phone:</strong> {phone}
-            </Text>
-          </Section>
-          <Hr style={hr} />
-          <Section style={section}>
-            <Text style={text}>
-              <strong>Message:</strong>
-            </Text>
-            <Text style={messageText}>{message}</Text>
-          </Section>
-        </Container>
-      </Body>
+      <Tailwind>
+        <Body className="bg-white my-auto mx-auto font-sans px-2">
+          <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
+            <Section className="mt-[32px]">
+              <Img
+                src="https://www.ernyg.com/logo.svg"
+                width="95"
+                height="31"
+                alt="ErnyG"
+                className="my-0 mx-auto bg-black p-2 rounded"
+              />
+            </Section>
+            <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
+              New Contact Form Submission
+            </Heading>
+            <Section className="bg-[#f6f9fc] p-6 rounded-lg">
+              <Text className="text-[#333] text-[14px] leading-[24px]">
+                <strong>Name:</strong> {fullName}
+              </Text>
+              <Text className="text-[#333] text-[14px] leading-[24px]">
+                <strong>Email:</strong>{" "}
+                <Link
+                  href={`mailto:${email}`}
+                  className="text-blue-600 no-underline"
+                >
+                  {email}
+                </Link>
+              </Text>
+              <Text className="text-[#333] text-[14px] leading-[24px]">
+                <strong>Phone:</strong> {phone}
+              </Text>
+            </Section>
+            <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
+            <Section className="bg-[#f6f9fc] p-6 rounded-lg">
+              <Text className="text-[#333] text-[14px] leading-[24px]">
+                <strong>Message:</strong>
+              </Text>
+              <Text className="text-[#333] text-[14px] leading-[24px] whitespace-pre-wrap">
+                {message}
+              </Text>
+            </Section>
+          </Container>
+        </Body>
+      </Tailwind>
     </Html>
   );
 };
 
 export default ContactEmail;
-
-// Styles
-const main = {
-  backgroundColor: "#ffffff",
-  fontFamily:
-    '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
-};
-
-const container = {
-  margin: "0 auto",
-  padding: "20px 0 48px",
-  maxWidth: "580px",
-};
-
-const section = {
-  padding: "24px",
-  backgroundColor: "#f6f9fc",
-  borderRadius: "4px",
-};
-
-const h1 = {
-  color: "#333",
-  fontSize: "24px",
-  fontWeight: "bold",
-  margin: "40px 0",
-  padding: "0",
-};
-
-const text = {
-  color: "#333",
-  fontSize: "16px",
-  margin: "12px 0",
-};
-
-const messageText = {
-  color: "#333",
-  fontSize: "16px",
-  margin: "12px 0",
-  whiteSpace: "pre-wrap",
-};
-
-const hr = {
-  borderColor: "#e6ebf1",
-  margin: "20px 0",
-};
