@@ -100,7 +100,7 @@ const Preloader = ({
         </div>
       </div>
       <div
-        className={`top-1/3 w-full h-1/3 overflow-hidden relative transition-colors duration-500 ${
+        className={`top-1/3 w-full h-1/3 relative transition-colors duration-500 ${
           !colorMode ? "bg-white" : "bg-black"
         }`}
         ref={centerRef}

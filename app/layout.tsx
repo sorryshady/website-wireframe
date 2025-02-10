@@ -44,9 +44,57 @@ const oxygenMono = Oxygen_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ernyg",
+  title: "Ernyg | Design. Develop. Simplify.",
   description:
-    "Ernyg is a design and development studio that creates beautiful, functional websites and apps.",
+    "Ernyg is a premier design and development studio specializing in UI/UX design, full-stack development, and illustrations. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
+  keywords: [
+    "UI/UX Design",
+    "Web Development",
+    "Mobile App Development",
+    "Full Stack Development",
+    "Illustrations",
+    "Digital Design",
+    "Web Design",
+    "Software Development",
+    "Creative Studio",
+    "Design Agency",
+  ],
+  authors: [{ name: "Ernyg" }],
+  creator: "Ernyg",
+  publisher: "Ernyg",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: "Ernyg | Design. Develop. Simplify.",
+    description:
+      "Where design and art meets code. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
+    url: "https://ernyg.com",
+    siteName: "Ernyg",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ernyg | Design. Develop. Simplify.",
+    description:
+      "Where design and art meets code. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
