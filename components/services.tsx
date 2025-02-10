@@ -112,7 +112,7 @@ const Services = () => {
 
   return (
     <div
-      className="services-section min-h-[100dvh] bg-black text-white py-24 relative"
+      className="services-section min-h-[100svh] bg-black text-white py-24 relative"
       ref={containerRef}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -497,14 +497,14 @@ const Services = () => {
       {/* Scroll Indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
-           transition-opacity duration-300"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
+         transition-opacity duration-300 mb-safe"
       >
         <span className="text-sm sm:text-base font-medium tracking-wider">
           KEEP SCROLLING
         </span>
         <svg
-          className="w-6 h-6"
+          className="w-5 h-5 sm:w-6 sm:h-6"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

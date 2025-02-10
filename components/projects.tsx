@@ -268,12 +268,12 @@ const Projects = () => {
           {/* Scroll Indicators */}
           {index < projects.length - 1 ? (
             // Show "Scroll for next project" for all but last project
-            <div className="absolute bottom-8 right-8 md:right-12 flex items-center gap-3 opacity-60">
+            <div className="absolute bottom-4 sm:bottom-8 right-4 sm:right-8 md:right-12 flex items-center gap-3 opacity-60">
               <span className="text-sm font-medium">
                 Scroll for next project
               </span>
               <svg
-                className="w-5 h-5 animate-bounce"
+                className="w-4 h-4 sm:w-5 sm:h-5 animate-bounce"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -290,14 +290,14 @@ const Projects = () => {
             // Show "Scroll to contact" for the last project
             <div
               ref={scrollIndicatorRef}
-              className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
-             transition-opacity duration-300"
+              className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
+               transition-opacity duration-300 mb-safe"
             >
               <span className="text-sm sm:text-base font-medium tracking-wider">
-                KEEP SCROLLING
+                SCROLL TO CONTACT
               </span>
               <svg
-                className="w-6 h-6"
+                className="w-5 h-5 sm:w-6 sm:h-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
