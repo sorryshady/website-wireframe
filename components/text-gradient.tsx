@@ -18,7 +18,7 @@ const TextGradient = ({ text }: { text: string }) => {
 
       body.push(
         <p
-          className="text-[max(2rem,3.5vw)] m-0 mr-[1.5vw] font-bold"
+          className="text-[max(2rem,3.0vw)] m-0 mr-[1.5vw] font-bold"
           key={word + "_" + i}
         >
           {letters}
@@ -63,7 +63,7 @@ const TextGradient = ({ text }: { text: string }) => {
   });
   return (
     <div
-      className="w-full h-screen bg-black flex justify-center items-center text-[rgb(211,211,211)]"
+      className="w-full h-full bg-black flex justify-center items-center text-[rgb(211,211,211)]"
       ref={containerRef}
     >
       <div

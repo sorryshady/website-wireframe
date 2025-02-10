@@ -9,6 +9,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import TextGradient from "@/components/text-gradient";
 import Image from "next/image";
 import Horizontal from "@/components/horizontal";
+import Bento from "@/components/bento";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -68,7 +69,7 @@ export default function Home() {
         onLeaveBack: () => setColorMode(true),
       });
       ScrollTrigger.create({
-        trigger: ".fourth-section",
+        trigger: ".about-section",
         start: "top 75%",
         onEnter: () => setColorMode(true),
         onLeaveBack: () => setColorMode(false),
@@ -168,8 +169,16 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <section className="fourth-section">
+          <section className="about-section pt-20 flex flex-col justify-center items-center h-screen">
+            <div className="text-center">
+              <h2 className="about-title text-3xl sm:text-4xl md:text-5xl font-bold text-white">
+                About Us
+              </h2>
+            </div>
             <TextGradient text="Elevate your digital presence with precision and care. From business websites and institutional apps to personal portfolios, we craft solutions that blend functionality with aesthetics. Leave the complexity to us—we transform ideas into reality, seamlessly and efficiently." />
+          </section>
+          <section className="w-full h-screen flex flex-col justify-center items-center">
+            <Bento />
           </section>
           <section className="w-full h-screen flex flex-col justify-center items-center third-section">
             <div className="text-2xl sm:text-3xl md:text-4xl">Third Random</div>
