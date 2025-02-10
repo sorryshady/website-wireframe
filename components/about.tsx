@@ -50,7 +50,7 @@ const About = () => {
         trigger: containerRef.current,
         scrub: true,
         start: "top center",
-        end: "bottom center",
+        end: `+=${window.innerHeight / 3}`,
       },
       opacity: 1,
       stagger: 0.1,
