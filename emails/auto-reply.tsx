@@ -21,7 +21,7 @@ interface AutoReplyEmailProps {
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://www.ernyg.vercel.app"
+    ? "https://ernyg.vercel.app"
     : "http://localhost:3000";
 
 export const AutoReplyEmail = ({ fullName }: AutoReplyEmailProps) => {

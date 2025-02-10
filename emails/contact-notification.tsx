@@ -29,7 +29,7 @@ export const ContactEmail = ({
 }: ContactEmailProps) => {
   const baseUrl =
     process.env.NODE_ENV === "production"
-      ? "https://www.ernyg.vercel.app"
+      ? "https://ernyg.vercel.app"
       : "http://localhost:3000";
 
   return (
