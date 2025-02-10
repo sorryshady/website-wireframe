@@ -108,7 +108,7 @@ export default function Home() {
             id="hero"
           >
             <div
-              className={`w-full mx-auto fixed top-0 left-0 right-0 flex justify-between items-center text-center p-4 md:p-6 backdrop-blur-md bg-opacity-70 ${colorMode ? "bg-black" : "bg-white"} z-50`}
+              className={`w-full lg:w-[80%] mx-auto fixed top-0 left-0 right-0 flex justify-between items-center text-center p-4 md:p-6 backdrop-blur-md bg-opacity-70 bg-transparent z-50`}
             >
               <div className="text-3xl font-medium">
                 <Image
@@ -171,9 +171,10 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <div className="w-full absolute bottom-0 left-0 flex justify-between items-start text-center p-8 text-xs sm:text-sm md:text-base uppercase font-mont">
-              <p className="w-1/2 sm:w-1/3 text-left tracking-tighter">
-                Born in India. Built for the Globe.
+            <div className="w-full lg:w-[80%] mx-auto absolute bottom-0 left-0 right-0 flex justify-between items-start text-center p-8 text-xs sm:text-sm md:text-base uppercase font-mont">
+              <p className="w-1/2 sm:w-1/3 text-left tracking-tighter flex flex-col lg:flex-row gap-1">
+                <span>Born in India.</span>
+                <span>Built for the Globe.</span>
               </p>
               <p className="hidden sm:block w-1/3 mx-auto tracking-tighter">
                 UI/UX DESIGN <span className="mx-2 font-semibold">|</span> FULL

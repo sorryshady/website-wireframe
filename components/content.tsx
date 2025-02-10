@@ -5,7 +5,7 @@ const Content = () => {
   return (
     <div className="bg-[#222] py-4 sm:py-6 md:py-8 px-6 sm:px-8 md:px-12 h-full w-full flex flex-col justify-between">
       <Section1 />
-      <div className="flex gap-12 items-center tracking-wider text-base sm:text-lg md:text-xl font-medium">
+      <div className="flex gap-12 items-center tracking-wider text-base sm:text-lg md:text-xl font-medium font-mont">
         <a
           href="https://ernyg.com"
           target="_blank"
@@ -40,7 +40,7 @@ const Section1 = () => {
 
 const Section2 = () => {
   return (
-    <div className="flex justify-between items-end mb-6 sm:mb-8 md:mb-10 font-mono">
+    <div className="flex justify-between items-end mb-6 sm:mb-8 md:mb-10 font-mont">
       <h1 className="text-[12vw] sm:text-[13vw] md:text-[14vw] font-medium leading-[0.8] tracking-tighter mt-6 sm:mt-8 md:mt-10 text-white">
         Ernyg
       </h1>
@@ -53,7 +53,7 @@ const Section2 = () => {
 
 const Nav = () => {
   return (
-    <div className="flex flex-col sm:flex-row shrink-0 gap-8 sm:gap-20 md:gap-28 font-mono">
+    <div className="flex flex-col sm:flex-row shrink-0 gap-8 sm:gap-20 md:gap-28 font-mont">
       <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
         <h3 className="uppercase text-[#fff] text-lg sm:text-xl md:text-2xl font-bold tracking-widest">
           Our Socials
