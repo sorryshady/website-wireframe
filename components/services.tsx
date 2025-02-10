@@ -112,7 +112,7 @@ const Services = () => {
 
   return (
     <div
-      className="bento-section min-h-[100dvh] bg-black text-white py-12 relative"
+      className="services-section min-h-[100dvh] bg-black text-white py-24 relative"
       ref={containerRef}
     >
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -498,7 +498,7 @@ const Services = () => {
       <div
         ref={scrollIndicatorRef}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
-          [.is-near-bottom_&]:opacity-0 transition-opacity duration-300"
+           transition-opacity duration-300"
       >
         <span className="text-sm sm:text-base font-medium tracking-wider">
           KEEP SCROLLING

@@ -89,7 +89,7 @@ const About = () => {
       <div
         ref={scrollIndicatorRef}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
-          [.is-near-bottom_&]:opacity-0 transition-opacity duration-300"
+         transition-opacity duration-300"
       >
         <span className="text-sm sm:text-base font-medium tracking-wider">
           KEEP SCROLLING
