@@ -64,7 +64,7 @@ const TextTrial = ({
 
   return (
     <span
-      className={`inline-block font-mono ${className}`}
+      className={`inline-block font-oxygenMono ${className}`}
       {...(!disableHover && {
         onMouseEnter: scramble,
         onMouseLeave: stopScramble,

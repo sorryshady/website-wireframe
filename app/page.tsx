@@ -92,7 +92,7 @@ export default function Home() {
 
   return (
     <main
-      className={`relative w-full min-h-screen transition-colors duration-500 overflow-x-hidden ${
+      className={`relative w-full min-h-[100svh] transition-colors duration-500 overflow-x-hidden ${
         colorMode ? "bg-black text-white" : "bg-white text-black"
       }`}
       ref={mainRef}
@@ -102,7 +102,7 @@ export default function Home() {
       {!isLoading && (
         <>
           <section
-            className={`absolute top-0 w-full min-h-screen overflow-x-hidden z-[1] font-mono flex flex-col justify-between items-center text-sm ${
+            className={`absolute top-0 w-full h-[100svh] overflow-x-hidden z-[1] font-mono flex flex-col justify-between items-center text-sm ${
               colorMode ? "text-white" : "text-black"
             }`}
             id="hero"
@@ -124,7 +124,7 @@ export default function Home() {
                 {["About", "Services", "Projects", "Contact"].map((item) => (
                   <button
                     key={item}
-                    className={`no-underline text-[16px] px-6 lg:px-16 ${colorMode ? "text-white" : "text-black"}`}
+                    className={`no-underline text-[16px] leading-[20px] px-6 lg:px-16 uppercase ${colorMode ? "text-white" : "text-black"}`}
                     onClick={() => navigationHandler(item.toLowerCase())}
                   >
                     <TextTrial
@@ -142,7 +142,7 @@ export default function Home() {
               }`}
             >
               <div className="text-center" ref={tagRef}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl tracking-wider">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl  tracking-wider font-mont font-medium">
                   Design.Develop.Simplify
                 </h2>
               </div>
@@ -156,11 +156,11 @@ export default function Home() {
                 className="flex flex-col items-center gap-6 md:gap-8"
                 ref={textRef}
               >
-                <h1 className="text-2xl sm:text-3xl md:text-4xl tracking-normal text-center">
-                  Where design and art meets code
+                <h1 className="text-2xl sm:text-3xl md:text-4xl md:mb-7 tracking-normal text-center font-mont font-medium">
+                  Where design and art meets code.
                 </h1>
                 <button
-                  className={`px-6 py-3 md:px-8 md:py-4 text-base sm:text-lg md:text-xl rounded-full transition-colors duration-500 uppercase tracking-wider ${
+                  className={`px-6 py-3 md:px-8 md:py-4 text-base sm:text-lg md:text-xl rounded-full transition-colors duration-500 uppercase tracking-wider font-mont font-medium ${
                     colorMode
                       ? "bg-white text-black hover:bg-gray-300"
                       : "bg-black text-white hover:bg-gray-800"

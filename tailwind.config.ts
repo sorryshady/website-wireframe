@@ -15,10 +15,11 @@ export default {
         white: "#F5F5F5",
       },
       fontFamily: {
-        sans: ["var(--font-montserrat)"],
         mono: ["var(--font-geist-mono)"],
         work: ["var(--font-work-sans)"],
         mont: ["var(--font-montserrat)"],
+        oxygen: ["var(--font-oxygen)"],
+        oxygenMono: ["var(--font-oxygen-mono)"],
       },
     },
   },
