@@ -16,6 +16,7 @@ const Projects = () => {
   const tagsRef = useRef<HTMLDivElement[]>([]);
   const buttonRef = useRef<HTMLAnchorElement[]>([]);
   const introRef = useRef<HTMLDivElement>(null);
+  const scrollIndicatorRef = useRef(null);
 
   useGSAP(() => {
     const totalSlides = projectsRef.current.length + 1;
@@ -133,6 +134,15 @@ const Projects = () => {
           { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
           0.8,
         );
+    });
+
+    // Add bounce animation for the last project's scroll indicator
+    gsap.to(scrollIndicatorRef.current, {
+      y: 10,
+      duration: 1.5,
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
     });
   });
 
@@ -255,8 +265,9 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* Scroll Indicator - Added for each project */}
-          {index < projects.length - 1 && ( // Don't show on last project
+          {/* Scroll Indicators */}
+          {index < projects.length - 1 ? (
+            // Show "Scroll for next project" for all but last project
             <div className="absolute bottom-8 right-8 md:right-12 flex items-center gap-3 opacity-60">
               <span className="text-sm font-medium">
                 Scroll for next project
@@ -272,6 +283,30 @@ const Projects = () => {
                   strokeLinejoin="round"
                   strokeWidth={2}
                   d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </div>
+          ) : (
+            // Show "Scroll to contact" for the last project
+            <div
+              ref={scrollIndicatorRef}
+              className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
+                [.is-near-bottom_&]:opacity-0 transition-opacity duration-300"
+            >
+              <span className="text-sm sm:text-base font-medium tracking-wider">
+                KEEP SCROLLING
+              </span>
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
                 />
               </svg>
             </div>

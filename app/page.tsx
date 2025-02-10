@@ -7,10 +7,11 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Image from "next/image";
-import Projects from "@/components/horizontal";
+import Projects from "@/components/projects";
 import Services from "@/components/services";
 import About from "@/components/about";
 import { useLenis } from "lenis/react";
+import Contact from "@/components/contact";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -164,6 +165,7 @@ export default function Home() {
                       ? "bg-white text-black hover:bg-gray-300"
                       : "bg-black text-white hover:bg-gray-800"
                   }`}
+                  onClick={() => navigationHandler("contact")}
                 >
                   Let&apos;s Create Together
                 </button>
@@ -192,6 +194,9 @@ export default function Home() {
             id="projects"
           >
             <Projects />
+          </section>
+          <section className="relative" id="contact">
+            <Contact />
           </section>
           <Footer />
         </>
