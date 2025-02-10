@@ -27,10 +27,10 @@ export const ContactEmail = ({
   phone,
   message,
 }: ContactEmailProps) => {
-//   const baseUrl =
-//     process.env.NODE_ENV === "production"
-//       ? "https://www.ernyg.com"
-//       : "http://localhost:3000";
+  const baseUrl =
+    process.env.NODE_ENV === "production"
+      ? "https://www.ernyg.vercel.app"
+      : "http://localhost:3000";
 
   return (
     <Html>
@@ -41,7 +41,7 @@ export const ContactEmail = ({
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
             <Section className="mt-[32px]">
               <Img
-                src="https://85ngqrrmcp.ufs.sh/f/uzdNUoOFHRlaOkfUZgJm0F9CwQpLXN5EZIrP62hDaYWyb3Vs"
+                src={`${baseUrl}/logo.svg`}
                 width="95"
                 height="31"
                 alt="ErnyG"
