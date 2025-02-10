@@ -80,7 +80,7 @@ const About = () => {
           About Us
         </h2>
 
-        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-medium leading-loose sm:leading-loose md:leading-loose lg:leading-loose tracking-wider mb-20 sm:mb-24">
+        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-loose sm:leading-loose md:leading-loose lg:leading-loose tracking-wider mb-20 sm:mb-24">
           {splitWords(text)}
         </p>
       </div>
