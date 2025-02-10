@@ -83,11 +83,6 @@ export const metadata: Metadata = {
     description:
       "Where design and art meets code. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
-  },
   robots: {
     index: true,
     follow: true,
