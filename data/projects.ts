@@ -33,7 +33,7 @@ export const projects: Project[] = [
     client: "Dr. Arun Kumar Vidhyadharan",
     projectName: "Ilili Dental Spa",
     description:
-      "We transformed Ilili Dental Spa’s digital presence with a sleek and intuitive website for Dr. Arun. Prioritizing user experience, the site offers effortless access to their specialties, team, and contact details, all within a bright, visually appealing interface.",
+      "We transformed Ilili Dental Spa’s website for Dr. Arun by making sleek and intuitive. Prioritizing an easy user experience, the site offers effortless access to their specialties, team, and contact details. All within a bright, visually appealing interface.",
     services: ["UI/UX Design", "Web Development"],
     website: "https://ililidentalspa.com",
     image: "/projects/ilili_thumbnail.webp",
