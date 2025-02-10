@@ -108,7 +108,7 @@ export default function Home() {
             id="hero"
           >
             <div
-              className={`w-full fixed top-0 left-0 flex justify-between items-center text-center p-4 md:p-6 backdrop-blur-md bg-opacity-70 ${colorMode ? "bg-black" : "bg-white"} z-50`}
+              className={`w-full lg:w-[70%] mx-auto fixed top-0 left-0 right-0 flex justify-between items-center text-center p-4 md:p-6 backdrop-blur-md bg-opacity-70 ${colorMode ? "bg-black" : "bg-white"} z-50`}
             >
               <div className="text-3xl font-medium">
                 <Image
