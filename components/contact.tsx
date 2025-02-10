@@ -170,7 +170,7 @@ const Contact = () => {
   return (
     <section
       ref={containerRef}
-      className="contact-section min-h-[100dvh] bg-black text-white flex flex-col justify-center items-center py-20 relative"
+      className="contact-section min-h-[100svh] bg-black text-white flex flex-col justify-center items-center py-20 relative"
     >
       <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2

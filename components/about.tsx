@@ -69,7 +69,7 @@ const About = () => {
 
   return (
     <div
-      className="about-section min-h-[100dvh] bg-black text-white flex flex-col justify-center items-center py-10 sm:py-20 relative"
+      className="about-section min-h-[100svh] bg-black text-white flex flex-col justify-center items-center py-10 sm:py-20 relative"
       ref={containerRef}
     >
       <div className="max-w-[90vw] xl:max-w-[80vw] mx-auto px-4 sm:px-6 lg:px-8">

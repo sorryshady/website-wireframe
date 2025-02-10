@@ -151,7 +151,7 @@ const Projects = () => {
       {/* Intro Slide */}
       <div
         ref={introRef}
-        className="w-full h-screen overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center"
+        className="w-full h-[100svh] overflow-hidden shrink-0 px-4 md:px-8 lg:px-16 flex flex-col items-center justify-center"
       >
         <h1 className="intro-title text-6xl md:text-7xl lg:text-8xl font-bold mb-8">
           Our Projects
@@ -291,7 +291,7 @@ const Projects = () => {
             <div
               ref={scrollIndicatorRef}
               className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60
-                [.is-near-bottom_&]:opacity-0 transition-opacity duration-300"
+             transition-opacity duration-300"
             >
               <span className="text-sm sm:text-base font-medium tracking-wider">
                 KEEP SCROLLING
