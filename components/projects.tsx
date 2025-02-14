@@ -37,11 +37,11 @@ const Projects = () => {
         scrub: 1,
         snap: {
           snapTo: 1 / (totalSlides - 1),
-          duration: { min: 0.2, max: 0.5 },
-          delay: 0.1,
-          ease: "power1.inOut",
-          inertia: true,
-          directional: true,
+          duration: { min: 0.3, max: 0.8 },
+          delay: 0.2,
+          ease: "power2.out",
+          inertia: false,
+          directional: window.innerWidth >= 768, // Add directional property based on screen size
         },
         id: "projects-container",
       },
