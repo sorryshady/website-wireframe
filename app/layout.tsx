@@ -10,6 +10,7 @@ import {
 import "./globals.css";
 import SmoothScroller from "@/components/smooth-scroller";
 import { ToastProvider } from "@/components/toast-context";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,6 +44,114 @@ const oxygenMono = Oxygen_Mono({
   subsets: ["latin"],
   weight: ["400"],
 });
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://ernyg.com/#website",
+      url: "https://ernyg.com",
+      name: "Ernyg",
+      description: "Creative Design & Development Studio",
+      publisher: {
+        "@type": "Organization",
+        name: "Ernyg",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://ernyg.com/logo.png",
+        },
+      },
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ernyg.com/#organization",
+      name: "Ernyg",
+      url: "https://ernyg.com",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://ernyg.com/logo.png",
+        width: 190,
+        height: 60,
+      },
+      sameAs: [
+        // Add your social media URLs here
+        "https://instagram.com/ernygtech",
+        "https://linkedin.com/company/ernyg",
+      ],
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://ernyg.com/#service",
+      name: "Ernyg",
+      description:
+        "Premier creative studio specializing in UI/UX design, web development, and digital experiences",
+      url: "https://ernyg.com",
+      priceRange: "$$",
+      areaServed: "Worldwide",
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Design & Development Services",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "UI/UX Design",
+              description:
+                "Creating intuitive and engaging user interfaces and experiences that delight users and drive engagement",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Web Development",
+              description:
+                "Building modern, responsive, and performant web applications using cutting-edge technologies",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Mobile Development",
+              description:
+                "Developing native and cross-platform mobile applications that provide seamless user experiences",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Brand Design",
+              description:
+                "Crafting unique and memorable brand identities that resonate with your target audience",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Digital Marketing",
+              description:
+                "Strategic digital marketing solutions to enhance your online presence and reach",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Consulting",
+              description:
+                "Expert guidance and consulting services for your digital transformation journey",
+            },
+          },
+        ],
+      },
+    },
+  ],
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ernyg.com"),
@@ -141,6 +250,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <Script
+          id="json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${workSans.variable} ${montserrat.variable} ${oxygen.variable} ${oxygenMono.variable} antialiased`}
       >
