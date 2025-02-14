@@ -45,22 +45,54 @@ const oxygenMono = Oxygen_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ernyg | Design. Develop. Simplify.",
+  metadataBase: new URL("https://ernyg.com"),
+  title: "Ernyg | Creative Design & Development Studio",
   description:
-    "Ernyg is a premier design and development studio specializing in UI/UX design, full-stack development, and illustrations. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
+    "Ernyg is a premier creative studio specializing in UI/UX design, web development, and digital experiences. We create beautiful, functional, and accessible digital solutions that drive business growth.",
   keywords: [
+    // Primary Keywords
     "UI/UX Design",
     "Web Development",
-    "Mobile App Development",
-    "Full Stack Development",
-    "Illustrations",
     "Digital Design",
-    "Web Design",
-    "Software Development",
     "Creative Studio",
+    "Full Stack Development",
+    "Mobile App Development",
+    "Brand Design",
+    "User Interface Design",
+    "User Experience Design",
+
+    // Service Keywords
+    "Website Design",
+    "Web Application Development",
+    "React Development",
+    "Next.js Development",
+    "Frontend Development",
+    "Backend Development",
+    "Responsive Design",
+    "Interactive Design",
+    "Custom Web Solutions",
+    "E-commerce Development",
+
+    // Industry Keywords
+    "Digital Agency",
+    "Tech Studio",
     "Design Agency",
+    "Software Development Company",
+    "Creative Technology",
+    "Digital Innovation",
+
+    // Location Keywords
+    "Design Studio India",
+    "Web Development India",
+    "Global Design Studio",
+
+    // Brand Keywords
+    "Ernyg",
+    "Ernyg Studio",
+    "Ernyg Design",
+    "Ernyg Development",
   ],
-  authors: [{ name: "Ernyg" }],
+  authors: [{ name: "Ernyg", url: "https://ernyg.com" }],
   creator: "Ernyg",
   publisher: "Ernyg",
   formatDetection: {
@@ -69,19 +101,21 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Ernyg | Design. Develop. Simplify.",
-    description:
-      "Where design and art meets code. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
-    url: "https://ernyg.com",
-    siteName: "Ernyg",
-    locale: "en_US",
     type: "website",
+    locale: "en_US",
+    url: "https://ernyg.com",
+    title: "Ernyg | Creative Design & Development Studio",
+    description:
+      "Where design meets technology. We create beautiful, functional digital experiences with a focus on performance, accessibility, and user engagement.",
+    siteName: "Ernyg",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ernyg | Design. Develop. Simplify.",
+    title: "Ernyg | Creative Design & Development Studio",
     description:
-      "Where design and art meets code. We create beautiful, functional websites and mobile applications with a focus on speed, accessibility, and intuitive design.",
+      "Where design meets technology. We create beautiful, functional digital experiences with a focus on performance, accessibility, and user engagement.",
+    creator: "@ernyg",
+    site: "@ernyg",
   },
   robots: {
     index: true,
@@ -89,15 +123,15 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
-  },
-  icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-icon.png",
   },
   alternates: {
     canonical: "https://ernyg.com",
   },
+  category: "technology",
 };
 
 export default function RootLayout({
