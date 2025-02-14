@@ -95,6 +95,9 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     apple: "/apple-icon.png",
   },
+  alternates: {
+    canonical: "https://ernyg.com",
+  },
 };
 
 export default function RootLayout({
