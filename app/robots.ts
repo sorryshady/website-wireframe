@@ -7,5 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
     },
     sitemap: "https://ernyg.com/sitemap.xml", // Your sitemap URL
+    host: "https://ernyg.com",
   };
 }
