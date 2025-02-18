@@ -50,8 +50,8 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "WebSite",
-      "@id": "https://ernyg.com/#website",
-      url: "https://ernyg.com",
+      "@id": "https://www.ernyg.com/#website",
+      url: "https://www.ernyg.com",
       name: "Ernyg",
       description: "Creative Design & Development Studio",
       publisher: {
@@ -59,18 +59,18 @@ const jsonLd = {
         name: "Ernyg",
         logo: {
           "@type": "ImageObject",
-          url: "https://ernyg.com/logo.png",
+          url: "https://www.ernyg.com/logo.png",
         },
       },
     },
     {
       "@type": "Organization",
-      "@id": "https://ernyg.com/#organization",
+      "@id": "https://www.ernyg.com/#organization",
       name: "Ernyg",
-      url: "https://ernyg.com",
+      url: "https://www.ernyg.com",
       logo: {
         "@type": "ImageObject",
-        url: "https://ernyg.com/logo.png",
+        url: "https://www.ernyg.com/logo.png",
         width: 190,
         height: 60,
       },
@@ -82,11 +82,11 @@ const jsonLd = {
     },
     {
       "@type": "ProfessionalService",
-      "@id": "https://ernyg.com/#service",
+      "@id": "https://www.ernyg.com/#service",
       name: "Ernyg",
       description:
         "Premier creative studio specializing in UI/UX design, web development, and digital experiences",
-      url: "https://ernyg.com",
+      url: "https://www.ernyg.com",
       priceRange: "$$",
       areaServed: "Worldwide",
       hasOfferCatalog: {
@@ -154,7 +154,7 @@ const jsonLd = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ernyg.com"),
+  metadataBase: new URL("https://www.ernyg.com"),
   title: "Ernyg | Creative Design & Development Studio",
   description:
     "Ernyg is a premier creative studio specializing in UI/UX design, web development, and digital experiences. We create beautiful, functional, and accessible digital solutions that drive business growth.",
@@ -201,7 +201,7 @@ export const metadata: Metadata = {
     "Ernyg Design",
     "Ernyg Development",
   ],
-  authors: [{ name: "Ernyg", url: "https://ernyg.com" }],
+  authors: [{ name: "Ernyg", url: "https://www.ernyg.com" }],
   creator: "Ernyg",
   publisher: "Ernyg",
   formatDetection: {
@@ -212,7 +212,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ernyg.com",
+    url: "https://www.ernyg.com",
     title: "Ernyg | Creative Design & Development Studio",
     description:
       "Where design meets technology. We create beautiful, functional digital experiences with a focus on performance, accessibility, and user engagement.",
@@ -238,7 +238,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://ernyg.com",
+    canonical: "https://www.ernyg.com",
   },
   category: "technology",
 };
