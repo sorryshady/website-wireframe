@@ -197,6 +197,8 @@ export const metadata: Metadata = {
 
     // Brand Keywords
     "Ernyg",
+    "Ernyg Tech",
+    "Ernyg Tech Private Limited",
     "Ernyg Studio",
     "Ernyg Design",
     "Ernyg Development",
