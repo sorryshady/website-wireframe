@@ -17,6 +17,8 @@ const Preloader = ({
 
   useGSAP(
     () => {
+      loaderRef.current?.classList.remove("opacity-0");
+
       gsap.from([topRef.current, bottomRef.current], {
         duration: 2,
         delay: 1,
@@ -84,7 +86,7 @@ const Preloader = ({
     { scope: loaderRef },
   );
   return (
-    <div className="loader w-screen h-[100svh]" ref={loaderRef}>
+    <div className="loader w-screen h-[100svh] opacity-0" ref={loaderRef}>
       <div
         className="absolute top-0 w-full h-1/3 overflow-clip z-[10000] bg-black clip-path-[inset(0_0_0_0)]"
         ref={topRef}
