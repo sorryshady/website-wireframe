@@ -12,6 +12,7 @@ interface BlogPageProps {
   searchParams: {
     page?: string;
     category?: string;
+    search?: string;
   };
 }
 
@@ -20,6 +21,7 @@ const POSTS_PER_PAGE = 5;
 export default async function BlogPage({ searchParams }: BlogPageProps) {
   const currentPage = Number(searchParams.page) || 1;
   const selectedCategory = searchParams.category || "All";
+  const searchQuery = searchParams.search || "";
   const start = (currentPage - 1) * POSTS_PER_PAGE;
   const end = start + POSTS_PER_PAGE;
 
@@ -28,19 +30,23 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     query: CATEGORIES_QUERY,
   })) as Category[];
 
-  // Fetch total count for pagination, filtered by category if selected
+  // Fetch total count for pagination, filtered by category and search
   const totalPosts = (await sanityFetch({
     query: POSTS_COUNT_QUERY,
-    params: { category: selectedCategory === "All" ? "" : selectedCategory },
+    params: {
+      category: selectedCategory === "All" ? "" : selectedCategory,
+      search: searchQuery ? `*${searchQuery}*` : "",
+    },
   })) as number;
 
-  // Fetch paginated posts, filtered by category if selected
+  // Fetch paginated posts, filtered by category and search
   const posts = (await sanityFetch({
     query: POSTS_QUERY,
     params: {
       start,
       end,
       category: selectedCategory === "All" ? "" : selectedCategory,
+      search: searchQuery ? `*${searchQuery}*` : "",
     },
   })) as Post[];
 
@@ -53,6 +59,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       currentPage={currentPage}
       totalPages={totalPages}
       selectedCategory={selectedCategory}
+      searchQuery={searchQuery}
     />
   );
 }

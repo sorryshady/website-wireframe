@@ -6,7 +6,10 @@ export const CATEGORIES_QUERY = `*[_type == "category"] {
 }`;
 
 // gets paginated posts with slugs
-export const POSTS_QUERY = `*[_type == "post" && (!$category || $category in categories[]->title)] | order(publishedAt desc) [$start...$end] {
+export const POSTS_QUERY = `*[_type == "post" &&
+  ($category == "" || $category in categories[]->title) &&
+  ($search == "" || title match $search || excerpt match $search)
+] | order(publishedAt desc) [$start...$end] {
   _id,
   title,
   slug,
@@ -41,4 +44,7 @@ export const POSTS_QUERY = `*[_type == "post" && (!$category || $category in cat
 }`;
 
 // gets total count of posts for pagination
-export const POSTS_COUNT_QUERY = `count(*[_type == "post" && (!$category || $category in categories[]->title)])`;
+export const POSTS_COUNT_QUERY = `count(*[_type == "post" &&
+  ($category == "" || $category in categories[]->title) &&
+  ($search == "" || title match $search || excerpt match $search)
+])`;

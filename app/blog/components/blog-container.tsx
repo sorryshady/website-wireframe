@@ -2,8 +2,9 @@
 
 import { Post, Category } from "@/sanity/types";
 import BlogCard from "@/components/blog-card";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useDebounce } from "@/hooks/use-debounce";
 
 interface BlogContainerProps {
   initialPosts: Post[];
@@ -11,6 +12,7 @@ interface BlogContainerProps {
   currentPage: number;
   totalPages: number;
   selectedCategory: string;
+  searchQuery: string;
 }
 
 export function BlogContainer({
@@ -19,15 +21,35 @@ export function BlogContainer({
   currentPage,
   totalPages,
   selectedCategory,
+  searchQuery: initialSearchQuery,
 }: BlogContainerProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchInput, setSearchInput] = useState(initialSearchQuery);
+  const debouncedSearch = useDebounce(searchInput, 500);
+
+  // Only update URL when search changes
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (debouncedSearch) {
+      params.set("search", debouncedSearch);
+    } else {
+      params.delete("search");
+    }
+    // Preserve the current page when updating search
+    if (currentPage > 1) {
+      params.set("page", currentPage.toString());
+    }
+    router.replace(`/blog?${params.toString()}`);
+  }, [debouncedSearch, router, searchParams, currentPage]);
 
   const handlePageChange = (newPage: number) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", newPage.toString());
-    router.push(`/blog?${params.toString()}`);
+    if (searchInput) {
+      params.set("search", searchInput);
+    }
+    router.replace(`/blog?${params.toString()}`);
   };
 
   const handleCategoryChange = (category: string) => {
@@ -38,18 +60,11 @@ export function BlogContainer({
       params.set("category", category);
     }
     params.delete("page");
-    router.push(`/blog?${params.toString()}`);
+    if (searchInput) {
+      params.set("search", searchInput);
+    }
+    router.replace(`/blog?${params.toString()}`);
   };
-
-  const filteredPosts = initialPosts.filter((post) => {
-    const matchesCategory =
-      selectedCategory === "All" ||
-      post.categories.some((cat) => cat.title === selectedCategory);
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -74,8 +89,8 @@ export function BlogContainer({
               <input
                 type="text"
                 placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                value={searchInput}
+                onChange={(e) => setSearchInput(e.target.value)}
                 className="w-full px-4 py-3 bg-transparent border-b border-white/20 focus:border-white/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-white"
               />
               <div className="h-6" />
@@ -115,7 +130,7 @@ export function BlogContainer({
       {/* Scrollable Blog List */}
       <div className="pt-[32rem] pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="space-y-8">
-          {filteredPosts.length === 0 ? (
+          {initialPosts.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-gray-400 font-mont">
                 No articles found matching your criteria.
@@ -123,7 +138,7 @@ export function BlogContainer({
             </div>
           ) : (
             <>
-              {filteredPosts.map((post) => (
+              {initialPosts.map((post) => (
                 <BlogCard key={post._id} post={post} />
               ))}
               {/* Pagination Controls */}
