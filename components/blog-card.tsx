@@ -7,12 +7,14 @@ import { useMemo } from "react";
 import { format, formatDistanceToNow } from "date-fns";
 import { readingTime } from "reading-time-estimator";
 import { PortableTextBlock, toPlainText } from "next-sanity";
+import { useRouter } from "next/navigation";
 
 interface BlogCardProps {
   post: Post;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
+  const router = useRouter();
   const publishedDateDescription = useMemo(() => {
     const date = post.publishedAt || post._createdAt;
     try {
@@ -29,8 +31,14 @@ const BlogCard = ({ post }: BlogCardProps) => {
     toPlainText(post.body as unknown as PortableTextBlock),
     200,
   );
+
+  const handleClick = () => {
+    router.push(`/blog/${post.slug.current}`);
+  };
+
   return (
     <article
+      onClick={handleClick}
       className="blog-post group cursor-pointer rounded-xl transition-all duration-300
         bg-white/5
         border border-white/10
@@ -102,9 +110,12 @@ const BlogCard = ({ post }: BlogCardProps) => {
               {post.author?.title}
             </span>
           </div>
-          <div className="ml-auto">
+          <div className="ml-auto flex gap-2">
             <span className="text-sm text-gray-400 font-mont">
               {publishedDateDescription?.actualDate}
+            </span>
+            <span className="text-sm text-gray-400 font-mont">
+              ({publishedDateDescription?.timeAgo} ago)
             </span>
           </div>
         </div>
