@@ -8,20 +8,23 @@ import { Post, Category } from "@/sanity/types";
 
 import { BlogContainer } from "./components/blog-container";
 
-interface BlogPageProps {
-  searchParams: {
-    page?: string;
-    category?: string;
-    search?: string;
-  };
-}
+type SearchParams = Promise<{
+  page?: string;
+  category?: string;
+  search?: string;
+}>;
 
 const POSTS_PER_PAGE = 5;
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const currentPage = Number(searchParams.page) || 1;
-  const selectedCategory = searchParams.category || "All";
-  const searchQuery = searchParams.search || "";
+export default async function BlogPage({
+  searchParams,
+}: {
+  searchParams: SearchParams;
+}) {
+  const { page, category, search } = await searchParams;
+  const currentPage = Number(page) || 1;
+  const selectedCategory = category || "All";
+  const searchQuery = search || "";
   const start = (currentPage - 1) * POSTS_PER_PAGE;
   const end = start + POSTS_PER_PAGE;
 

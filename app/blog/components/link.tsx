@@ -18,7 +18,7 @@ function ExternalLinkIcon() {
 }
 
 const Link = React.forwardRef<
-  React.ElementRef<typeof NextLink>,
+  React.ComponentRef<typeof NextLink>,
   React.ComponentPropsWithoutRef<typeof NextLink>
 >(({ className, children, href, target, ...props }, ref) => {
   const isExternalLink = useIsExternalLink();
