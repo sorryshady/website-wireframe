@@ -83,18 +83,16 @@ const BlogCard = ({ post }: BlogCardProps) => {
         </div>
 
         {/* Author and Date */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden shadow-sm flex-shrink-0">
-              {post.author?.image?.asset && (
-                <Image
-                  src={urlFor(post.author.image.asset).url()}
-                  alt={post.author?.name || ""}
-                  fill
-                  className="object-cover"
-                />
-              )}
-            </div>
+        <div className="flex items-center gap-3">
+          <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden shadow-sm flex-shrink-0">
+            {post.author?.image?.asset && (
+              <Image
+                src={urlFor(post.author.image.asset).url()}
+                alt={post.author?.name || ""}
+                fill
+                className="object-cover"
+              />
+            )}
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-medium font-mont text-white">
@@ -104,10 +102,12 @@ const BlogCard = ({ post }: BlogCardProps) => {
               {post.author?.title}
             </span>
           </div>
+          <div className="ml-auto">
+            <span className="text-sm text-gray-400 font-mont">
+              {publishedDateDescription?.actualDate}
+            </span>
+          </div>
         </div>
-        <span className="text-sm text-gray-400 font-mont">
-          {publishedDateDescription?.actualDate}
-        </span>
       </div>
     </article>
   );

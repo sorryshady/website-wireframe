@@ -28,15 +28,20 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
     query: CATEGORIES_QUERY,
   })) as Category[];
 
-  // Fetch total count for pagination
+  // Fetch total count for pagination, filtered by category if selected
   const totalPosts = (await sanityFetch({
     query: POSTS_COUNT_QUERY,
+    params: { category: selectedCategory === "All" ? "" : selectedCategory },
   })) as number;
 
-  // Fetch paginated posts
+  // Fetch paginated posts, filtered by category if selected
   const posts = (await sanityFetch({
     query: POSTS_QUERY,
-    params: { start, end },
+    params: {
+      start,
+      end,
+      category: selectedCategory === "All" ? "" : selectedCategory,
+    },
   })) as Post[];
 
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);

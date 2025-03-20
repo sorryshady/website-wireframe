@@ -1,39 +1,44 @@
-import { defineQuery } from "next-sanity";
-
 // gets all categories
-export const CATEGORIES_QUERY = defineQuery(`*[_type == "category"]{
+export const CATEGORIES_QUERY = `*[_type == "category"] {
   _id,
   title,
-  slug
-}`);
+  description
+}`;
 
 // gets paginated posts with slugs
-export const POSTS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) [$start...$end] {
+export const POSTS_QUERY = `*[_type == "post" && (!$category || $category in categories[]->title)] | order(publishedAt desc) [$start...$end] {
   _id,
-  body,
-  slug,
   title,
+  slug,
   excerpt,
-  publishedAt,
-  _createdAt,
-  categories[]->{
-    _id,
-    slug,
-    title
-  },
-  mainImage{
-    asset->{
+  mainImage {
+    asset-> {
+      _id,
       url,
-      metadata{
+      metadata {
         dimensions,
         lqip
       }
     }
-  }
-}`);
+  },
+  publishedAt,
+  _createdAt,
+  categories[]-> {
+    _id,
+    title
+  },
+  author-> {
+    name,
+    title,
+    image {
+      asset-> {
+        _id,
+        url
+      }
+    }
+  },
+  body
+}`;
 
 // gets total count of posts for pagination
-export const POSTS_COUNT_QUERY = defineQuery(
-  `count(*[_type == "post" && defined(slug.current)])`,
-);
+export const POSTS_COUNT_QUERY = `count(*[_type == "post" && (!$category || $category in categories[]->title)])`;
