@@ -13,6 +13,7 @@ import About from "@/components/about";
 import { useLenis } from "lenis/react";
 import Contact from "@/components/contact";
 import MobileMenu from "@/components/mobile-menu";
+import { useRouter } from "next/navigation";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -25,6 +26,7 @@ export default function Home() {
   const tagRef = useRef(null);
   const [colorMode, setColorMode] = useState(false); // false = light, true = dark
   const lenis = useLenis();
+  const router = useRouter();
 
   const smoothScrollTo = (element: HTMLElement, duration: number) => {
     const start = window.pageYOffset;
@@ -51,26 +53,30 @@ export default function Home() {
   };
 
   const navigationHandler = (target: string) => {
-    const element = document.getElementById(target);
-    if (element) {
-      // First close the menu if it's open
-      setIsMenuOpen(false);
+    if (target === "blog") {
+      router.push("/blog");
+    } else {
+      const element = document.getElementById(target);
+      if (element) {
+        // First close the menu if it's open
+        setIsMenuOpen(false);
 
-      // Check if we're on mobile
-      const isMobile = window.innerWidth < 768;
+        // Check if we're on mobile
+        const isMobile = window.innerWidth < 768;
 
-      if (isMobile) {
-        // For mobile, use custom smooth scroll with longer duration
-        smoothScrollTo(element, 1500); // 1.5 seconds duration
-      } else {
-        // For desktop, use Lenis
-        lenis!.scrollTo(element, {
-          offset: 0,
-          duration: 1.5,
-          easing: (t) => t * (2 - t),
-          immediate: false,
-          lock: false,
-        });
+        if (isMobile) {
+          // For mobile, use custom smooth scroll with longer duration
+          smoothScrollTo(element, 1500); // 1.5 seconds duration
+        } else {
+          // For desktop, use Lenis
+          lenis!.scrollTo(element, {
+            offset: 0,
+            duration: 1.5,
+            easing: (t) => t * (2 - t),
+            immediate: false,
+            lock: false,
+          });
+        }
       }
     }
   };
@@ -161,19 +167,21 @@ export default function Home() {
                 />
               </div>
               <div className="nav-items hidden md:flex">
-                {["About", "Services", "Projects", "Contact"].map((item) => (
-                  <button
-                    key={item}
-                    className={`no-underline text-[16px] leading-[20px] px-6 lg:px-16 uppercase ${colorMode ? "text-white" : "text-black"}`}
-                    onClick={() => navigationHandler(item.toLowerCase())}
-                  >
-                    <TextTrial
-                      className={colorMode ? "text-white" : "text-black"}
+                {["About", "Services", "Projects", "Blog", "Contact"].map(
+                  (item) => (
+                    <button
+                      key={item}
+                      className={`no-underline text-[16px] leading-[20px] px-6 lg:px-16 uppercase ${colorMode ? "text-white" : "text-black"}`}
+                      onClick={() => navigationHandler(item.toLowerCase())}
                     >
-                      {item}
-                    </TextTrial>
-                  </button>
-                ))}
+                      <TextTrial
+                        className={colorMode ? "text-white" : "text-black"}
+                      >
+                        {item}
+                      </TextTrial>
+                    </button>
+                  ),
+                )}
               </div>
               <MobileMenu
                 isOpen={isMenuOpen}
