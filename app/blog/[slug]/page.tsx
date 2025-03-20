@@ -24,9 +24,12 @@ import {
   Td,
   Ul,
   Ol,
-  Code,
 } from "@/app/blog/components/typography";
 import { Link as TypographyLink } from "@/app/blog/components/link";
+import { Tabs } from "@/app/blog/components/portable-text/tabs";
+import { Embed } from "@/app/blog/components/portable-text/embed";
+import { Callout } from "@/app/blog/components/portable-text/callout";
+import { CodeBlock } from "@/app/blog/components/portable-text/code-block";
 
 // Define custom block types
 type CustomImageBlock = {
@@ -36,17 +39,43 @@ type CustomImageBlock = {
     _type: "reference";
   };
   alt?: string;
+  caption?: string;
 };
 
 type CalloutBlock = {
   _type: "callout";
-  text: string;
+  type: "info" | "warning" | "success" | "error";
+  content: string;
+};
+
+type TabsBlock = {
+  _type: "tabs";
+  tabs: {
+    title: string;
+    content: PortableTextBlock[];
+  }[];
+};
+
+type EmbedBlock = {
+  _type: "embed";
+  url: string;
+  type: "youtube" | "twitter" | "github" | "codepen";
+};
+
+type CodeBlockType = {
+  _type: "code";
+  language: string;
+  code: string;
+  filename?: string;
 };
 
 type CustomPortableTextBlock =
   | PortableTextBlock
   | CustomImageBlock
-  | CalloutBlock;
+  | CalloutBlock
+  | TabsBlock
+  | EmbedBlock
+  | CodeBlockType;
 
 type Params = Promise<{ slug: string }>;
 
@@ -204,33 +233,67 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 td: ({ children }) => <Td>{children}</Td>,
                 ul: ({ children }) => <Ul>{children}</Ul>,
                 ol: ({ children }) => <Ol>{children}</Ol>,
-                code: ({ children }) => <Code>{children}</Code>,
+                hr: () => <hr className="my-8 border-gray-700" />,
+              },
+              types: {
                 image: ({ value }) => {
                   const imageValue = value as unknown as CustomImageBlock;
                   const imageUrl = urlFor(imageValue).url();
                   return (
-                    <div className="relative w-full aspect-video my-8">
-                      <Image
-                        src={imageUrl}
-                        alt={imageValue.alt || "Blog post image"}
-                        fill
-                        className="object-cover rounded-lg"
-                      />
+                    <div className="my-8">
+                      <div className="relative w-full aspect-video">
+                        <Image
+                          src={imageUrl}
+                          alt={imageValue.alt || "Blog post image"}
+                          fill
+                          className="object-cover rounded-lg"
+                        />
+                      </div>
+                      {imageValue.caption && (
+                        <p className="mt-2 text-center text-sm text-gray-400">
+                          {imageValue.caption}
+                        </p>
+                      )}
                     </div>
+                  );
+                },
+                code: ({ value }) => {
+                  const codeValue = value as unknown as CodeBlockType;
+                  return (
+                    <CodeBlock
+                      language={codeValue.language}
+                      code={codeValue.code}
+                      filename={codeValue.filename}
+                    />
                   );
                 },
                 callout: ({ value }) => {
                   const calloutValue = value as unknown as CalloutBlock;
                   return (
-                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 my-4">
-                      <p className="text-blue-200">{calloutValue.text}</p>
-                    </div>
+                    <Callout
+                      type={calloutValue.type}
+                      content={calloutValue.content}
+                    />
                   );
+                },
+                tabs: ({ value }) => {
+                  const tabsValue = value as unknown as TabsBlock;
+                  return <Tabs tabs={tabsValue.tabs} />;
+                },
+                embed: ({ value }) => {
+                  const embedValue = value as unknown as EmbedBlock;
+                  return <Embed url={embedValue.url} type={embedValue.type} />;
                 },
               },
               marks: {
                 link: ({ children, value }) => (
-                  <TypographyLink href={value.href}>{children}</TypographyLink>
+                  <TypographyLink
+                    href={value.href}
+                    target={value.blank ? "_blank" : undefined}
+                    rel={value.blank ? "noopener noreferrer" : undefined}
+                  >
+                    {children}
+                  </TypographyLink>
                 ),
                 strong: ({ children }) => (
                   <strong className="font-bold">{children}</strong>
@@ -241,10 +304,21 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     {children}
                   </code>
                 ),
+                strike: ({ children }) => (
+                  <span className="line-through">{children}</span>
+                ),
+                highlight: ({ children }) => (
+                  <span className="bg-yellow-500/20 text-yellow-200">
+                    {children}
+                  </span>
+                ),
               },
               list: {
                 bullet: ({ children }) => <Ul>{children}</Ul>,
                 number: ({ children }) => <Ol>{children}</Ol>,
+                checkbox: ({ children }) => (
+                  <Ul className="list-none space-y-2">{children}</Ul>
+                ),
               },
             }}
           />

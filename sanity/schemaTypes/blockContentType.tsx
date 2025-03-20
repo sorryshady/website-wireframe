@@ -1,4 +1,5 @@
-import { defineType, defineArrayMember } from "sanity";
+import { Image as ImageIcon } from "lucide-react";
+import { defineType } from "sanity";
 
 /**
  * This is the schema definition for the rich text fields used for
@@ -15,7 +16,7 @@ export const blockContentType = defineType({
   name: "blockContent",
   type: "array",
   of: [
-    defineArrayMember({
+    {
       title: "Block",
       type: "block",
       // Styles let you set what your user can mark up blocks with. These
@@ -36,7 +37,6 @@ export const blockContentType = defineType({
       lists: [
         { title: "Bullet", value: "bullet" },
         { title: "Numbered", value: "number" },
-        { title: "Checkbox", value: "checkbox" },
       ],
       // Marks let you mark up inline text in the block editor.
       marks: {
@@ -45,9 +45,19 @@ export const blockContentType = defineType({
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
-          { title: "Strike", value: "strike" },
           { title: "Code", value: "code" },
-          { title: "Highlight", value: "highlight" },
+          { title: "Underline", value: "underline" },
+          { title: "Strike", value: "strike-through" },
+          {
+            title: "Highlight",
+            value: "highlight",
+            icon: () => <span style={{ fontWeight: "bold" }}>H</span>,
+            component: (props) => (
+              <span style={{ backgroundColor: "yellow", color: "black" }}>
+                {props.children}
+              </span>
+            ),
+          },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -73,6 +83,7 @@ export const blockContentType = defineType({
             title: "Mention",
             name: "mention",
             type: "object",
+            icon: () => <span style={{ fontWeight: "bold" }}>@</span>,
             fields: [
               {
                 title: "User",
@@ -80,17 +91,28 @@ export const blockContentType = defineType({
                 type: "reference",
                 to: [{ type: "author" }],
               },
+              {
+                title: "Post",
+                name: "post",
+                type: "reference",
+                to: [{ type: "post" }],
+              },
             ],
           },
         ],
       },
-    }),
+    },
     // You can add additional types here. Note that you can't use
     // primitive types such as 'string' and 'number' in the same array
     // as a block type.
-    defineArrayMember({
+    {
       type: "image",
       options: { hotspot: true },
+      icon: () => (
+        <span style={{ fontWeight: "bold" }}>
+          <ImageIcon size={14} />
+        </span>
+      ),
       fields: [
         {
           name: "alt",
@@ -105,8 +127,8 @@ export const blockContentType = defineType({
           description: "Optional caption for the image.",
         },
       ],
-    }),
-    defineArrayMember({
+    },
+    {
       type: "object",
       name: "callout",
       title: "Callout",
@@ -130,26 +152,8 @@ export const blockContentType = defineType({
           type: "text",
         },
       ],
-    }),
-    defineArrayMember({
-      type: "object",
-      name: "table",
-      title: "Table",
-      fields: [
-        {
-          name: "rows",
-          title: "Rows",
-          type: "array",
-          of: [
-            {
-              type: "array",
-              of: [{ type: "text" }],
-            },
-          ],
-        },
-      ],
-    }),
-    defineArrayMember({
+    },
+    {
       type: "object",
       name: "tabs",
       title: "Tabs",
@@ -178,8 +182,8 @@ export const blockContentType = defineType({
           ],
         },
       ],
-    }),
-    defineArrayMember({
+    },
+    {
       type: "object",
       name: "embed",
       title: "Embed",
@@ -203,8 +207,8 @@ export const blockContentType = defineType({
           },
         },
       ],
-    }),
-    defineArrayMember({
+    },
+    {
       type: "object",
       name: "code",
       title: "Code Block",
@@ -243,6 +247,6 @@ export const blockContentType = defineType({
           type: "string",
         },
       ],
-    }),
+    },
   ],
 });
