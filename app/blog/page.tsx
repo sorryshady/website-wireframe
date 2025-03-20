@@ -40,7 +40,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
   })) as Post[];
 
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
-  const hasMore = currentPage < totalPages;
 
   return (
     <BlogContainer
@@ -48,7 +47,6 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
       categories={categories}
       currentPage={currentPage}
       totalPages={totalPages}
-      hasMore={hasMore}
       selectedCategory={selectedCategory}
     />
   );

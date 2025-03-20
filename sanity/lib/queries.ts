@@ -9,7 +9,7 @@ export const CATEGORIES_QUERY = defineQuery(`*[_type == "category"]{
 
 // gets paginated posts with slugs
 export const POSTS_QUERY =
-  defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) {
+  defineQuery(`*[_type == "post" && defined(slug.current)] | order(publishedAt desc) [$start...$end] {
   _id,
   body,
   slug,

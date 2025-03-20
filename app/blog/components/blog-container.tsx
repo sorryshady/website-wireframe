@@ -1,16 +1,15 @@
 "use client";
 
+import { Post, Category } from "@/sanity/types";
+import BlogCard from "@/components/blog-card";
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import BlogCard from "@/components/blog-card";
-import { Post, Category } from "@/sanity/types";
 
 interface BlogContainerProps {
   initialPosts: Post[];
   categories: Category[];
   currentPage: number;
   totalPages: number;
-  hasMore: boolean;
   selectedCategory: string;
 }
 
@@ -19,13 +18,17 @@ export function BlogContainer({
   categories,
   currentPage,
   totalPages,
-  hasMore,
   selectedCategory,
 }: BlogContainerProps) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
-  const [posts, setPosts] = useState(initialPosts);
+
+  const handlePageChange = (newPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("page", newPage.toString());
+    router.push(`/blog?${params.toString()}`);
+  };
 
   const handleCategoryChange = (category: string) => {
     const params = new URLSearchParams(searchParams.toString());
@@ -34,23 +37,17 @@ export function BlogContainer({
     } else {
       params.set("category", category);
     }
-    params.set("page", "1");
+    params.delete("page");
     router.push(`/blog?${params.toString()}`);
   };
 
-  const handleLoadMore = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("page", (currentPage + 1).toString());
-    router.push(`/blog?${params.toString()}`);
-  };
-
-  const filteredPosts = posts.filter((post: Post) => {
+  const filteredPosts = initialPosts.filter((post) => {
     const matchesCategory =
       selectedCategory === "All" ||
-      post.categories.some((cat: Category) => cat.title === selectedCategory);
+      post.categories.some((cat) => cat.title === selectedCategory);
     const matchesSearch =
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.excerpt?.toLowerCase().includes(searchQuery.toLowerCase());
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -93,10 +90,10 @@ export function BlogContainer({
                 >
                   All
                 </button>
-                {categories.map((category: Category) => (
+                {categories.map((category) => (
                   <button
                     key={category._id}
-                    onClick={() => handleCategoryChange(category.title)}
+                    onClick={() => handleCategoryChange(category.title || "")}
                     className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 ${
                       selectedCategory === category.title
                         ? "bg-white text-black"
@@ -126,19 +123,29 @@ export function BlogContainer({
             </div>
           ) : (
             <>
-              {filteredPosts.map((post: Post) => (
+              {filteredPosts.map((post) => (
                 <BlogCard key={post._id} post={post} />
               ))}
-              {hasMore && (
-                <div className="text-center pt-8">
-                  <button
-                    onClick={handleLoadMore}
-                    className="px-6 py-2 bg-white text-black rounded-full font-mont hover:bg-white/90 transition-colors"
-                  >
-                    Load More
-                  </button>
-                </div>
-              )}
+              {/* Pagination Controls */}
+              <div className="flex justify-center items-center gap-4 pt-8">
+                <button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  className="px-6 py-2 bg-white/10 text-white rounded-full font-mont hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                <span className="text-white font-mont">
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  className="px-6 py-2 bg-white/10 text-white rounded-full font-mont hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
             </>
           )}
         </div>
