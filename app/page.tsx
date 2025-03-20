@@ -173,7 +173,10 @@ export default function Home() {
                       ? "bg-white text-black hover:bg-gray-300"
                       : "bg-black text-white hover:bg-gray-800"
                   }`}
-                  onClick={() => navigationHandler("contact")}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigationHandler("contact");
+                  }}
                 >
                   Let&apos;s Create Together
                 </button>

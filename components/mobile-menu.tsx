@@ -94,7 +94,7 @@ const MobileMenu = ({
       {/* Mobile Menu */}
       <div
         ref={menuRef}
-        className={`fixed top-0 right-0 w-full h-screen bg-black transform translate-x-full z-40`}
+        className={`fixed top-0 right-0 w-full h-screen bg-black transform translate-x-full z-40 md:hidden`}
       >
         <div className="w-full h-full flex flex-col items-center justify-center gap-8">
           {["About", "Services", "Projects", "Contact"].map((item, index) => (
