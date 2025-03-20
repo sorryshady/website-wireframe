@@ -1,12 +1,34 @@
 "use client";
-import { BlogPost } from "@/data/blog";
+
+import { urlFor } from "@/sanity/lib/image";
+import { Post } from "@/sanity/types";
 import Image from "next/image";
+import { useMemo } from "react";
+import { format, formatDistanceToNow } from "date-fns";
+import { readingTime } from "reading-time-estimator";
+import { PortableTextBlock, toPlainText } from "next-sanity";
 
 interface BlogCardProps {
-  post: BlogPost;
+  post: Post;
 }
 
 const BlogCard = ({ post }: BlogCardProps) => {
+  const publishedDateDescription = useMemo(() => {
+    const date = post.publishedAt || post._createdAt;
+    try {
+      return {
+        actualDate: format(new Date(date!), "dd MMM yyyy"),
+        timeAgo: formatDistanceToNow(new Date(date!)),
+      };
+    } catch {
+      return null;
+    }
+  }, [post]);
+
+  const readTime = readingTime(
+    toPlainText(post.body as unknown as PortableTextBlock),
+    200,
+  );
   return (
     <article
       className="blog-post group cursor-pointer rounded-xl transition-all duration-300
@@ -20,12 +42,16 @@ const BlogCard = ({ post }: BlogCardProps) => {
     >
       {/* Image Container */}
       <div className="relative w-full h-48 md:h-64 overflow-hidden">
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
+        {post.mainImage?.asset?.url && (
+          <Image
+            src={urlFor(post.mainImage.asset.url).url()}
+            alt={post.title || ""}
+            fill
+            placeholder="blur"
+            blurDataURL={post.mainImage.asset.metadata?.lqip || ""}
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        )}
       </div>
 
       {/* Content Container */}
@@ -38,12 +64,12 @@ const BlogCard = ({ post }: BlogCardProps) => {
                 key={index}
                 className="bg-white/10 px-3 py-1 rounded-full font-medium hover:bg-white/15 transition-colors text-white"
               >
-                {category}
+                {category.title}
               </span>
             ))}
           </div>
           <span>•</span>
-          <span>{post.readTime}</span>
+          <span>{readTime.minutes} min read</span>
         </div>
 
         {/* Title and Excerpt */}
@@ -60,30 +86,28 @@ const BlogCard = ({ post }: BlogCardProps) => {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden shadow-sm flex-shrink-0">
-              <Image
-                src={post.author.image}
-                alt={post.author.name}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium font-mont text-white">
-                {post.author.name}
-              </span>
-              <span className="text-xs md:text-sm text-gray-400 font-mont">
-                {post.author.position}
-              </span>
+              {post.author?.image?.asset && (
+                <Image
+                  src={urlFor(post.author.image.asset).url()}
+                  alt={post.author?.name || ""}
+                  fill
+                  className="object-cover"
+                />
+              )}
             </div>
           </div>
-          <span className="text-sm text-gray-400 font-mont">
-            {new Date(post.date).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </span>
+          <div className="flex flex-col">
+            <span className="text-sm font-medium font-mont text-white">
+              {post.author?.name}
+            </span>
+            <span className="text-xs md:text-sm text-gray-400 font-mont">
+              {post.author?.title}
+            </span>
+          </div>
         </div>
+        <span className="text-sm text-gray-400 font-mont">
+          {publishedDateDescription?.actualDate}
+        </span>
       </div>
     </article>
   );

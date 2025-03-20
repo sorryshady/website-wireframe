@@ -68,40 +68,24 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Post = {
+export interface Post {
   _id: string;
-  _type: "post";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  title?: string;
-  slug?: Slug;
-  author?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "author";
+  title: string;
+  slug: {
+    current: string;
   };
-  mainImage?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  categories?: Array<{
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    _key: string;
-    [internalGroqTypeReferenceTo]?: "category";
-  }>;
-  publishedAt?: string;
-  excerpt?: string;
+  excerpt: string;
+  mainImage: {
+    asset: {
+      url: string | null;
+      metadata: {
+        dimensions: SanityImageDimensions | null;
+        lqip: string | null;
+      } | null;
+    } | null;
+  } | null;
+  publishedAt: string;
+  categories: Category[];
   body?: Array<
     | {
         children?: Array<{
@@ -130,11 +114,19 @@ export type Post = {
         };
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
+        alt?: string;
         _type: "image";
         _key: string;
       }
   >;
-};
+  author: Author;
+
+  // Optional Sanity document fields
+  _type?: string;
+  _updatedAt?: string;
+  _rev?: string;
+  _createdAt?: string;
+}
 
 export type Author = {
   _id: string;
@@ -310,8 +302,15 @@ export type AllSanitySchemaTypes =
   | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: sanity/lib/queries.ts
+// Variable: CATEGORIES_QUERY
+// Query: *[_type == "category"]{  _id,  title,  slug}
+export type CATEGORIES_QUERYResult = Array<{
+  _id: string;
+  title: string | null;
+  slug: null;
+}>;
 // Variable: POSTS_QUERY
-// Query: *[_type == "post" && defined(slug.current)]{    _id,    body,    slug,    title,    categories[]->{      slug,      title    },    publishedAt,    _createdAt,    mainImage{      asset->{        url,        metadata{          dimensions,          lqip        }      }    }  } | order(_createdAt desc)
+// Query: *[_type == "post" && defined(slug.current)] | order(publishedAt desc){  _id,  body,  slug,  title,  excerpt,  publishedAt,  _createdAt,  categories[]->{    _id,    slug,    title  },  mainImage{    asset->{      url,      metadata{        dimensions,        lqip      }    }  }}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   body: Array<
@@ -348,12 +347,14 @@ export type POSTS_QUERYResult = Array<{
   > | null;
   slug: Slug | null;
   title: string | null;
+  excerpt: string | null;
+  publishedAt: string | null;
+  _createdAt: string;
   categories: Array<{
+    _id: string;
     slug: null;
     title: string | null;
   }> | null;
-  publishedAt: string | null;
-  _createdAt: string;
   mainImage: {
     asset: {
       url: string | null;
@@ -364,11 +365,29 @@ export type POSTS_QUERYResult = Array<{
     } | null;
   } | null;
 }>;
+// Variable: POSTS_COUNT_QUERY
+// Query: count(*[_type == "post" && defined(slug.current)])
+export type POSTS_COUNT_QUERYResult = number;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    '*[_type == "post" && defined(slug.current)]{\n    _id,\n    body,\n    slug,\n    title,\n    categories[]->{\n      slug,\n      title\n    },\n    publishedAt,\n    _createdAt,\n    mainImage{\n      asset->{\n        url,\n        metadata{\n          dimensions,\n          lqip\n        }\n      }\n    }\n  } | order(_createdAt desc)': POSTS_QUERYResult;
+    '*[_type == "category"]{\n  _id,\n  title,\n  slug\n}': CATEGORIES_QUERYResult;
+    '*[_type == "post" && defined(slug.current)] | order(publishedAt desc){\n  _id,\n  body,\n  slug,\n  title,\n  excerpt,\n  publishedAt,\n  _createdAt,\n  categories[]->{\n    _id,\n    slug,\n    title\n  },\n  mainImage{\n    asset->{\n      url,\n      metadata{\n        dimensions,\n        lqip\n      }\n    }\n  }\n}': POSTS_QUERYResult;
+    'count(*[_type == "post" && defined(slug.current)])': POSTS_COUNT_QUERYResult;
   }
+}
+
+export interface SanityImage {
+  asset: {
+    url: string | null;
+    metadata: {
+      dimensions: SanityImageDimensions | null;
+      lqip: string | null;
+    } | null;
+  } | null;
+  _type: "image";
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
 }
