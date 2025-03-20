@@ -9,6 +9,24 @@ import { toPlainText } from "next-sanity";
 import { PortableTextBlock } from "next-sanity";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import {
+  H1,
+  H2,
+  H3,
+  H4,
+  P,
+  Blockquote,
+  Table,
+  Thead,
+  Th,
+  Tr,
+  Tbody,
+  Td,
+  Ul,
+  Ol,
+  Code,
+} from "@/app/blog/components/typography";
+import { Link as TypographyLink } from "@/app/blog/components/link";
 
 type Params = Promise<{ slug: string }>;
 
@@ -69,7 +87,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   return (
     <article className="min-h-screen bg-black text-white">
       {/* Hero Section */}
-      <div className="relative h-[60vh] w-full">
+      <div className="relative h-[40vh] md:h-[50vh] w-full">
         {post.mainImage?.asset?.url && (
           <Image
             src={urlFor(post.mainImage.asset.url).url()}
@@ -102,12 +120,12 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       {/* Content Section */}
       <div className="max-w-4xl mx-auto px-4 py-16">
         {/* Back Button */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-end mb-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white font-mont"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white font-mont text-sm"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-3 h-3" />
             Back to Blog
           </Link>
         </div>
@@ -146,7 +164,66 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
         {/* Post Content */}
         <div className="prose prose-invert prose-lg max-w-none">
-          <PortableText value={post.body as unknown as PortableTextBlock} />
+          <PortableText
+            value={post.body as unknown as PortableTextBlock}
+            components={{
+              block: {
+                h1: ({ children }) => <H1>{children}</H1>,
+                h2: ({ children }) => <H2>{children}</H2>,
+                h3: ({ children }) => <H3>{children}</H3>,
+                h4: ({ children }) => <H4>{children}</H4>,
+                p: ({ children }) => <P>{children}</P>,
+                blockquote: ({ children }) => (
+                  <Blockquote>{children}</Blockquote>
+                ),
+                table: ({ children }) => <Table>{children}</Table>,
+                thead: ({ children }) => <Thead>{children}</Thead>,
+                th: ({ children }) => <Th>{children}</Th>,
+                tr: ({ children }) => <Tr>{children}</Tr>,
+                tbody: ({ children }) => <Tbody>{children}</Tbody>,
+                td: ({ children }) => <Td>{children}</Td>,
+                ul: ({ children }) => <Ul>{children}</Ul>,
+                ol: ({ children }) => <Ol>{children}</Ol>,
+                code: ({ children }) => <Code>{children}</Code>,
+                image: ({ value }) => {
+                  const imageUrl = urlFor(value).url();
+                  return (
+                    <div className="relative w-full aspect-video my-8">
+                      <Image
+                        src={imageUrl}
+                        alt={value.alt || "Blog post image"}
+                        fill
+                        className="object-cover rounded-lg"
+                      />
+                    </div>
+                  );
+                },
+                callout: ({ value }) => (
+                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 my-4">
+                    <p className="text-blue-200">{value.text}</p>
+                  </div>
+                ),
+              },
+              marks: {
+                link: ({ children, value }) => (
+                  <TypographyLink href={value.href}>{children}</TypographyLink>
+                ),
+                strong: ({ children }) => (
+                  <strong className="font-bold">{children}</strong>
+                ),
+                em: ({ children }) => <em className="italic">{children}</em>,
+                code: ({ children }) => (
+                  <code className="bg-gray-800 rounded px-1 py-0.5">
+                    {children}
+                  </code>
+                ),
+              },
+              list: {
+                bullet: ({ children }) => <Ul>{children}</Ul>,
+                number: ({ children }) => <Ol>{children}</Ol>,
+              },
+            }}
+          />
         </div>
       </div>
     </article>
