@@ -20,64 +20,69 @@ export default function Blog() {
   return (
     <>
       <BlogNavbar />
-      <div className="min-h-screen bg-off-white text-black py-24">
-        <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10  text-center font-mont">
-              Blog
-            </h1>
-            <p className="text-xl sm:text-2xl text-gray-600 font-mont">
-              Exploring tech, design, and the art of building something great -
-              From the Minds at Ernyg.
-            </p>
-          </div>
+      <div className="min-h-screen bg-off-white text-black">
+        {/* Fixed Header Section */}
+        <div className="fixed top-0 left-0 right-0 bg-off-white z-40">
+          <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-16">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont">
+                Blog
+              </h1>
+              <p className="text-xl sm:text-2xl text-gray-600 font-mont">
+                Exploring tech, design, and the art of building something great
+                - From the Minds at Ernyg.
+              </p>
+            </div>
 
-          {/* Search and Filters */}
-          <div className="mb-16 space-y-6">
-            {/* Search */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-3 bg-transparent border-b  shadow-sm border-black/20 focus:border-black/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-black"
-              />
-              <div className="h-6" />
-              <div className="flex flex-wrap gap-3">
-                {categories.map((category) => (
-                  <button
-                    key={category.id}
-                    onClick={() => setSelectedCategory(category.name)}
-                    className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 ${
-                      selectedCategory === category.name
-                        ? "bg-black text-white"
-                        : "bg-black/5 hover:bg-black/10 text-black"
-                    }`}
-                  >
-                    {category.name}
-                  </button>
-                ))}
+            {/* Search and Filters */}
+            <div className="space-y-6">
+              {/* Search */}
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-4 py-3 bg-transparent border-b shadow-sm border-black/20 focus:border-black/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-black"
+                />
+                <div className="h-6" />
+                <div className="flex flex-wrap gap-3">
+                  {categories.map((category) => (
+                    <button
+                      key={category.id}
+                      onClick={() => setSelectedCategory(category.name)}
+                      className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 ${
+                        selectedCategory === category.name
+                          ? "bg-black text-white"
+                          : "bg-black/5 hover:bg-black/10 text-black"
+                      }`}
+                    >
+                      {category.name}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Blog List */}
-            <div className="space-y-8">
-              {filteredPosts.length === 0 ? (
-                <div className="text-center py-12">
-                  <p className="text-gray-600 font-mont">
-                    No articles found matching your criteria.
-                  </p>
-                </div>
-              ) : (
-                filteredPosts.map((post) => (
-                  <BlogCard key={post.id} post={post} />
-                ))
-              )}
-            </div>
           </div>
-        </main>
+        </div>
+
+        {/* Scrollable Blog List */}
+        <div className="pt-[32rem] pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="space-y-8">
+            {filteredPosts.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-600 font-mont">
+                  No articles found matching your criteria.
+                </p>
+              </div>
+            ) : (
+              filteredPosts.map((post) => (
+                <BlogCard key={post.id} post={post} />
+              ))
+            )}
+          </div>
+        </div>
       </div>
     </>
   );
