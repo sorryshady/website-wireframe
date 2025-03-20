@@ -44,7 +44,7 @@ export default function Blog() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full px-4 py-3 bg-transparent border-b border-black/20 focus:border-black/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-black"
               />
-              <div className="h-4" />
+              <div className="h-6" />
               <div className="flex flex-wrap gap-3">
                 {categories.map((category) => (
                   <button

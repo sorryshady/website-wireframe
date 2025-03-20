@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 
 const BlogNavbar = () => {
   const pathname = usePathname();
-
+  const isActive = (path: string) => pathname === path;
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -44,18 +44,28 @@ const BlogNavbar = () => {
         <div className="flex items-center gap-8">
           <Link
             href="/"
-            className={`font-oxygenMono text-2xl font-medium transition-colors relative group`}
+            className={`font-mono text-2xl font-medium transition-colors relative group`}
           >
-            <span className="text-black">Home</span>
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 group-hover:w-full" />
+            <span
+              className={`${isActive("/") ? "text-black" : "text-gray-600 hover:text-black"}`}
+            >
+              Home
+            </span>
+            <span
+              className={`absolute -bottom-1 left-0 h-px bg-black transition-all duration-300 ${isActive("/") ? "w-full" : "w-0 group-hover:w-full"}`}
+            />
           </Link>
           <Link
             href="/blog"
-            className={`font-oxygenMono text-2xl font-medium transition-colors relative group`}
+            className={`font-mono text-2xl font-medium transition-colors relative group`}
           >
-            <span className="text-black">Blog</span>
             <span
-              className={`absolute -bottom-1 left-0 w-0 h-px bg-black transition-all duration-300 ${pathname === "/blog" ? "w-full" : "group-hover:w-full"}`}
+              className={`${isActive("/blog") ? "text-black" : "text-gray-600 hover:text-black"}`}
+            >
+              Blog
+            </span>
+            <span
+              className={`absolute -bottom-1 left-0 h-px bg-black transition-all duration-300 ${isActive("/blog") ? "w-full" : "w-0 group-hover:w-full"}`}
             />
           </Link>
         </div>
