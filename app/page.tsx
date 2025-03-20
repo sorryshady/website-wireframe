@@ -26,18 +26,50 @@ export default function Home() {
   const [colorMode, setColorMode] = useState(false); // false = light, true = dark
   const lenis = useLenis();
 
+  const smoothScrollTo = (element: HTMLElement, duration: number) => {
+    const start = window.pageYOffset;
+    const target = element.getBoundingClientRect().top + window.pageYOffset;
+    const distance = target - start;
+    let startTime: number | null = null;
+
+    const animation = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const timeElapsed = currentTime - startTime;
+      const progress = Math.min(timeElapsed / duration, 1);
+
+      // Easing function for smooth animation
+      const ease = (t: number) => t * (2 - t);
+
+      window.scrollTo(0, start + distance * ease(progress));
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+  };
+
   const navigationHandler = (target: string) => {
     const element = document.getElementById(target);
     if (element) {
-      // For mobile screens, use native scroll
-      if (window.innerWidth < 768) {
-        element.scrollIntoView({ behavior: "smooth" });
+      // First close the menu if it's open
+      setIsMenuOpen(false);
+
+      // Check if we're on mobile
+      const isMobile = window.innerWidth < 768;
+
+      if (isMobile) {
+        // For mobile, use custom smooth scroll with longer duration
+        smoothScrollTo(element, 1500); // 1.5 seconds duration
       } else {
         // For desktop, use Lenis
         lenis!.scrollTo(element, {
           offset: 0,
-          duration: 1,
+          duration: 1.5,
           easing: (t) => t * (2 - t),
+          immediate: false,
+          lock: false,
         });
       }
     }
