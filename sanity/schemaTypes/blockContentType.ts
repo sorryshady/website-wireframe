@@ -29,8 +29,15 @@ export const blockContentType = defineType({
         { title: "H3", value: "h3" },
         { title: "H4", value: "h4" },
         { title: "Quote", value: "blockquote" },
+        { title: "Code Block", value: "code" },
+        { title: "Callout", value: "callout" },
+        { title: "Divider", value: "hr" },
       ],
-      lists: [{ title: "Bullet", value: "bullet" }],
+      lists: [
+        { title: "Bullet", value: "bullet" },
+        { title: "Numbered", value: "number" },
+        { title: "Checkbox", value: "checkbox" },
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
@@ -38,6 +45,9 @@ export const blockContentType = defineType({
         decorators: [
           { title: "Strong", value: "strong" },
           { title: "Emphasis", value: "em" },
+          { title: "Strike", value: "strike" },
+          { title: "Code", value: "code" },
+          { title: "Highlight", value: "highlight" },
         ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
@@ -51,6 +61,25 @@ export const blockContentType = defineType({
                 name: "href",
                 type: "url",
               },
+              {
+                title: "Open in new tab",
+                name: "blank",
+                type: "boolean",
+                initialValue: false,
+              },
+            ],
+          },
+          {
+            title: "Mention",
+            name: "mention",
+            type: "object",
+            fields: [
+              {
+                title: "User",
+                name: "user",
+                type: "reference",
+                to: [{ type: "author" }],
+              },
             ],
           },
         ],
@@ -62,6 +91,158 @@ export const blockContentType = defineType({
     defineArrayMember({
       type: "image",
       options: { hotspot: true },
+      fields: [
+        {
+          name: "alt",
+          title: "Alternative text",
+          type: "string",
+          description: "Important for SEO and accessibility.",
+        },
+        {
+          name: "caption",
+          title: "Caption",
+          type: "string",
+          description: "Optional caption for the image.",
+        },
+      ],
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "callout",
+      title: "Callout",
+      fields: [
+        {
+          name: "type",
+          title: "Type",
+          type: "string",
+          options: {
+            list: [
+              { title: "Info", value: "info" },
+              { title: "Warning", value: "warning" },
+              { title: "Success", value: "success" },
+              { title: "Error", value: "error" },
+            ],
+          },
+        },
+        {
+          name: "content",
+          title: "Content",
+          type: "text",
+        },
+      ],
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "table",
+      title: "Table",
+      fields: [
+        {
+          name: "rows",
+          title: "Rows",
+          type: "array",
+          of: [
+            {
+              type: "array",
+              of: [{ type: "text" }],
+            },
+          ],
+        },
+      ],
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "tabs",
+      title: "Tabs",
+      fields: [
+        {
+          name: "tabs",
+          title: "Tabs",
+          type: "array",
+          of: [
+            {
+              type: "object",
+              fields: [
+                {
+                  name: "title",
+                  title: "Tab Title",
+                  type: "string",
+                },
+                {
+                  name: "content",
+                  title: "Tab Content",
+                  type: "array",
+                  of: [{ type: "block" }],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "embed",
+      title: "Embed",
+      fields: [
+        {
+          name: "url",
+          title: "URL",
+          type: "url",
+        },
+        {
+          name: "type",
+          title: "Type",
+          type: "string",
+          options: {
+            list: [
+              { title: "YouTube", value: "youtube" },
+              { title: "Twitter", value: "twitter" },
+              { title: "GitHub", value: "github" },
+              { title: "CodePen", value: "codepen" },
+            ],
+          },
+        },
+      ],
+    }),
+    defineArrayMember({
+      type: "object",
+      name: "code",
+      title: "Code Block",
+      fields: [
+        {
+          name: "language",
+          title: "Language",
+          type: "string",
+          options: {
+            list: [
+              { title: "JavaScript", value: "javascript" },
+              { title: "TypeScript", value: "typescript" },
+              { title: "HTML", value: "html" },
+              { title: "CSS", value: "css" },
+              { title: "Python", value: "python" },
+              { title: "Java", value: "java" },
+              { title: "C++", value: "cpp" },
+              { title: "Ruby", value: "ruby" },
+              { title: "PHP", value: "php" },
+              { title: "Go", value: "go" },
+              { title: "Rust", value: "rust" },
+              { title: "Swift", value: "swift" },
+              { title: "Kotlin", value: "kotlin" },
+              { title: "Shell", value: "shell" },
+            ],
+          },
+        },
+        {
+          name: "code",
+          title: "Code",
+          type: "text",
+        },
+        {
+          name: "filename",
+          title: "Filename",
+          type: "string",
+        },
+      ],
     }),
   ],
 });
