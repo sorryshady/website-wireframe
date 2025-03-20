@@ -286,15 +286,18 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 },
               },
               marks: {
-                link: ({ children, value }) => (
-                  <TypographyLink
-                    href={value.href}
-                    target={value.blank ? "_blank" : undefined}
-                    rel={value.blank ? "noopener noreferrer" : undefined}
-                  >
-                    {children}
-                  </TypographyLink>
-                ),
+                link: ({ children, value }) => {
+                  console.log(value);
+                  return (
+                    <TypographyLink
+                      href={value.href}
+                      target={value.blank ? "_blank" : undefined}
+                      rel={value.blank ? "noopener noreferrer" : undefined}
+                    >
+                      {children}
+                    </TypographyLink>
+                  );
+                },
                 strong: ({ children }) => (
                   <strong className="font-bold">{children}</strong>
                 ),

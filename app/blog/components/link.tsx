@@ -35,7 +35,7 @@ const Link = React.forwardRef<
           "underline decoration-transparent underline-offset-4 duration-300 hover:decoration-inherit group-hover/link:decoration-inherit",
         className,
       )}
-      target={target || isExternal ? "_blank" : undefined}
+      target={target ? "_blank" : undefined}
       {...props}
       ref={ref}
     >
