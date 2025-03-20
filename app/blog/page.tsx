@@ -23,7 +23,7 @@ export default function Blog() {
       <div className="min-h-screen bg-off-white text-black">
         {/* Fixed Header Section */}
         <div className="fixed top-0 left-0 right-0 bg-off-white z-40">
-          <div className="pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <div className="relative pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
             {/* Header */}
             <div className="text-center mb-16">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont">
@@ -65,6 +65,9 @@ export default function Blog() {
               </div>
             </div>
           </div>
+
+          {/* Shadow Effect */}
+          <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-off-white to-transparent pointer-events-none" />
         </div>
 
         {/* Scrollable Blog List */}
