@@ -29,11 +29,17 @@ export default function Home() {
   const navigationHandler = (target: string) => {
     const element = document.getElementById(target);
     if (element) {
-      lenis!.scrollTo(element, {
-        offset: 0,
-        duration: 1,
-        easing: (t) => t * (2 - t),
-      });
+      // For mobile screens, use native scroll
+      if (window.innerWidth < 768) {
+        element.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // For desktop, use Lenis
+        lenis!.scrollTo(element, {
+          offset: 0,
+          duration: 1,
+          easing: (t) => t * (2 - t),
+        });
+      }
     }
   };
   useGSAP(() => {
