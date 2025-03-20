@@ -12,12 +12,14 @@ import Services from "@/components/services";
 import About from "@/components/about";
 import { useLenis } from "lenis/react";
 import Contact from "@/components/contact";
+import MobileMenu from "@/components/mobile-menu";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const textRef = useRef(null);
   const mainRef = useRef(null);
   const tagRef = useRef(null);
@@ -135,6 +137,12 @@ export default function Home() {
                   </button>
                 ))}
               </div>
+              <MobileMenu
+                isOpen={isMenuOpen}
+                setIsOpen={setIsMenuOpen}
+                colorMode={colorMode}
+                navigationHandler={navigationHandler}
+              />
             </div>
             <div
               className={`absolute w-full top-[25%] left-1/2 transform -translate-x-1/2 text-base sm:text-lg md:text-xl font-medium leading-none p-4 overflow-hidden ${
