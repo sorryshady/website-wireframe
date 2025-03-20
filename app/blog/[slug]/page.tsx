@@ -28,6 +28,26 @@ import {
 } from "@/app/blog/components/typography";
 import { Link as TypographyLink } from "@/app/blog/components/link";
 
+// Define custom block types
+type CustomImageBlock = {
+  _type: "image";
+  asset: {
+    _ref: string;
+    _type: "reference";
+  };
+  alt?: string;
+};
+
+type CalloutBlock = {
+  _type: "callout";
+  text: string;
+};
+
+type CustomPortableTextBlock =
+  | PortableTextBlock
+  | CustomImageBlock
+  | CalloutBlock;
+
 type Params = Promise<{ slug: string }>;
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
@@ -97,7 +117,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/70" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mont mb-6">
@@ -165,7 +185,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         {/* Post Content */}
         <div className="prose prose-invert prose-lg max-w-none">
           <PortableText
-            value={post.body as unknown as PortableTextBlock}
+            value={post.body as unknown as CustomPortableTextBlock[]}
             components={{
               block: {
                 h1: ({ children }) => <H1>{children}</H1>,
@@ -186,23 +206,27 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 ol: ({ children }) => <Ol>{children}</Ol>,
                 code: ({ children }) => <Code>{children}</Code>,
                 image: ({ value }) => {
-                  const imageUrl = urlFor(value).url();
+                  const imageValue = value as unknown as CustomImageBlock;
+                  const imageUrl = urlFor(imageValue).url();
                   return (
                     <div className="relative w-full aspect-video my-8">
                       <Image
                         src={imageUrl}
-                        alt={value.alt || "Blog post image"}
+                        alt={imageValue.alt || "Blog post image"}
                         fill
                         className="object-cover rounded-lg"
                       />
                     </div>
                   );
                 },
-                callout: ({ value }) => (
-                  <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 my-4">
-                    <p className="text-blue-200">{value.text}</p>
-                  </div>
-                ),
+                callout: ({ value }) => {
+                  const calloutValue = value as unknown as CalloutBlock;
+                  return (
+                    <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 my-4">
+                      <p className="text-blue-200">{calloutValue.text}</p>
+                    </div>
+                  );
+                },
               },
               marks: {
                 link: ({ children, value }) => (
