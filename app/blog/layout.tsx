@@ -23,9 +23,9 @@ export default function BlogLayout({
   return (
     <>
       <SmoothScroller>
-        <BlogNavbar />
+        {/* <BlogNavbar /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </SmoothScroller>
     </>
   );
