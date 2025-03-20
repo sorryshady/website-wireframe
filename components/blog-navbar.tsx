@@ -24,11 +24,7 @@ const BlogNavbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300
-        ${
-          scrolled
-            ? "bg-white/80 backdrop-blur-md border-b border-black/5 shadow-sm"
-            : "bg-transparent"
-        }`}
+        ${scrolled ? "bg-black/80 backdrop-blur-md" : "bg-transparent"}`}
     >
       <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         <Link href="/" className="relative z-10">
@@ -37,7 +33,7 @@ const BlogNavbar = () => {
             alt="ERNYG Logo"
             width={95}
             height={31}
-            className="invert transition-opacity duration-300 hover:opacity-80"
+            className="transition-opacity duration-300 hover:opacity-80"
           />
         </Link>
 
@@ -46,26 +42,16 @@ const BlogNavbar = () => {
             href="/"
             className={`font-mono text-2xl font-medium transition-colors relative group`}
           >
-            <span
-              className={`${isActive("/") ? "text-black" : "text-gray-600 hover:text-black"}`}
-            >
-              Home
-            </span>
-            <span
-              className={`absolute -bottom-1 left-0 h-px bg-black transition-all duration-300 ${isActive("/") ? "w-full" : "w-0 group-hover:w-full"}`}
-            />
+            <span className="text-white">Home</span>
+            <span className="absolute -bottom-1 left-0 h-px bg-white transition-all duration-300 ${isActive('/') ? 'w-full' : 'w-0 group-hover:w-full'}" />
           </Link>
           <Link
             href="/blog"
             className={`font-mono text-2xl font-medium transition-colors relative group`}
           >
+            <span className="text-white">Blog</span>
             <span
-              className={`${isActive("/blog") ? "text-black" : "text-gray-600 hover:text-black"}`}
-            >
-              Blog
-            </span>
-            <span
-              className={`absolute -bottom-1 left-0 h-px bg-black transition-all duration-300 ${isActive("/blog") ? "w-full" : "w-0 group-hover:w-full"}`}
+              className={`absolute -bottom-1 left-0 h-px bg-white transition-all duration-300 ${isActive("/blog") ? "w-full" : "w-0 group-hover:w-full"}`}
             />
           </Link>
         </div>

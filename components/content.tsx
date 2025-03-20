@@ -5,7 +5,7 @@ const Content = () => {
   return (
     <div className="bg-[#222] py-4 sm:py-6 md:py-8 px-6 sm:px-8 md:px-12 h-full w-full flex flex-col justify-between">
       <Section1 />
-      <div className="flex gap-12 items-center tracking-wider text-base sm:text-lg md:text-xl font-medium font-mont">
+      <div className="flex gap-12 items-center tracking-wider text-base sm:text-lg md:text-xl font-medium font-mont text-white">
         <a
           href="https://ernyg.com"
           target="_blank"
@@ -69,7 +69,7 @@ const Nav = () => {
           >
             <FaLinkedinIn
               size={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
+              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
             />
           </a>
           <a
@@ -79,7 +79,7 @@ const Nav = () => {
           >
             <FaInstagram
               size={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
+              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
             />
           </a>
           <a
@@ -89,7 +89,7 @@ const Nav = () => {
           >
             <FaFacebookF
               size={20}
-              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7"
+              className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 text-white"
             />
           </a>
         </div>

@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { blogPosts, categories } from "@/data/blog";
-import BlogNavbar from "@/components/blog-navbar";
 import BlogCard from "@/components/blog-card";
 
 export default function Blog() {
@@ -19,17 +18,16 @@ export default function Blog() {
 
   return (
     <>
-      <BlogNavbar />
-      <div className="min-h-screen bg-off-white text-black">
+      <div className="min-h-screen bg-black text-white">
         {/* Fixed Header Section */}
-        <div className="fixed top-0 left-0 right-0 bg-off-white z-40">
+        <div className="fixed top-0 left-0 right-0 bg-black z-40">
           <div className="relative pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
             {/* Header */}
             <div className="text-center mb-16">
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont">
                 Blog
               </h1>
-              <p className="text-xl sm:text-2xl text-gray-600 font-mont">
+              <p className="text-xl sm:text-2xl text-gray-400 font-mont">
                 Exploring tech, design, and the art of building something great
                 - From the Minds at Ernyg.
               </p>
@@ -44,7 +42,7 @@ export default function Blog() {
                   placeholder="Search articles..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full px-4 py-3 bg-transparent border-b shadow-sm border-black/20 focus:border-black/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-black"
+                  className="w-full px-4 py-3 bg-transparent border-b border-white/20 focus:border-white/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-white"
                 />
                 <div className="h-6" />
                 <div className="flex flex-wrap gap-3">
@@ -54,8 +52,8 @@ export default function Blog() {
                       onClick={() => setSelectedCategory(category.name)}
                       className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 ${
                         selectedCategory === category.name
-                          ? "bg-black text-white"
-                          : "bg-black/5 hover:bg-black/10 text-black"
+                          ? "bg-white text-black"
+                          : "bg-white/10 hover:bg-white/20 text-white"
                       }`}
                     >
                       {category.name}
@@ -67,7 +65,7 @@ export default function Blog() {
           </div>
 
           {/* Shadow Effect */}
-          <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-off-white to-transparent pointer-events-none" />
+          <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent pointer-events-none" />
         </div>
 
         {/* Scrollable Blog List */}
@@ -75,7 +73,7 @@ export default function Blog() {
           <div className="space-y-8">
             {filteredPosts.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-600 font-mont">
+                <p className="text-gray-400 font-mont">
                   No articles found matching your criteria.
                 </p>
               </div>
