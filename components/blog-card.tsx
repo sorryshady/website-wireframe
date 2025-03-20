@@ -114,7 +114,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             <span className="text-sm text-gray-400 font-mont">
               {publishedDateDescription?.actualDate}
             </span>
-            <span className="text-sm text-gray-400 font-mont">
+            <span className="text-sm text-gray-400 font-mont hidden md:block">
               ({publishedDateDescription?.timeAgo} ago)
             </span>
           </div>

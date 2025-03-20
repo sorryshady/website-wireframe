@@ -287,7 +287,6 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               },
               marks: {
                 link: ({ children, value }) => {
-                  console.log(value);
                   return (
                     <TypographyLink
                       href={value.href}
