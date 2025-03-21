@@ -123,7 +123,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   if (!post) {
     return (
       <div className="min-h-screen bg-gray-50 text-gray-900 flex items-center justify-center">
-        <h1 className="text-2xl font-mont">Post not found</h1>
+        <h1 className="text-2xl font-geist">Post not found</h1>
       </div>
     );
   }
@@ -134,7 +134,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   );
 
   return (
-    <article className="min-h-screen bg-gray-50 text-gray-900">
+    <article
+      className="min-h-screen bg-gray-50 text-gray-900"
+      id="blog"
+      style={{ scrollBehavior: "smooth" }}
+    >
       {/* Hero Section */}
       <div className="relative h-[40vh] md:h-[50vh] w-full">
         {post.mainImage?.asset?.url && (
@@ -146,13 +150,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/70" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-mont mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-geist mb-6">
               {post.title}
             </h1>
-            <div className="flex items-center justify-center gap-4 text-gray-300 font-mont font-semibold">
+            <div className="flex items-center justify-center gap-4 text-gray-300 font-geist font-semibold">
               <span>{readTime.minutes} min read</span>
               <span>•</span>
               <span>
@@ -172,7 +176,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         <div className="flex justify-end mb-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-transparent border-b border-gray-200 hover:border-gray-400 rounded-full transition-colors text-gray-900 font-mont text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-900 hover:bg-gray-200 hover:border-gray-900 rounded-full transition-colors text-gray-900 font-geist text-sm"
           >
             <ArrowLeft className="w-3 h-3" />
             Back to Blog
@@ -192,10 +196,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             )}
           </div>
           <div>
-            <h2 className="text-xl font-bold font-mont text-gray-900">
+            <h2 className="text-xl font-bold font-geist text-gray-900">
               {post.author?.name}
             </h2>
-            <p className="text-gray-600 font-mont">{post.author?.title}</p>
+            <p className="text-gray-600 font-geist">{post.author?.title}</p>
           </div>
         </div>
 
@@ -204,7 +208,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           {post.categories.map((category) => (
             <span
               key={category._id}
-              className="bg-gray-200 px-4 py-1.5 rounded-full text-sm font-mont text-gray-900"
+              className="bg-gray-200 px-4 py-1.5 rounded-full text-sm font-geist text-gray-900"
             >
               {category.title}
             </span>
@@ -212,18 +216,18 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         </div>
 
         {/* Post Content */}
-        <div className="prose prose-invert prose-lg max-w-none">
+        <div className="prose prose-invert prose-lg max-w-none font-geist">
           <PortableText
             value={post.body as unknown as CustomPortableTextBlock[]}
             components={{
               block: {
-                h1: ({ children }) => <H1>{children}</H1>,
-                h2: ({ children }) => <H2>{children}</H2>,
-                h3: ({ children }) => <H3>{children}</H3>,
-                h4: ({ children }) => <H4>{children}</H4>,
-                p: ({ children }) => <P>{children}</P>,
+                h1: ({ children }) => <H1 className="mb-4">{children}</H1>,
+                h2: ({ children }) => <H2 className="mb-4">{children}</H2>,
+                h3: ({ children }) => <H3 className="mb-4">{children}</H3>,
+                h4: ({ children }) => <H4 className="mb-4">{children}</H4>,
+                p: ({ children }) => <P className="mb-4">{children}</P>,
                 blockquote: ({ children }) => (
-                  <Blockquote>{children}</Blockquote>
+                  <Blockquote className="text-gray-500">{children}</Blockquote>
                 ),
                 table: ({ children }) => <Table>{children}</Table>,
                 thead: ({ children }) => <Thead>{children}</Thead>,
@@ -233,7 +237,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 td: ({ children }) => <Td>{children}</Td>,
                 ul: ({ children }) => <Ul>{children}</Ul>,
                 ol: ({ children }) => <Ol>{children}</Ol>,
-                hr: () => <hr className="my-8 border-gray-200" />,
+                hr: () => <hr className="my-8 border-gray-400" />,
               },
               types: {
                 image: ({ value }) => {
@@ -250,7 +254,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                         />
                       </div>
                       {imageValue.caption && (
-                        <p className="mt-2 text-center text-sm text-gray-600">
+                        <p className="mt-2 text-center text-base text-gray-500 font-semibold">
                           {imageValue.caption}
                         </p>
                       )}

@@ -21,6 +21,13 @@ const BlogNavbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [scrolled]);
 
+  // Hide navbar on article pages
+  const isArticlePage = pathname.startsWith("/blog/") && pathname !== "/blog";
+
+  if (isArticlePage) {
+    return null;
+  }
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${

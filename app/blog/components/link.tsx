@@ -12,7 +12,7 @@ function ExternalLinkIcon() {
   return (
     <IconAsText
       icon={MoveUpRight}
-      className="transition-transform group-hover/link:-translate-y-[0.125rem] group-hover/link:translate-x-[0.125rem]"
+      className="transition-transform group-hover/link:-translate-y-[0.125rem] group-hover/link:translate-x-[0.125rem] size-5"
     />
   );
 }
