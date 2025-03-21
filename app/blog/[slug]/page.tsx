@@ -9,6 +9,7 @@ import { toPlainText } from "next-sanity";
 import { PortableTextBlock } from "next-sanity";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { ScrollToTop } from "../components/scroll-to-top";
 import {
   H1,
   H2,
@@ -138,6 +139,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       className="min-h-screen bg-gray-50 text-gray-900 scroll-smooth"
       id="blog"
     >
+      <ScrollToTop />
       {/* Hero Section */}
       <div className="relative h-[40vh] md:h-[50vh] w-full">
         {post.mainImage?.asset?.url && (
