@@ -29,7 +29,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
           _type == "post" &&
           _id != $currentPostId &&
           count((categories[]->_id)[@ in $categoryRefs]) > 0
-        ] | order(count((categories[]->_id)[@ in $categoryRefs]) desc, publishedAt desc) [0...3] {
+        ] | order(count((categories[]->_id)[@ in $categoryRefs]) desc, publishedAt desc) [0...2] {
           _id,
           title,
           slug,
@@ -52,7 +52,13 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
           },
           author-> {
             name,
-            title
+            title,
+            image {
+              asset-> {
+                _id,
+                url
+              }
+            }
           },
           body
         }`;
@@ -71,7 +77,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
           const recentQuery = `*[
             _type == "post" &&
             _id != $currentPostId
-          ] | order(publishedAt desc) [0...3] {
+          ] | order(publishedAt desc) [0...2] {
             _id,
             title,
             slug,
@@ -94,7 +100,13 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
             },
             author-> {
               name,
-              title
+              title,
+              image {
+                asset-> {
+                  _id,
+                  url
+                }
+              }
             },
             body
           }`;
@@ -125,7 +137,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
     return (
       <section className="py-16 border-t border-gray-200">
         <div className="max-w-5xl mx-auto px-4 flex flex-col items-center">
-          <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8">
+          <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8 text-center">
             {isRelated ? "Related Articles" : "You Might Be Interested In"}
           </h2>
           <div className="flex items-center justify-center w-full py-12">
@@ -143,10 +155,10 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
   return (
     <section className="py-16 border-t border-gray-200">
       <div className="max-w-5xl mx-auto px-4">
-        <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8">
+        <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8 text-center">
           {isRelated ? "Related Articles" : "You Might Be Interested In"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {posts.map((post) => (
             <CompactBlogCard key={post._id} post={post} />
           ))}

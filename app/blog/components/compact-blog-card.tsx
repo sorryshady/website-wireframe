@@ -33,7 +33,7 @@ const CompactBlogCard = ({ post }: CompactBlogCardProps) => {
         flex flex-col h-full"
     >
       {/* Image Container */}
-      <div className="relative w-full h-32 overflow-hidden">
+      <div className="relative w-full h-48 overflow-hidden">
         {post.mainImage?.asset?.url && (
           <Image
             src={urlFor(post.mainImage.asset.url).url()}
@@ -47,38 +47,54 @@ const CompactBlogCard = ({ post }: CompactBlogCardProps) => {
       </div>
 
       {/* Content Container */}
-      <div className="p-4 flex flex-col flex-grow">
-        {/* Title and Category */}
-        <div className="space-y-2 mb-2">
-          <h3 className="text-base font-bold font-geist text-gray-900 line-clamp-2 group-hover:text-gray-700">
-            {post.title}
-          </h3>
-          <div className="flex flex-wrap gap-2">
-            {post.categories.slice(0, 1).map((category) => (
-              <span
-                key={category._id}
-                className="text-xs font-semibold text-gray-600 bg-gray-100 px-2 py-1 rounded-full"
-              >
-                {category.title}
-              </span>
-            ))}
-            <span className="text-xs font-medium text-gray-500">
-              {readTime.minutes} min read
+      <div className="p-6 flex flex-col flex-grow">
+        {/* Categories */}
+        <div className="flex flex-wrap gap-2 mb-3">
+          {post.categories.map((category) => (
+            <span
+              key={category._id}
+              className="text-xs font-semibold text-gray-800 bg-gray-200 px-2 py-1 rounded-full"
+            >
+              {category.title}
             </span>
-          </div>
+          ))}
         </div>
 
-        {/* Date and Author - Mobile Hidden */}
-        <div className="mt-auto pt-2 border-t border-gray-200 hidden sm:flex items-center justify-between">
-          <span className="text-xs text-gray-500 font-geist">
-            {format(
-              new Date(post.publishedAt || post._createdAt!),
-              "dd MMM yyyy",
+        {/* Title and Excerpt */}
+        <div className="space-y-2 mb-4">
+          <h3 className="text-xl font-bold font-geist text-gray-900 line-clamp-2 group-hover:text-gray-700">
+            {post.title}
+          </h3>
+          <p className="text-sm text-gray-600 line-clamp-2">{post.excerpt}</p>
+        </div>
+
+        {/* Author and Meta */}
+        <div className="mt-auto pt-4 border-t border-gray-200 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            {post.author?.image?.asset && (
+              <div className="relative w-6 h-6 rounded-full overflow-hidden">
+                <Image
+                  src={urlFor(post.author.image.asset).url()}
+                  alt={post.author?.name || ""}
+                  fill
+                  className="object-cover"
+                />
+              </div>
             )}
-          </span>
-          <span className="text-xs font-medium text-gray-600 font-geist">
-            {post.author?.name}
-          </span>
+            <span className="text-sm font-semibold text-gray-800 font-geist">
+              {post.author?.name}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-xs font-geist font-semibold text-gray-600">
+            <span>{readTime.minutes} min read</span>
+            <span>•</span>
+            <span>
+              {format(
+                new Date(post.publishedAt || post._createdAt!),
+                "dd MMM yyyy",
+              )}
+            </span>
+          </div>
         </div>
       </div>
     </article>

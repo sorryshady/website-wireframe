@@ -70,7 +70,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             {post.categories.map((category, index) => (
               <span
                 key={index}
-                className="bg-gray-50 border-2 border-gray-300 px-3 py-1 rounded-full font-semibold text-gray-800"
+                className="bg-gray-200 border-2 border-gray-200 px-3 py-1 rounded-full font-semibold text-gray-800"
               >
                 {category.title}
               </span>
