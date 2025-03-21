@@ -30,7 +30,6 @@ export function BlogContainer({
   const [searchInput, setSearchInput] = useState(initialSearchQuery);
   const debouncedSearch = useDebounce(searchInput, 500);
 
-  // Only update URL when search changes
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
     if (debouncedSearch) {
@@ -38,7 +37,6 @@ export function BlogContainer({
     } else {
       params.delete("search");
     }
-    // Preserve the current page when updating search
     if (currentPage > 1) {
       params.set("page", currentPage.toString());
     }
@@ -69,71 +67,63 @@ export function BlogContainer({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      {/* Fixed Header Section */}
-      <div className="fixed top-0 left-0 right-0 bg-gray-50 backdrop-blur-sm z-40">
-        <div className="relative pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-          {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont text-gray-900">
-              Blog
-            </h1>
-            <p className="text-xl sm:text-2xl text-gray-600 font-mont">
-              Exploring tech, design, and the art of building something great -
-              From the Minds at Ernyg.
-            </p>
-          </div>
+    <main className="min-h-screen bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-4">
+        {/* Header */}
+        <header className="relative pt-16 md:pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont text-gray-900">
+            Blog
+          </h1>
+          <p className="text-xl sm:text-2xl text-gray-600 font-mont">
+            Exploring tech, design, and the art of building something great -
+            From the Minds at Ernyg.
+          </p>
+        </header>
 
-          {/* Search and Filters */}
-          <div className="space-y-6">
-            {/* Search */}
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full px-6 py-3 bg-white border border-gray-400 rounded-full shadow-sm
-                focus:border-gray-500 focus:ring-2 focus:ring-gray-100 focus:outline-none
-                font-mont text-lg transition-all duration-300
-                placeholder:text-gray-500 text-gray-900"
-              />
-              <div className="h-8" />
-              <div className="flex flex-wrap gap-3 items-center justify-center">
+        {/* Search and Filters */}
+        <div className="space-y-6 mb-16">
+          {/* Search */}
+          <div className="relative">
+            <input
+              type="text"
+              placeholder="Search articles..."
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              className="w-full px-6 py-3 bg-white border border-gray-400 rounded-full shadow-sm
+              focus:border-gray-500 focus:ring-2 focus:ring-gray-100 focus:outline-none
+              font-mont text-lg transition-all duration-300
+              placeholder:text-gray-500 text-gray-900"
+            />
+            <div className="h-8" />
+            <div className="flex flex-wrap gap-3 items-center justify-center">
+              <button
+                onClick={() => handleCategoryChange("All")}
+                className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border-2 ${
+                  selectedCategory === "All"
+                    ? "bg-gray-900 text-white border-gray-900 shadow-md font-bold"
+                    : "bg-white hover:bg-gray-100 text-gray-800 border-gray-400 hover:border-gray-500 shadow-sm"
+                }`}
+              >
+                All
+              </button>
+              {categories.map((category) => (
                 <button
-                  onClick={() => handleCategoryChange("All")}
+                  key={category._id}
+                  onClick={() => handleCategoryChange(category.title || "")}
                   className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border-2 ${
-                    selectedCategory === "All"
+                    selectedCategory === category.title
                       ? "bg-gray-900 text-white border-gray-900 shadow-md font-bold"
                       : "bg-white hover:bg-gray-100 text-gray-800 border-gray-400 hover:border-gray-500 shadow-sm"
                   }`}
                 >
-                  All
+                  {category.title}
                 </button>
-                {categories.map((category) => (
-                  <button
-                    key={category._id}
-                    onClick={() => handleCategoryChange(category.title || "")}
-                    className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border-2 ${
-                      selectedCategory === category.title
-                        ? "bg-gray-900 text-white border-gray-900 shadow-md font-bold"
-                        : "bg-white hover:bg-gray-100 text-gray-800 border-gray-400 hover:border-gray-500 shadow-sm"
-                    }`}
-                  >
-                    {category.title}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* Shadow Effect */}
-        <div className="absolute -bottom-4 md:-bottom-8 left-0 right-0 h-4 md:h-8 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
-      </div>
-
-      {/* Scrollable Blog List */}
-      <div className="pt-[37rem] md:pt-[32rem] pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        {/* Blog List */}
         <div className="space-y-8">
           {initialPosts.length === 0 ? (
             <div className="text-center py-12">
@@ -169,6 +159,6 @@ export function BlogContainer({
           )}
         </div>
       </div>
-    </div>
+    </main>
   );
 }

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { ArrowLeft, Mail, Globe } from "lucide-react";
 import BlogCard from "@/components/blog-card";
 import AuthorSocials from "../components/AuthorSocials";
+import { ScrollToTop } from "@/components/scroll-to-top";
 
 type Params = Promise<{ slug: string }>;
 const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0] {
@@ -79,6 +80,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
 
   return (
     <main className="min-h-screen bg-gray-50">
+      <ScrollToTop />
       {/* Top Navigation */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">

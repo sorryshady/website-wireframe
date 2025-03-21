@@ -9,7 +9,7 @@ import { toPlainText } from "next-sanity";
 import { PortableTextBlock } from "next-sanity";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
-import { ScrollToTop } from "../components/scroll-to-top";
+import { ScrollToTop } from "../../../components/scroll-to-top";
 import {
   H1,
   H2,
@@ -204,7 +204,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-900 hover:bg-gray-200 hover:border-gray-900 rounded-full transition-colors text-gray-900 font-geist text-sm"
           >
             <ArrowLeft className="w-3 h-3" />
-            Back to Blog
+            Back
           </Link>
         </div>
 

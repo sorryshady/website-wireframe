@@ -23,8 +23,10 @@ const BlogNavbar = () => {
 
   // Hide navbar on article pages
   const isArticlePage = pathname.startsWith("/blog/") && pathname !== "/blog";
+  const isAuthorPage =
+    pathname.startsWith("/authors/") && pathname !== "/authors";
 
-  if (isArticlePage) {
+  if (isArticlePage || isAuthorPage) {
     return null;
   }
 
