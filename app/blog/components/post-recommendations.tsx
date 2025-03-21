@@ -60,7 +60,7 @@ export default function PostRecommendations({
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {recommendations.authorPosts.map((post) => (
-                <CompactBlogCard key={post._id} post={post} />
+                <CompactBlogCard key={post._id + post._createdAt} post={post} />
               ))}
             </div>
           </div>
@@ -75,7 +75,7 @@ export default function PostRecommendations({
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               {recommendations.relatedPosts.map((post) => (
-                <CompactBlogCard key={post._id} post={post} />
+                <CompactBlogCard key={post._id + post._createdAt} post={post} />
               ))}
             </div>
           </div>

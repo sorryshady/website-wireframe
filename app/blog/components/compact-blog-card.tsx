@@ -52,7 +52,7 @@ const CompactBlogCard = ({ post }: CompactBlogCardProps) => {
         <div className="flex flex-wrap gap-2 mb-3">
           {post.categories.map((category) => (
             <span
-              key={category._id}
+              key={post._id + category._id}
               className="text-xs font-semibold text-gray-800 bg-gray-200 px-2 py-1 rounded-full"
             >
               {category.title}
