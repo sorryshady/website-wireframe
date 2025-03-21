@@ -47,13 +47,13 @@ const BlogNavbar = () => {
 
         <div className="flex items-center gap-8">
           <Link
-            href="/"
+            href="/authors"
             className="font-mono text-2xl font-medium transition-colors relative group"
           >
-            <span className="text-gray-900">Home</span>
+            <span className="text-gray-900">Authors</span>
             <span
               className={`absolute -bottom-1 left-0 h-px bg-gray-900 transition-all duration-300 ${
-                isActive("/") ? "w-full" : "w-0 group-hover:w-full"
+                isActive("/authors") ? "w-full" : "w-0 group-hover:w-full"
               }`}
             />
           </Link>
