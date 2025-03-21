@@ -99,7 +99,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
         <div className="max-w-7xl mx-auto px-4">
           <div className="py-8">
             {/* Author Image and Basic Info */}
-            <div className="flex flex-col md:flex-row gap-8">
+            <div className="flex flex-col md:flex-row gap-8 items-center">
               {/* Left Column - Image */}
               <div className="w-full md:w-1/4">
                 <div className="relative">
@@ -120,25 +120,25 @@ export default async function AuthorPage({ params }: { params: Params }) {
               </div>
 
               {/* Right Column - Info */}
-              <div className="w-full md:w-3/4">
+              <div className="w-full md:w-3/4 text-center md:text-left">
                 <div className="flex flex-col h-full">
-                  <h1 className="text-3xl font-bold font-geist text-gray-900 mb-1">
+                  <h1 className="text-3xl md:text-5xl font-bold font-geist text-gray-900 mb-1 md:mb-2">
                     {author.name}
                   </h1>
-                  <p className="text-xl text-gray-600 font-geist mb-4">
+                  <p className="text-xl md:text-2xl text-gray-600 font-geist mb-4">
                     {author.title}
                   </p>
 
                   {/* Contact Info and Social Links */}
                   <div className="space-y-6">
                     {/* Contact Links */}
-                    <div className="flex items-center gap-8 text-base font-geist text-gray-600">
+                    <div className="flex items-center justify-center md:justify-start gap-8 text-base font-geist text-gray-600">
                       {author.contact?.email && (
                         <a
                           href={`mailto:${author.contact.email}`}
-                          className="flex items-center gap-2 hover:text-gray-900"
+                          className="flex items-center gap-2 hover:text-gray-900 text-lg  "
                         >
-                          <Mail className="w-5 h-5" />
+                          <Mail className="w-6 h-6" />
                           {author.contact.email}
                         </a>
                       )}
@@ -147,9 +147,9 @@ export default async function AuthorPage({ params }: { params: Params }) {
                           href={author.contact.website}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-2 hover:text-gray-900"
+                          className="flex items-center gap-2 hover:text-gray-900 text-lg "
                         >
-                          <Globe className="w-5 h-5" />
+                          <Globe className="w-6 h-6" />
                           Website
                         </a>
                       )}
