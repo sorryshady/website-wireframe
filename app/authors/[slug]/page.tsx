@@ -8,36 +8,54 @@ import { ArrowLeft } from "lucide-react";
 import BlogCard from "@/components/blog-card";
 import AuthorSocials from "../components/AuthorSocials";
 
-interface AuthorPageProps {
-  params: {
-    slug: string;
-  };
-}
-
+type Params = Promise<{ slug: string }>;
 const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0] {
   _id,
   name,
   title,
   slug,
-  image,
+  image {
+    asset-> {
+      _id,
+      url,
+      metadata {
+        dimensions,
+        lqip
+      }
+    }
+  },
   bio,
   contact,
   "posts": *[_type == "post" && author._ref == ^._id] | order(publishedAt desc) {
     _id,
     title,
     slug,
-    mainImage,
+    mainImage {
+    asset-> {
+      _id,
+      url,
+      metadata {
+        dimensions,
+        lqip
+      }
+    }
+  },
     publishedAt,
+    _createdAt,
+    categories[]-> {
+    _id,
+    title
+  },
     excerpt,
-    categories[]->,
-    author->
+    body
   }
 }`;
 
-export default async function AuthorPage({ params }: AuthorPageProps) {
+export default async function AuthorPage({ params }: { params: Params }) {
+  const { slug } = await params;
   const author = await sanityFetch<Author & { posts: Post[] }>({
     query: AUTHOR_QUERY,
-    params: { slug: params.slug },
+    params: { slug },
   });
 
   if (!author) {
