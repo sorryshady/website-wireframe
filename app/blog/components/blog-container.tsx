@@ -67,16 +67,16 @@ export function BlogContainer({
   };
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Fixed Header Section */}
-      <div className="fixed top-0 left-0 right-0 bg-black z-40">
+      <div className="fixed top-0 left-0 right-0 bg-gray-50 backdrop-blur-sm z-40 border-b border-gray-200">
         <div className="relative pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont text-gray-900">
               Blog
             </h1>
-            <p className="text-xl sm:text-2xl text-gray-400 font-mont">
+            <p className="text-xl sm:text-2xl text-gray-600 font-mont">
               Exploring tech, design, and the art of building something great -
               From the Minds at Ernyg.
             </p>
@@ -91,16 +91,19 @@ export function BlogContainer({
                 placeholder="Search articles..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full px-4 py-3 bg-transparent border-b border-white/20 focus:border-white/40 focus:outline-none font-mont text-lg transition-colors placeholder:text-gray-500 text-white"
+                className="w-full px-6 py-3 bg-white border border-gray-300 rounded-full shadow-sm
+                focus:border-gray-400 focus:ring-2 focus:ring-gray-100 focus:outline-none
+                font-mont text-lg transition-all duration-300
+                placeholder:text-gray-400 text-gray-900"
               />
-              <div className="h-6" />
+              <div className="h-8" />
               <div className="flex flex-wrap gap-3">
                 <button
                   onClick={() => handleCategoryChange("All")}
-                  className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 ${
+                  className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border ${
                     selectedCategory === "All"
-                      ? "bg-white text-black"
-                      : "bg-white/10 hover:bg-white/20 text-white"
+                      ? "bg-gray-900 text-white border-gray-900"
+                      : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 hover:border-gray-400 shadow-sm"
                   }`}
                 >
                   All
@@ -109,10 +112,10 @@ export function BlogContainer({
                   <button
                     key={category._id}
                     onClick={() => handleCategoryChange(category.title || "")}
-                    className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 ${
+                    className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border ${
                       selectedCategory === category.title
-                        ? "bg-white text-black"
-                        : "bg-white/10 hover:bg-white/20 text-white"
+                        ? "bg-gray-900 text-white border-gray-900"
+                        : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 hover:border-gray-400 shadow-sm"
                     }`}
                   >
                     {category.title}
@@ -124,7 +127,7 @@ export function BlogContainer({
         </div>
 
         {/* Shadow Effect */}
-        <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-black to-transparent pointer-events-none" />
+        <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
       </div>
 
       {/* Scrollable Blog List */}
@@ -132,7 +135,7 @@ export function BlogContainer({
         <div className="space-y-8">
           {initialPosts.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-400 font-mont">
+              <p className="text-gray-500 font-mont">
                 No articles found matching your criteria.
               </p>
             </div>
@@ -146,17 +149,17 @@ export function BlogContainer({
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="px-6 py-2 bg-white/10 text-white rounded-full font-mont hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-2 bg-gray-100 text-gray-700 rounded-full font-mont hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Previous
                 </button>
-                <span className="text-white font-mont">
+                <span className="text-gray-700 font-mont">
                   Page {currentPage} of {totalPages}
                 </span>
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="px-6 py-2 bg-white/10 text-white rounded-full font-mont hover:bg-white/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-2 bg-gray-100 text-gray-700 rounded-full font-mont hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Next
                 </button>

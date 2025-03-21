@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 text-gray-900 flex items-center justify-center">
         <h1 className="text-2xl font-mont">Post not found</h1>
       </div>
     );
@@ -134,7 +134,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
   );
 
   return (
-    <article className="min-h-screen bg-black text-white">
+    <article className="min-h-screen bg-gray-50 text-gray-900">
       {/* Hero Section */}
       <div className="relative h-[40vh] md:h-[50vh] w-full">
         {post.mainImage?.asset?.url && (
@@ -146,13 +146,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             priority
           />
         )}
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/50" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="max-w-4xl mx-auto px-4 text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-mont mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-mont mb-6">
               {post.title}
             </h1>
-            <div className="flex items-center justify-center gap-4 text-gray-300 font-mont">
+            <div className="flex items-center justify-center gap-4 text-gray-300 font-mont font-semibold">
               <span>{readTime.minutes} min read</span>
               <span>•</span>
               <span>
@@ -172,7 +172,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         <div className="flex justify-end mb-12">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors text-white font-mont text-sm"
+            className="inline-flex items-center gap-2 px-4 py-2 bg-transparent border-b border-gray-200 hover:border-gray-400 rounded-full transition-colors text-gray-900 font-mont text-sm"
           >
             <ArrowLeft className="w-3 h-3" />
             Back to Blog
@@ -192,10 +192,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             )}
           </div>
           <div>
-            <h2 className="text-xl font-bold font-mont text-white">
+            <h2 className="text-xl font-bold font-mont text-gray-900">
               {post.author?.name}
             </h2>
-            <p className="text-gray-400 font-mont">{post.author?.title}</p>
+            <p className="text-gray-600 font-mont">{post.author?.title}</p>
           </div>
         </div>
 
@@ -204,7 +204,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           {post.categories.map((category) => (
             <span
               key={category._id}
-              className="bg-white/10 px-4 py-1.5 rounded-full text-sm font-mont text-white"
+              className="bg-gray-200 px-4 py-1.5 rounded-full text-sm font-mont text-gray-900"
             >
               {category.title}
             </span>
@@ -233,7 +233,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 td: ({ children }) => <Td>{children}</Td>,
                 ul: ({ children }) => <Ul>{children}</Ul>,
                 ol: ({ children }) => <Ol>{children}</Ol>,
-                hr: () => <hr className="my-8 border-gray-700" />,
+                hr: () => <hr className="my-8 border-gray-200" />,
               },
               types: {
                 image: ({ value }) => {
@@ -250,7 +250,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                         />
                       </div>
                       {imageValue.caption && (
-                        <p className="mt-2 text-center text-sm text-gray-400">
+                        <p className="mt-2 text-center text-sm text-gray-600">
                           {imageValue.caption}
                         </p>
                       )}
@@ -302,7 +302,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                 ),
                 em: ({ children }) => <em className="italic">{children}</em>,
                 code: ({ children }) => (
-                  <code className="bg-gray-800 rounded px-1 py-0.5">
+                  <code className="bg-gray-200 rounded px-1 py-0.5">
                     {children}
                   </code>
                 ),
@@ -326,6 +326,9 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           />
         </div>
       </div>
+
+      {/* Gradient Overlay */}
+      <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
     </article>
   );
 }

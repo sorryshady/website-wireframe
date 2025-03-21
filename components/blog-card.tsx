@@ -40,11 +40,11 @@ const BlogCard = ({ post }: BlogCardProps) => {
     <article
       onClick={handleClick}
       className="blog-post group cursor-pointer rounded-xl transition-all duration-300
-        bg-white/5
-        border border-white/10
-        shadow-[0_2px_15px_-3px_rgba(255,255,255,0.07),0_10px_20px_-2px_rgba(255,255,255,0.04)]
-        hover:shadow-[0_8px_30px_rgb(255,255,255,0.12)]
-        hover:border-white/20
+        bg-gray-50
+        border border-gray-200
+        shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
+        hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+        hover:border-gray-300
         hover:-translate-y-1
         overflow-hidden"
     >
@@ -70,7 +70,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             {post.categories.map((category, index) => (
               <span
                 key={index}
-                className="bg-white/10 px-3 py-1 rounded-full font-medium hover:bg-white/15 transition-colors text-white"
+                className="bg-gray-100 px-3 py-1 rounded-full font-medium hover:bg-gray-200 transition-colors text-gray-800"
               >
                 {category.title}
               </span>
@@ -82,10 +82,10 @@ const BlogCard = ({ post }: BlogCardProps) => {
 
         {/* Title and Excerpt */}
         <div className="space-y-3 mb-6">
-          <h2 className="text-xl md:text-2xl font-bold font-mont text-white group-hover:text-white/80 transition-colors line-clamp-2">
+          <h2 className="text-xl md:text-2xl font-bold font-mont text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2">
             {post.title}
           </h2>
-          <p className="text-gray-400 font-mont line-clamp-3 text-sm md:text-base">
+          <p className="text-gray-600 font-mont line-clamp-3 text-sm md:text-base">
             {post.excerpt}
           </p>
         </div>
@@ -103,18 +103,18 @@ const BlogCard = ({ post }: BlogCardProps) => {
             )}
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-medium font-mont text-white">
+            <span className="text-sm font-medium font-mont text-gray-900">
               {post.author?.name}
             </span>
-            <span className="text-xs md:text-sm text-gray-400 font-mont">
+            <span className="text-xs md:text-sm text-gray-500 font-mont">
               {post.author?.title}
             </span>
           </div>
           <div className="ml-auto flex gap-2">
-            <span className="text-sm text-gray-400 font-mont">
+            <span className="text-sm text-gray-500 font-mont">
               {publishedDateDescription?.actualDate}
             </span>
-            <span className="text-sm text-gray-400 font-mont hidden md:block">
+            <span className="text-sm text-gray-500 font-mont hidden md:block">
               ({publishedDateDescription?.timeAgo} ago)
             </span>
           </div>
