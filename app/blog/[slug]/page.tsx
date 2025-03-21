@@ -32,6 +32,7 @@ import { Embed } from "@/app/blog/components/portable-text/embed";
 import { Callout } from "@/app/blog/components/portable-text/callout";
 import { CodeBlock } from "@/app/blog/components/portable-text/code-block";
 import RelatedPosts from "../components/related-posts";
+import AuthorPosts from "../components/author-posts";
 
 // Define custom block types
 type CustomImageBlock = {
@@ -102,7 +103,8 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
     _id,
     title
   },
-  author-> {
+  "author": author-> {
+    _id,
     name,
     title,
     image {
@@ -331,6 +333,14 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           />
         </div>
       </div>
+
+      {/* More from Author */}
+      <AuthorPosts
+        currentPost={{
+          _id: post._id,
+          author: post.author,
+        }}
+      />
 
       {/* Related Posts */}
       <RelatedPosts
