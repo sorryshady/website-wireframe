@@ -54,11 +54,11 @@ export default function PostRecommendations({
     <>
       {recommendations.authorPosts.length > 0 && (
         <section className="py-16 border-t border-gray-200">
-          <div className="max-w-5xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8 text-center">
               More from {currentPost.author?.name}
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {recommendations.authorPosts.map((post) => (
                 <CompactBlogCard key={post._id + post._createdAt} post={post} />
               ))}
@@ -69,11 +69,11 @@ export default function PostRecommendations({
 
       {recommendations.relatedPosts.length > 0 && (
         <section className="py-16 border-t border-gray-200">
-          <div className="max-w-5xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4">
             <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8 text-center">
               Related Articles
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
               {recommendations.relatedPosts.map((post) => (
                 <CompactBlogCard key={post._id + post._createdAt} post={post} />
               ))}
