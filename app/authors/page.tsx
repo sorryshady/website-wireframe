@@ -19,11 +19,11 @@ export default async function AuthorsPage() {
     <main className="min-h-screen bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <header className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold font-geist text-gray-900 mb-4">
+        <header className="relative pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mb-16">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont text-gray-900">
             Our Authors
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl sm:text-2xl text-gray-600 font-mont">
             Meet our team of content creators and experts sharing their
             knowledge and experiences
           </p>

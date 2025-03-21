@@ -4,7 +4,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Mail, Globe } from "lucide-react";
 import BlogCard from "@/components/blog-card";
 import AuthorSocials from "../components/AuthorSocials";
 
@@ -31,21 +31,21 @@ const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0] {
     title,
     slug,
     mainImage {
-    asset-> {
-      _id,
-      url,
-      metadata {
-        dimensions,
-        lqip
+      asset-> {
+        _id,
+        url,
+        metadata {
+          dimensions,
+          lqip
+        }
       }
-    }
-  },
+    },
     publishedAt,
     _createdAt,
     categories[]-> {
-    _id,
-    title
-  },
+      _id,
+      title
+    },
     excerpt,
     body
   }
@@ -67,7 +67,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
           </h1>
           <Link
             href="/authors"
-            className="text-gray-600 hover:text-gray-900 flex items-center justify-center gap-2"
+            className="text-gray-600 hover:text-gray-900 flex items-center justify-center gap-2 font-geist"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Authors
@@ -79,104 +79,130 @@ export default async function AuthorPage({ params }: { params: Params }) {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      {/* Author Hero Section */}
+      {/* Top Navigation */}
       <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-16">
-          <div className="flex flex-col md:flex-row gap-8 items-start">
-            {/* Author Image */}
-            <div className="w-full md:w-1/3">
-              <div className="aspect-square relative rounded-2xl overflow-hidden">
-                {author.image?.asset && (
-                  <Image
-                    src={urlFor(author.image.asset)
-                      .width(400)
-                      .height(400)
-                      .url()}
-                    alt={author.name || ""}
-                    fill
-                    className="object-cover"
-                  />
-                )}
+        <div className="max-w-7xl mx-auto px-4 py-4">
+          <Link
+            href="/authors"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 font-geist"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to Authors
+          </Link>
+        </div>
+      </div>
+
+      {/* Author Header */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="py-8">
+            {/* Author Image and Basic Info */}
+            <div className="flex flex-col md:flex-row gap-8">
+              {/* Left Column - Image */}
+              <div className="w-full md:w-1/4">
+                <div className="relative">
+                  <div className="aspect-square relative rounded-full overflow-hidden border-4 border-white shadow-lg">
+                    {author.image?.asset && (
+                      <Image
+                        src={urlFor(author.image.asset)
+                          .width(400)
+                          .height(400)
+                          .url()}
+                        alt={author.name || ""}
+                        fill
+                        className="object-cover"
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Info */}
+              <div className="w-full md:w-3/4">
+                <div className="flex flex-col h-full">
+                  <h1 className="text-3xl font-bold font-geist text-gray-900 mb-1">
+                    {author.name}
+                  </h1>
+                  <p className="text-xl text-gray-600 font-geist mb-4">
+                    {author.title}
+                  </p>
+
+                  {/* Contact Info and Social Links */}
+                  <div className="space-y-6">
+                    {/* Contact Links */}
+                    <div className="flex items-center gap-8 text-base font-geist text-gray-600">
+                      {author.contact?.email && (
+                        <a
+                          href={`mailto:${author.contact.email}`}
+                          className="flex items-center gap-2 hover:text-gray-900"
+                        >
+                          <Mail className="w-5 h-5" />
+                          {author.contact.email}
+                        </a>
+                      )}
+                      {author.contact?.website && (
+                        <a
+                          href={author.contact.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 hover:text-gray-900"
+                        >
+                          <Globe className="w-5 h-5" />
+                          Website
+                        </a>
+                      )}
+                    </div>
+
+                    {/* Social Links */}
+                    {author.contact?.social && (
+                      <AuthorSocials socials={author.contact.social} />
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            {/* Author Info */}
-            <div className="w-full md:w-2/3">
-              <Link
-                href="/authors"
-                className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                Back to Authors
-              </Link>
-              <h1 className="text-4xl font-bold font-geist text-gray-900 mb-2">
-                {author.name}
-              </h1>
-              <p className="text-xl text-gray-600 mb-6 font-geist">
-                {author.title}
-              </p>
-
-              {/* Contact Information */}
-              {author.contact && (
-                <div className="space-y-2 mb-8">
-                  {author.contact.email && (
-                    <p className="text-gray-600">
-                      <span className="font-semibold">Email:</span>{" "}
-                      <a
-                        href={`mailto:${author.contact.email}`}
-                        className="text-blue-600 hover:text-blue-700"
-                      >
-                        {author.contact.email}
-                      </a>
-                    </p>
-                  )}
-                  {author.contact.website && (
-                    <p className="text-gray-600">
-                      <span className="font-semibold">Website:</span>{" "}
-                      <a
-                        href={author.contact.website}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 hover:text-blue-700"
-                      >
-                        {author.contact.website}
-                      </a>
-                    </p>
-                  )}
+      {/* Main Content Area */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Left Sidebar - About */}
+          <div className="md:col-span-1">
+            <div className="md:sticky md:top-8">
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h3 className="font-geist font-semibold text-gray-900 mb-4">
+                  About
+                </h3>
+                <div className="prose prose-sm prose-gray font-geist max-w-none">
+                  <PortableText value={author.bio!} />
                 </div>
-              )}
-
-              {/* Social Links */}
-              {author.contact?.social && (
-                <AuthorSocials socials={author.contact.social} />
-              )}
+              </div>
             </div>
+          </div>
+
+          {/* Right Content Area - Articles */}
+          <div className="md:col-span-2">
+            {/* Articles Section */}
+            {author.posts && author.posts.length > 0 && (
+              <div>
+                <h2 className="text-xl font-bold font-geist text-gray-900 mb-6 sticky top-0 bg-gray-50 py-4 z-10">
+                  Articles
+                  <span className="ml-2 text-sm font-normal text-gray-500">
+                    ({author.posts.length})
+                  </span>
+                </h2>
+                <div className="grid grid-cols-1 gap-6">
+                  {author.posts.map((post) => (
+                    <BlogCard key={post._id} post={post} />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
-
-      {/* Bio Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <div className="prose prose-lg max-w-none">
-          <PortableText value={author.bio!} />
-        </div>
-      </div>
-
-      {/* Author's Articles */}
-      {author.posts && author.posts.length > 0 && (
-        <div className="border-t border-gray-200 bg-white">
-          <div className="max-w-7xl mx-auto px-4 py-16">
-            <h2 className="text-3xl font-bold font-geist text-gray-900 mb-8 text-center">
-              Articles by {author.name}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {author.posts.map((post) => (
-                <BlogCard key={post._id} post={post} />
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
