@@ -135,9 +135,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   return (
     <article
-      className="min-h-screen bg-gray-50 text-gray-900"
+      className="min-h-screen bg-gray-50 text-gray-900 scroll-smooth"
       id="blog"
-      style={{ scrollBehavior: "smooth" }}
     >
       {/* Hero Section */}
       <div className="relative h-[40vh] md:h-[50vh] w-full">
@@ -152,7 +151,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         )}
         <div className="absolute inset-0 bg-black/70" />
         <div className="absolute inset-0 flex items-center justify-center">
-          <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="max-w-5xl mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white font-geist mb-6">
               {post.title}
             </h1>
@@ -171,7 +170,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-4xl mx-auto px-4 py-16">
+      <div className="max-w-5xl mx-auto px-4 py-16">
         {/* Back Button */}
         <div className="flex justify-end mb-12">
           <Link
