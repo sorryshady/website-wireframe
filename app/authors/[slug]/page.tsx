@@ -112,7 +112,9 @@ export default async function AuthorPage({ params }: { params: Params }) {
               <h1 className="text-4xl font-bold font-geist text-gray-900 mb-2">
                 {author.name}
               </h1>
-              <p className="text-xl text-gray-600 mb-6">{author.title}</p>
+              <p className="text-xl text-gray-600 mb-6 font-geist">
+                {author.title}
+              </p>
 
               {/* Contact Information */}
               {author.contact && (
@@ -164,7 +166,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
       {author.posts && author.posts.length > 0 && (
         <div className="border-t border-gray-200 bg-white">
           <div className="max-w-7xl mx-auto px-4 py-16">
-            <h2 className="text-3xl font-bold font-geist text-gray-900 mb-8">
+            <h2 className="text-3xl font-bold font-geist text-gray-900 mb-8 text-center">
               Articles by {author.name}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

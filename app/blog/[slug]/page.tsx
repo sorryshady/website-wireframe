@@ -106,6 +106,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
     _id,
     name,
     title,
+    slug,
     image {
       asset-> {
         _id,
@@ -178,24 +179,26 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         {/* Back Button */}
         <div className="flex items-center justify-between mb-12">
           {/* Author Info */}
-          <div className="flex items-center gap-4">
-            <div className="relative w-16 h-16 rounded-full overflow-hidden">
-              {post.author?.image?.asset && (
-                <Image
-                  src={urlFor(post.author.image.asset).url()}
-                  alt={post.author?.name || ""}
-                  fill
-                  className="object-cover"
-                />
-              )}
+          <Link href={`/authors/${post.author.slug?.current}`}>
+            <div className="flex items-center gap-4 transition-transform duration-300 hover:scale-105 hover:bg-gray-100 p-2 rounded-lg">
+              <div className="relative w-16 h-16 rounded-full overflow-hidden">
+                {post.author?.image?.asset && (
+                  <Image
+                    src={urlFor(post.author.image.asset).url()}
+                    alt={post.author?.name || ""}
+                    fill
+                    className="object-cover"
+                  />
+                )}
+              </div>
+              <div>
+                <h2 className="text-xl font-bold font-geist text-gray-900">
+                  {post.author?.name}
+                </h2>
+                <p className="text-gray-600 font-geist">{post.author?.title}</p>
+              </div>
             </div>
-            <div>
-              <h2 className="text-xl font-bold font-geist text-gray-900">
-                {post.author?.name}
-              </h2>
-              <p className="text-gray-600 font-geist">{post.author?.title}</p>
-            </div>
-          </div>
+          </Link>
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-900 hover:bg-gray-200 hover:border-gray-900 rounded-full transition-colors text-gray-900 font-geist text-sm"
