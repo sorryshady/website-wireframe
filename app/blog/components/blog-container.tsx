@@ -129,7 +129,7 @@ export function BlogContainer({
         </div>
 
         {/* Shadow Effect */}
-        <div className="absolute -bottom-6 md:-bottom-8 left-0 right-0 h-6 md:h-8 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
+        <div className="absolute md:-bottom-8 left-0 right-0  md:h-8 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
       </div>
 
       {/* Scrollable Blog List */}

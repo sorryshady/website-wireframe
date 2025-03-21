@@ -41,9 +41,9 @@ const BlogCard = ({ post }: BlogCardProps) => {
       onClick={handleClick}
       className="blog-post group cursor-pointer rounded-xl transition-all duration-300
         bg-gray-50
-        border border-gray-200
-        shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)]
-        hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)]
+        border border-gray-300
+        shadow-lg
+        hover:shadow-2xl
         hover:border-gray-300
         hover:-translate-y-1
         overflow-hidden"
@@ -65,34 +65,35 @@ const BlogCard = ({ post }: BlogCardProps) => {
       {/* Content Container */}
       <div className="p-6 md:p-8">
         {/* Categories and Read Time */}
-        <div className="flex flex-wrap items-center gap-3 text-sm text-gray-400 font-mont mb-4">
-          <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap items-center gap-3 text-sm font-geist mb-4 justify-between">
+          <div className="flex flex-wrap gap-2 items-center">
             {post.categories.map((category, index) => (
               <span
                 key={index}
-                className="bg-gray-100 px-3 py-1 rounded-full font-medium hover:bg-gray-200 transition-colors text-gray-800"
+                className="bg-gray-50 border-2 border-gray-300 px-3 py-1 rounded-full font-semibold text-gray-800"
               >
                 {category.title}
               </span>
             ))}
           </div>
-          <span>•</span>
-          <span>{readTime.minutes} min read</span>
+          <span className="font-semibold text-gray-500">
+            {readTime.minutes} min read
+          </span>
         </div>
 
         {/* Title and Excerpt */}
         <div className="space-y-3 mb-6">
-          <h2 className="text-xl md:text-2xl font-bold font-mont text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2">
+          <h2 className="text-xl md:text-2xl font-bold font-geist text-gray-900 group-hover:text-gray-700 transition-colors line-clamp-2">
             {post.title}
           </h2>
-          <p className="text-gray-600 font-mont line-clamp-3 text-sm md:text-base">
+          <p className="text-gray-600 font-geist line-clamp-3 text-sm md:text-base">
             {post.excerpt}
           </p>
         </div>
 
         {/* Author and Date */}
         <div className="flex items-center gap-3">
-          <div className="relative w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden shadow-sm flex-shrink-0">
+          <div className="relative w-10 h-10 md:w-12 md:h-12 rounded-full overflow-hidden shadow-sm flex-shrink-0">
             {post.author?.image?.asset && (
               <Image
                 src={urlFor(post.author.image.asset).url()}
@@ -103,18 +104,18 @@ const BlogCard = ({ post }: BlogCardProps) => {
             )}
           </div>
           <div className="flex flex-col">
-            <span className="text-sm font-medium font-mont text-gray-900">
+            <span className="text-base md:text-lg font-semibold font-geist text-gray-900">
               {post.author?.name}
             </span>
-            <span className="text-xs md:text-sm text-gray-500 font-mont">
+            <span className="text-sm md:text-base text-gray-600 font-geist">
               {post.author?.title}
             </span>
           </div>
           <div className="ml-auto flex gap-2">
-            <span className="text-sm text-gray-500 font-mont">
+            <span className="text-sm md:text-base text-gray-500 font-geist">
               {publishedDateDescription?.actualDate}
             </span>
-            <span className="text-sm text-gray-500 font-mont hidden md:block">
+            <span className="text-sm md:text-base text-gray-500 font-geist hidden md:block">
               ({publishedDateDescription?.timeAgo} ago)
             </span>
           </div>
