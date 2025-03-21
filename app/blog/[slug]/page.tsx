@@ -141,7 +141,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
     >
       <ScrollToTop />
       {/* Hero Section */}
-      <div className="relative h-[40vh] md:h-[50vh] w-full">
+      <div className="relative h-[40vh] w-full">
         {post.mainImage?.asset?.url && (
           <Image
             src={urlFor(post.mainImage.asset.url).url()}
@@ -174,7 +174,26 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       {/* Content Section */}
       <div className="max-w-5xl mx-auto px-4 py-16">
         {/* Back Button */}
-        <div className="flex justify-end mb-12">
+        <div className="flex items-center justify-between mb-12">
+          {/* Author Info */}
+          <div className="flex items-center gap-4">
+            <div className="relative w-16 h-16 rounded-full overflow-hidden">
+              {post.author?.image?.asset && (
+                <Image
+                  src={urlFor(post.author.image.asset).url()}
+                  alt={post.author?.name || ""}
+                  fill
+                  className="object-cover"
+                />
+              )}
+            </div>
+            <div>
+              <h2 className="text-xl font-bold font-geist text-gray-900">
+                {post.author?.name}
+              </h2>
+              <p className="text-gray-600 font-geist">{post.author?.title}</p>
+            </div>
+          </div>
           <Link
             href="/blog"
             className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-900 hover:bg-gray-200 hover:border-gray-900 rounded-full transition-colors text-gray-900 font-geist text-sm"
@@ -182,26 +201,6 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             <ArrowLeft className="w-3 h-3" />
             Back to Blog
           </Link>
-        </div>
-
-        {/* Author Info */}
-        <div className="flex items-center gap-4 mb-12">
-          <div className="relative w-16 h-16 rounded-full overflow-hidden">
-            {post.author?.image?.asset && (
-              <Image
-                src={urlFor(post.author.image.asset).url()}
-                alt={post.author?.name || ""}
-                fill
-                className="object-cover"
-              />
-            )}
-          </div>
-          <div>
-            <h2 className="text-xl font-bold font-geist text-gray-900">
-              {post.author?.name}
-            </h2>
-            <p className="text-gray-600 font-geist">{post.author?.title}</p>
-          </div>
         </div>
 
         {/* Categories */}
