@@ -79,7 +79,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
   }
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-gray-50 scroll-smooth" id="author">
       <ScrollToTop />
       {/* Top Navigation */}
       <div className="bg-white border-b border-gray-200">

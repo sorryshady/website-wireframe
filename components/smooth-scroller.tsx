@@ -12,7 +12,12 @@ const SmoothScroller = ({ children }: { children: React.ReactNode }) => {
         orientation: "vertical",
         wheelMultiplier: 1,
         prevent(node) {
-          return node.id === "blog";
+          return (
+            node.id === "blog-page" ||
+            node.id === "authors-page" ||
+            node.id === "author" ||
+            node.id === "blog"
+          );
         },
       }}
     >

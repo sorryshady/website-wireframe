@@ -67,7 +67,10 @@ export function BlogContainer({
   };
 
   return (
-    <main className="min-h-screen bg-gray-50 py-16">
+    <main
+      className="min-h-screen bg-gray-50 py-16 scroll-smooth"
+      id="blog-page"
+    >
       <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
         <header className="relative pt-16 md:pt-20 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">

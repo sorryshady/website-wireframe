@@ -1,6 +1,4 @@
 import BlogNavbar from "@/components/blog-navbar";
-// import Footer from "@/components/footer";
-import SmoothScroller from "@/components/smooth-scroller";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -22,11 +20,8 @@ export default function BlogLayout({
 }) {
   return (
     <>
-      <SmoothScroller>
-        <BlogNavbar />
-        {children}
-        {/* <Footer /> */}
-      </SmoothScroller>
+      <BlogNavbar />
+      {children}
     </>
   );
 }
