@@ -2,7 +2,7 @@
 
 import { Post, Category } from "@/sanity/types";
 import CompactBlogCard from "./compact-blog-card";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Loader2 } from "lucide-react";
 
@@ -11,15 +11,26 @@ interface RelatedPostsProps {
     _id: string;
     categories: Category[];
   };
+  excludePostIds?: string[];
+  onPostsFetched?: (posts: Post[]) => void;
 }
 
-const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
+const RelatedPosts = ({
+  currentPost,
+  excludePostIds = [],
+  onPostsFetched,
+}: RelatedPostsProps) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRelated, setIsRelated] = useState(true);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
+      if (hasFetched.current) {
+        return;
+      }
+
       try {
         setIsLoading(true);
         const categoryRefs = currentPost.categories.map((cat) => cat._id);
@@ -28,6 +39,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
         const relatedQuery = `*[
           _type == "post" &&
           _id != $currentPostId &&
+          !(_id in $excludePostIds) &&
           count((categories[]->_id)[@ in $categoryRefs]) > 0
         ] | order(count((categories[]->_id)[@ in $categoryRefs]) desc, publishedAt desc) [0...2] {
           _id,
@@ -51,6 +63,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
             title
           },
           author-> {
+            _id,
             name,
             title,
             image {
@@ -68,6 +81,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
           params: {
             currentPostId: currentPost._id,
             categoryRefs: categoryRefs,
+            excludePostIds: excludePostIds,
           },
         })) as Post[];
 
@@ -76,7 +90,8 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
           setIsRelated(false);
           const recentQuery = `*[
             _type == "post" &&
-            _id != $currentPostId
+            _id != $currentPostId &&
+            !(_id in $excludePostIds)
           ] | order(publishedAt desc) [0...2] {
             _id,
             title,
@@ -115,14 +130,18 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
             query: recentQuery,
             params: {
               currentPostId: currentPost._id,
+              excludePostIds: excludePostIds,
             },
           })) as Post[];
 
           setPosts(recentPosts);
+          onPostsFetched?.(recentPosts);
         } else {
           setIsRelated(true);
           setPosts(relatedPosts);
+          onPostsFetched?.(relatedPosts);
         }
+        hasFetched.current = true;
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
@@ -131,7 +150,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
     };
 
     fetchPosts();
-  }, [currentPost._id, currentPost.categories]);
+  }, [currentPost._id, currentPost.categories]); // Removed excludePostIds and onPostsFetched from dependencies
 
   if (isLoading) {
     return (
@@ -158,7 +177,7 @@ const RelatedPosts = ({ currentPost }: RelatedPostsProps) => {
         <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8 text-center">
           {isRelated ? "Related Articles" : "You Might Be Interested In"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {posts.map((post) => (
             <CompactBlogCard key={post._id} post={post} />
           ))}

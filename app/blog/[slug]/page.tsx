@@ -31,8 +31,7 @@ import { Tabs } from "@/app/blog/components/portable-text/tabs";
 import { Embed } from "@/app/blog/components/portable-text/embed";
 import { Callout } from "@/app/blog/components/portable-text/callout";
 import { CodeBlock } from "@/app/blog/components/portable-text/code-block";
-import RelatedPosts from "../components/related-posts";
-import AuthorPosts from "../components/author-posts";
+import PostRecommendations from "../components/post-recommendations";
 
 // Define custom block types
 type CustomImageBlock = {
@@ -334,18 +333,11 @@ export default async function BlogPostPage({ params }: { params: Params }) {
         </div>
       </div>
 
-      {/* More from Author */}
-      <AuthorPosts
+      {/* Post Recommendations */}
+      <PostRecommendations
         currentPost={{
           _id: post._id,
           author: post.author,
-        }}
-      />
-
-      {/* Related Posts */}
-      <RelatedPosts
-        currentPost={{
-          _id: post._id,
           categories: post.categories,
         }}
       />

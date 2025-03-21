@@ -2,7 +2,7 @@
 
 import { Post, Author } from "@/sanity/types";
 import CompactBlogCard from "./compact-blog-card";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { sanityFetch } from "@/sanity/lib/client";
 import { Loader2 } from "lucide-react";
 
@@ -11,26 +11,32 @@ interface AuthorPostsProps {
     _id: string;
     author?: Author;
   };
+  excludePostIds?: string[];
+  onPostsFetched?: (posts: Post[]) => void;
 }
 
-const AuthorPosts = ({ currentPost }: AuthorPostsProps) => {
+const AuthorPosts = ({
+  currentPost,
+  excludePostIds = [],
+  onPostsFetched,
+}: AuthorPostsProps) => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const hasFetched = useRef(false);
 
   useEffect(() => {
     const fetchAuthorPosts = async () => {
-      if (!currentPost.author?.name) {
+      if (!currentPost.author?.name || hasFetched.current) {
         setIsLoading(false);
         return;
       }
 
       try {
         setIsLoading(true);
-
-        // Updated query to find posts by the same author name
         const query = `*[
           _type == "post" &&
           _id != $currentPostId &&
+          !(_id in $excludePostIds) &&
           author->name == $authorName
         ] | order(publishedAt desc) [0...2] {
           _id,
@@ -72,10 +78,13 @@ const AuthorPosts = ({ currentPost }: AuthorPostsProps) => {
           params: {
             currentPostId: currentPost._id,
             authorName: currentPost.author.name,
+            excludePostIds: excludePostIds,
           },
         })) as Post[];
 
         setPosts(authorPosts);
+        onPostsFetched?.(authorPosts);
+        hasFetched.current = true;
       } catch (error) {
         console.error("Error fetching author posts:", error);
       } finally {
@@ -111,7 +120,7 @@ const AuthorPosts = ({ currentPost }: AuthorPostsProps) => {
         <h2 className="text-2xl font-bold font-geist text-gray-900 mb-8 text-center">
           More from {currentPost.author?.name}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {posts.map((post) => (
             <CompactBlogCard key={post._id} post={post} />
           ))}
