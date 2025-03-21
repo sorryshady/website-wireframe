@@ -207,7 +207,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           {post.categories.map((category) => (
             <span
               key={category._id}
-              className="bg-gray-200 px-4 py-1.5 rounded-full text-sm font-geist text-gray-900"
+              className="bg-gray-200 px-4 py-1.5 rounded-full text-sm font-geist font-semibold text-gray-900"
             >
               {category.title}
             </span>
@@ -329,9 +329,6 @@ export default async function BlogPostPage({ params }: { params: Params }) {
           />
         </div>
       </div>
-
-      {/* Gradient Overlay */}
-      <div className="absolute -bottom-16 left-0 right-0 h-16 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
     </article>
   );
 }
