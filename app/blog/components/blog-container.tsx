@@ -5,6 +5,8 @@ import BlogCard from "@/components/blog-card";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDebounce } from "@/hooks/use-debounce";
+import { ArrowRight } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 interface BlogContainerProps {
   initialPosts: Post[];
@@ -69,7 +71,7 @@ export function BlogContainer({
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       {/* Fixed Header Section */}
-      <div className="fixed top-0 left-0 right-0 bg-gray-50 backdrop-blur-sm z-40 border-b border-gray-200">
+      <div className="fixed top-0 left-0 right-0 bg-gray-50 backdrop-blur-sm z-40">
         <div className="relative pt-24 pb-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
           {/* Header */}
           <div className="text-center mb-16">
@@ -91,19 +93,19 @@ export function BlogContainer({
                 placeholder="Search articles..."
                 value={searchInput}
                 onChange={(e) => setSearchInput(e.target.value)}
-                className="w-full px-6 py-3 bg-white border border-gray-300 rounded-full shadow-sm
-                focus:border-gray-400 focus:ring-2 focus:ring-gray-100 focus:outline-none
+                className="w-full px-6 py-3 bg-white border border-gray-400 rounded-full shadow-sm
+                focus:border-gray-500 focus:ring-2 focus:ring-gray-100 focus:outline-none
                 font-mont text-lg transition-all duration-300
-                placeholder:text-gray-400 text-gray-900"
+                placeholder:text-gray-500 text-gray-900"
               />
               <div className="h-8" />
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-3 items-center justify-center">
                 <button
                   onClick={() => handleCategoryChange("All")}
-                  className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border ${
+                  className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border-2 ${
                     selectedCategory === "All"
-                      ? "bg-gray-900 text-white border-gray-900"
-                      : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 hover:border-gray-400 shadow-sm"
+                      ? "bg-gray-900 text-white border-gray-900 shadow-md font-bold"
+                      : "bg-white hover:bg-gray-100 text-gray-800 border-gray-400 hover:border-gray-500 shadow-sm"
                   }`}
                 >
                   All
@@ -112,10 +114,10 @@ export function BlogContainer({
                   <button
                     key={category._id}
                     onClick={() => handleCategoryChange(category.title || "")}
-                    className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border ${
+                    className={`px-4 py-1.5 rounded-full font-mont text-sm transition-all duration-300 border-2 ${
                       selectedCategory === category.title
-                        ? "bg-gray-900 text-white border-gray-900"
-                        : "bg-white hover:bg-gray-50 text-gray-700 border-gray-300 hover:border-gray-400 shadow-sm"
+                        ? "bg-gray-900 text-white border-gray-900 shadow-md font-bold"
+                        : "bg-white hover:bg-gray-100 text-gray-800 border-gray-400 hover:border-gray-500 shadow-sm"
                     }`}
                   >
                     {category.title}
@@ -127,11 +129,11 @@ export function BlogContainer({
         </div>
 
         {/* Shadow Effect */}
-        <div className="absolute -bottom-8 left-0 right-0 h-8 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
+        <div className="absolute -bottom-6 md:-bottom-8 left-0 right-0 h-6 md:h-8 bg-gradient-to-b from-gray-50 to-transparent pointer-events-none" />
       </div>
 
       {/* Scrollable Blog List */}
-      <div className="pt-[32rem] pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+      <div className="pt-[37rem] md:pt-[32rem] pb-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
         <div className="space-y-8">
           {initialPosts.length === 0 ? (
             <div className="text-center py-12">
@@ -144,24 +146,23 @@ export function BlogContainer({
               {initialPosts.map((post) => (
                 <BlogCard key={post._id} post={post} />
               ))}
-              {/* Pagination Controls */}
               <div className="flex justify-center items-center gap-4 pt-8">
                 <button
                   onClick={() => handlePageChange(currentPage - 1)}
                   disabled={currentPage === 1}
-                  className="px-6 py-2 bg-gray-100 text-gray-700 rounded-full font-mont hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-2 text-gray-800 rounded-full font-mont border border-gray-500 shadow-md hover:bg-gray-300 hover:border-gray-700 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Previous
+                  <ArrowLeft className="w-5 h-5" />
                 </button>
-                <span className="text-gray-700 font-mont">
-                  Page {currentPage} of {totalPages}
+                <span className="text-gray-800 font-mont">
+                  {currentPage} / {totalPages}
                 </span>
                 <button
                   onClick={() => handlePageChange(currentPage + 1)}
                   disabled={currentPage === totalPages}
-                  className="px-6 py-2 bg-gray-100 text-gray-700 rounded-full font-mont hover:bg-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="px-6 py-2 text-gray-800 rounded-full font-mont border border-gray-500 shadow-md hover:bg-gray-300 hover:border-gray-700 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Next
+                  <ArrowRight className="w-5 h-5" />
                 </button>
               </div>
             </>
