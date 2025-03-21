@@ -34,7 +34,7 @@ const BlogNavbar = () => {
         scrolled ? "bg-gray-50 border-b border-gray-200" : "bg-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
         <Link href="/" className="relative z-10">
           <Image
             src="/logo.svg"
@@ -48,7 +48,7 @@ const BlogNavbar = () => {
         <div className="flex items-center gap-8">
           <Link
             href="/authors"
-            className="font-mono text-2xl font-medium transition-colors relative group"
+            className="font-geist text-2xl font-medium transition-colors relative group"
           >
             <span className="text-gray-900">Authors</span>
             <span
@@ -59,7 +59,7 @@ const BlogNavbar = () => {
           </Link>
           <Link
             href="/blog"
-            className="font-mono text-2xl font-medium transition-colors relative group"
+            className="font-geist text-2xl font-medium transition-colors relative group"
           >
             <span className="text-gray-900">Blog</span>
             <span
