@@ -10,6 +10,9 @@ import AuthorSocials from "../components/AuthorSocials";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import BackButton from "@/app/blog/components/back-button";
 
+// Revalidate once per day (in seconds)
+export const revalidate = 86400;
+
 type Params = Promise<{ slug: string }>;
 const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0] {
   _id,
@@ -58,6 +61,8 @@ export default async function AuthorPage({ params }: { params: Params }) {
   const author = await sanityFetch<Author & { posts: Post[] }>({
     query: AUTHOR_QUERY,
     params: { slug },
+    revalidate: 86400,
+    tags: ["author", "post"],
   });
 
   if (!author) {
@@ -92,7 +97,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
             <ArrowLeft className="w-4 h-4" />
             Back to Authors
           </Link> */}
-          <BackButton label="Back to Authors" currentPage="authors" />
+          <BackButton currentPage="authors" />
         </div>
       </div>
 

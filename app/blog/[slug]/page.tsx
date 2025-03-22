@@ -79,6 +79,9 @@ type CustomPortableTextBlock =
   | EmbedBlock
   | CodeBlockType;
 
+// Revalidate once per week (in seconds)
+export const revalidate = 604800;
+
 type Params = Promise<{ slug: string }>;
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
@@ -119,10 +122,12 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
 
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const post = (await sanityFetch({
+  const post = await sanityFetch<Post>({
     query: POST_QUERY,
     params: { slug },
-  })) as Post;
+    revalidate: 604800,
+    tags: ["post"],
+  });
 
   if (!post) {
     return (

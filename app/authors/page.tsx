@@ -2,6 +2,9 @@ import { sanityFetch } from "@/sanity/lib/client";
 import { Author } from "@/sanity/types";
 import AuthorCard from "./components/AuthorCard";
 
+// Revalidate once per day (in seconds)
+export const revalidate = 86400;
+
 const AUTHORS_QUERY = `*[_type == "author"] {
   _id,
   name,
@@ -13,7 +16,11 @@ const AUTHORS_QUERY = `*[_type == "author"] {
 }`;
 
 export default async function AuthorsPage() {
-  const authors = await sanityFetch<Author[]>({ query: AUTHORS_QUERY });
+  const authors = await sanityFetch<Author[]>({
+    query: AUTHORS_QUERY,
+    revalidate: 86400,
+    tags: ["author"],
+  });
 
   return (
     <main

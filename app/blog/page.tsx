@@ -8,6 +8,9 @@ import { Post, Category } from "@/sanity/types";
 
 import { BlogContainer } from "./components/blog-container";
 
+// Revalidate once per day (in seconds)
+export const revalidate = 86400;
+
 type SearchParams = Promise<{
   page?: string;
   category?: string;
@@ -28,22 +31,26 @@ export default async function BlogPage({
   const start = (currentPage - 1) * POSTS_PER_PAGE;
   const end = start + POSTS_PER_PAGE;
 
-  // Fetch categories
-  const categories = (await sanityFetch({
+  // Fetch categories with daily revalidation
+  const categories = await sanityFetch<Category[]>({
     query: CATEGORIES_QUERY,
-  })) as Category[];
+    revalidate: 86400,
+    tags: ["category"],
+  });
 
   // Fetch total count for pagination, filtered by category and search
-  const totalPosts = (await sanityFetch({
+  const totalPosts = await sanityFetch<number>({
     query: POSTS_COUNT_QUERY,
     params: {
       category: selectedCategory === "All" ? "" : selectedCategory,
       search: searchQuery ? `*${searchQuery}*` : "",
     },
-  })) as number;
+    revalidate: 86400,
+    tags: ["post"],
+  });
 
   // Fetch paginated posts, filtered by category and search
-  const posts = (await sanityFetch({
+  const posts = await sanityFetch<Post[]>({
     query: POSTS_QUERY,
     params: {
       start,
@@ -51,7 +58,9 @@ export default async function BlogPage({
       category: selectedCategory === "All" ? "" : selectedCategory,
       search: searchQuery ? `*${searchQuery}*` : "",
     },
-  })) as Post[];
+    revalidate: 86400,
+    tags: ["post"],
+  });
 
   const totalPages = Math.ceil(totalPosts / POSTS_PER_PAGE);
 
