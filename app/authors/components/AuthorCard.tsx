@@ -71,9 +71,12 @@ interface AuthorCardProps {
 
 export default function AuthorCard({ author }: AuthorCardProps) {
   return (
-    <Link href={`/authors/${author.slug?.current}`} className="block group">
-      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 transition-all duration-500">
-        <div className="aspect-[3/2] relative bg-gray-100 overflow-hidden">
+    <Link
+      href={`/authors/${author.slug?.current}`}
+      className="block group h-full"
+    >
+      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 transition-all duration-500 h-full flex flex-col">
+        <div className="aspect-[3/2] relative bg-gray-100 overflow-hidden flex-shrink-0">
           {author.image?.asset && (
             <Image
               src={urlFor(author.image.asset).width(600).height(400).url()}
@@ -84,30 +87,34 @@ export default function AuthorCard({ author }: AuthorCardProps) {
           )}
         </div>
 
-        <div className="p-6">
-          <h2 className="text-2xl font-bold font-geist text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
-            {author.name}
-          </h2>
-          <p className="text-gray-600 font-geist mb-4">{author.title}</p>
+        <div className="p-6 flex flex-col flex-grow">
+          <div className="flex-grow">
+            <h2 className="text-2xl font-bold font-geist text-gray-900 mb-2 group-hover:text-gray-700 transition-colors">
+              {author.name}
+            </h2>
+            <p className="text-gray-600 font-geist mb-4">{author.title}</p>
 
-          {/* Bio Preview */}
-          {author.bio && (
-            <div className="text-gray-600 text-sm font-geist line-clamp-2 mb-6">
-              <PortableText value={author.bio} />
-            </div>
-          )}
+            {/* Bio Preview */}
+            {author.bio && (
+              <div className="text-gray-600 text-sm font-geist line-clamp-2 mb-6">
+                <PortableText value={author.bio} />
+              </div>
+            )}
+          </div>
 
           {/* Social Links Preview */}
-          {author.contact?.social && (
-            <div className="mb-6">
-              <SocialLinksPreview social={author.contact.social} />
-            </div>
-          )}
+          <div className="mt-auto">
+            {author.contact?.social && (
+              <div className="mb-6">
+                <SocialLinksPreview social={author.contact.social} />
+              </div>
+            )}
 
-          {/* View Profile Link */}
-          <div className="inline-flex items-center text-sm font-semibold font-geist text-gray-900 group-hover:text-gray-700">
-            View Profile
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1 duration-500" />
+            {/* View Profile Link */}
+            <div className="inline-flex items-center text-sm font-semibold font-geist text-gray-900 group-hover:text-gray-700">
+              View Profile
+              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1 duration-500" />
+            </div>
           </div>
         </div>
       </div>
