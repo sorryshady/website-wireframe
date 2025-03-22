@@ -11,6 +11,7 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   title,
   slug,
   excerpt,
+  keywords,
   mainImage {
     asset-> {
       _id,
@@ -75,9 +76,29 @@ export async function generateMetadata({
   const title =
     post.title.length > 57 ? post.title.slice(0, 55) + "..." : post.title;
 
+  const keywords = [
+    ...(post.keywords || []),
+    "blog",
+    "writing",
+    "content",
+    "post",
+    "article",
+    `ernyg.com/blog/${post.slug.current}`,
+    `ernyg.com/blog/${post.slug.current} ${post.title}`,
+    `ernyg.com/blog/${post.slug.current} ${post.title} ${post.excerpt}`,
+    `ernyg.com/blog/${post.slug.current} ${post.title} ${post.author?.name}`,
+    `ernyg.com/blog/${post.slug.current} ${post.title} ${post.author?.name} ${post.author?.title}`,
+    `ernyg.com/blog/${post.slug.current} ${post.title} ${post.author?.name} ${post.author?.title} ${post.author?.contact?.website}`,
+    `${post.author?.name} articles`,
+    `${post.author?.title} articles`,
+    `${post.author?.name} ${post.author?.title} articles`,
+    `${post.author?.name} ${post.author?.title} articles ${post.author?.contact?.website}`,
+  ];
+
   return {
     title,
     description,
+    keywords,
     openGraph: {
       title,
       description,

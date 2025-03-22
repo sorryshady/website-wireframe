@@ -49,10 +49,27 @@ export async function generateMetadata({
   const description = `${author.name} - ${author.title}${
     author.contact?.website ? ` | ${author.contact.website}` : ""
   }`;
+  const keywords = [
+    "author",
+    "blog",
+    "writing",
+    "content",
+    "author profile",
+    "ernyg author",
+    "ernyg",
+    "ernyg.com",
+    "ernyg.com/authors",
+    `ernyg.com/authors/${author.slug?.current}`,
+    `${author.name}`,
+    `${author.title}`,
+    `${author.name} ${author.title}`,
+    `${author.name} ${author.title} ${author.contact?.website}`,
+  ];
 
   return {
     title: `${author.name} - ${author.title || "Author"}`,
     description,
+    keywords,
     openGraph: {
       title: `${author.name} - ${author.title || "Author"}`,
       description,

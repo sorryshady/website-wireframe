@@ -54,6 +54,16 @@ export const postType = defineType({
       title: "Body",
       type: "blockContent",
     }),
+    defineField({
+      name: "keywords",
+      title: "Keywords",
+      type: "array",
+      description: "Add keywords that describe the content (helps with SEO)",
+      of: [{ type: "string" }],
+      options: {
+        layout: "tags",
+      },
+    }),
   ],
 
   preview: {

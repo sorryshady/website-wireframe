@@ -74,6 +74,7 @@ export interface Post {
   slug: {
     current: string;
   };
+  keywords: string[];
   excerpt: string;
   mainImage: {
     asset: {
