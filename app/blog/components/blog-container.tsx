@@ -77,9 +77,9 @@ export function BlogContainer({
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont text-gray-900">
             Blog
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-600 font-mont">
+          <p className="text-xl sm:text-2xl text-gray-600 font-mont text-center">
             Exploring tech, design, and the art of building something great -
-            From the Minds at Ernyg.
+            From the minds at Ernyg.
           </p>
         </header>
 

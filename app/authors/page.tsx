@@ -26,9 +26,9 @@ export default async function AuthorsPage() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-10 text-center font-mont text-gray-900">
             Our Authors
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-600 font-mont">
-            Meet our team of content creators and experts sharing their
-            knowledge and experiences
+          <p className="text-xl sm:text-2xl text-gray-600 font-mont text-center">
+            Meet our team of developers and designers sharing their knowledge
+            and experiences.
           </p>
         </header>
 
