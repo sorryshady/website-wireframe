@@ -5,12 +5,12 @@ import { cn } from "@/lib/utils";
 export const typographyVariants = cva("", {
   variants: {
     as: {
-      h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-8 text-gray-900",
-      h2: "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 mt-8 text-gray-900",
-      h3: "scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0 mt-8 text-gray-900",
-      h4: "scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 mt-8 text-gray-900",
-      p: "text-base leading-7 first:mt-0 mt-6 text-gray-700",
-      blockquote: "mt-6 border-l-2 pl-6 italic text-gray-600",
+      h1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl mt-8 text-gray-900 mb-4",
+      h2: "scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 mt-8 text-gray-900 mb-4",
+      h3: "scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0 mt-8 text-gray-900 mb-4",
+      h4: "scroll-m-20 text-xl font-semibold tracking-tight first:mt-0 mt-8 text-gray-900 mb-4",
+      p: "text-base leading-7 first:mt-0 mt-4 text-gray-700 text-lg",
+      blockquote: "mt-6 border-l-2 pl-6 italic text-gray-600 mb-4",
       table: "mt-6 w-full",
       thead: "",
       tr: "m-0 border-t p-0 even:bg-gray-50",
@@ -20,7 +20,7 @@ export const typographyVariants = cva("", {
       ul: "my-6 ml-6 list-disc [&>li]:mt-2 text-gray-700",
       ol: "my-6 ml-6 list-decimal [&>li]:mt-2 text-gray-700",
       code: "relative rounded bg-gray-100 px-[0.3rem] py-[0.2rem] font-mono text-sm font-medium text-gray-900",
-      a: "transition-colors opacity-60 hover:opacity-100 group-hover/link:opacity-100 text-gray-900",
+      a: "transition-colors text-blue-500 hover:text-blue-600 group-hover/link:opacity-100 ",
 
       lead: "text-xl text-gray-600",
       large: "text-lg font-semibold text-gray-900",

@@ -8,7 +8,6 @@ import { readingTime } from "reading-time-estimator";
 import { toPlainText } from "next-sanity";
 import { PortableTextBlock } from "next-sanity";
 import Link from "next/link";
-import { ArrowLeft } from "lucide-react";
 import { ScrollToTop } from "../../../components/scroll-to-top";
 import {
   H1,
@@ -32,6 +31,7 @@ import { Embed } from "@/app/blog/components/portable-text/embed";
 import { Callout } from "@/app/blog/components/portable-text/callout";
 import { CodeBlock } from "@/app/blog/components/portable-text/code-block";
 import PostRecommendations from "../components/post-recommendations";
+import BackButton from "../components/back-button";
 
 // Define custom block types
 type CustomImageBlock = {
@@ -175,7 +175,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       </div>
 
       {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-6xl mx-auto px-4 py-16">
         {/* Back Button */}
         <div className="flex items-center justify-between mb-12">
           {/* Author Info */}
@@ -199,13 +199,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
               </div>
             </div>
           </Link>
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 border border-gray-900 hover:bg-gray-200 hover:border-gray-900 rounded-full transition-colors text-gray-900 font-geist text-sm"
-          >
-            <ArrowLeft className="w-3 h-3" />
-            Back
-          </Link>
+          <BackButton currentPage="blog" />
         </div>
 
         {/* Categories */}
@@ -226,13 +220,13 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             value={post.body as unknown as CustomPortableTextBlock[]}
             components={{
               block: {
-                h1: ({ children }) => <H1 className="mb-4">{children}</H1>,
-                h2: ({ children }) => <H2 className="mb-4">{children}</H2>,
-                h3: ({ children }) => <H3 className="mb-4">{children}</H3>,
-                h4: ({ children }) => <H4 className="mb-4">{children}</H4>,
-                p: ({ children }) => <P className="mb-4">{children}</P>,
+                h1: ({ children }) => <H1>{children}</H1>,
+                h2: ({ children }) => <H2>{children}</H2>,
+                h3: ({ children }) => <H3>{children}</H3>,
+                h4: ({ children }) => <H4>{children}</H4>,
+                normal: ({ children }) => <P>{children}</P>,
                 blockquote: ({ children }) => (
-                  <Blockquote className="text-gray-500">{children}</Blockquote>
+                  <Blockquote>{children}</Blockquote>
                 ),
                 table: ({ children }) => <Table>{children}</Table>,
                 thead: ({ children }) => <Thead>{children}</Thead>,

@@ -18,7 +18,7 @@ const socialIcons = {
 
 export default function AuthorSocials({ socials }: AuthorSocialsProps) {
   return (
-    <div className="flex gap-4 justify-center md:justify-start">
+    <div className="flex gap-6 justify-center md:justify-start">
       {Object.entries(socials).map(([platform, url]) => {
         if (!url) return null;
 
@@ -30,7 +30,7 @@ export default function AuthorSocials({ socials }: AuthorSocialsProps) {
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 transition-colors"
+            className="py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 hover:text-gray-900 transition-colors"
             title={`Visit ${platform}`}
           >
             <Icon className="w-6 h-6" />

@@ -8,6 +8,7 @@ import { ArrowLeft, Mail, Globe } from "lucide-react";
 import BlogCard from "@/components/blog-card";
 import AuthorSocials from "../components/AuthorSocials";
 import { ScrollToTop } from "@/components/scroll-to-top";
+import BackButton from "@/app/blog/components/back-button";
 
 type Params = Promise<{ slug: string }>;
 const AUTHOR_QUERY = `*[_type == "author" && slug.current == $slug][0] {
@@ -84,13 +85,14 @@ export default async function AuthorPage({ params }: { params: Params }) {
       {/* Top Navigation */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          <Link
+          {/* <Link
             href="/authors"
             className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 font-geist"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Authors
-          </Link>
+          </Link> */}
+          <BackButton label="Back to Authors" currentPage="authors" />
         </div>
       </div>
 
