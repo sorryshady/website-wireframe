@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Authors | Ernyg",
   description:
-    "Meet our team of content creators and experts sharing their knowledge and experiences.",
+    "Meet our team of developers and designers sharing their knowledge and experiences.",
   keywords: [
     "authors",
     "writers",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Authors | Ernyg",
     description:
-      "Meet our team of content creators and experts sharing their knowledge and experiences.",
+      "Meet our team of developers and designers sharing their knowledge and experiences.",
     url: "https://ernyg.com/authors",
     siteName: "Ernyg",
     type: "website",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Authors | Ernyg",
     description:
-      "Meet our team of content creators and experts sharing their knowledge and experiences.",
+      "Meet our team of developers and designers sharing their knowledge and experiences.",
   },
   robots: {
     index: true,
