@@ -22,7 +22,6 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
     }
   },
   publishedAt,
-  _createdAt,
   categories[]-> {
     _id,
     title
@@ -63,9 +62,6 @@ export async function generateMetadata({
   const ogImage = post.mainImage?.asset?.url
     ? urlFor(post.mainImage).width(1200).height(630).url()
     : undefined;
-  const twitterImage = post.mainImage?.asset?.url
-    ? urlFor(post.mainImage).width(1200).height(630).url()
-    : undefined;
 
   const description =
     post.excerpt && post.excerpt.length > 190
@@ -103,7 +99,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: twitterImage ? [twitterImage] : [],
+      images: ogImage ? [ogImage] : [],
     },
   };
 }
