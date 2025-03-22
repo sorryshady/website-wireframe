@@ -75,7 +75,7 @@ export default function AuthorCard({ author }: AuthorCardProps) {
       href={`/authors/${author.slug?.current}`}
       className="block group h-full"
     >
-      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 transition-all duration-500 h-full flex flex-col">
+      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 transition-all duration-500 h-full flex flex-col overflow-hidden">
         <div className="aspect-[3/2] relative bg-gray-100 overflow-hidden flex-shrink-0">
           {author.image?.asset && (
             <Image
