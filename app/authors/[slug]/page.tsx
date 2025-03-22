@@ -101,7 +101,7 @@ export default async function AuthorPage({ params }: { params: Params }) {
             {/* Author Image and Basic Info */}
             <div className="flex flex-col md:flex-row gap-8 items-center">
               {/* Left Column - Image */}
-              <div className="w-full md:w-1/4">
+              <div className="w-3/4 md:w-1/4">
                 <div className="relative">
                   <div className="aspect-square relative rounded-full overflow-hidden border-4 border-white shadow-lg">
                     {author.image?.asset && (

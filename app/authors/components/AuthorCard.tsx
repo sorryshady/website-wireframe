@@ -72,14 +72,14 @@ interface AuthorCardProps {
 export default function AuthorCard({ author }: AuthorCardProps) {
   return (
     <Link href={`/authors/${author.slug?.current}`} className="block group">
-      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 transition-all duration-200">
+      <div className="bg-white rounded-2xl shadow-sm hover:shadow-md border border-gray-200 transition-all duration-500">
         <div className="aspect-[3/2] relative bg-gray-100 overflow-hidden">
           {author.image?.asset && (
             <Image
               src={urlFor(author.image.asset).width(600).height(400).url()}
               alt={author.name || ""}
               fill
-              className="object-cover transition-transform duration-200 group-hover:scale-105"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
             />
           )}
         </div>
@@ -107,7 +107,7 @@ export default function AuthorCard({ author }: AuthorCardProps) {
           {/* View Profile Link */}
           <div className="inline-flex items-center text-sm font-semibold font-geist text-gray-900 group-hover:text-gray-700">
             View Profile
-            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+            <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1 duration-500" />
           </div>
         </div>
       </div>
