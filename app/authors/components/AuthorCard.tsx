@@ -44,10 +44,7 @@ function SocialLinksPreview({ social }: SocialLinksPreviewProps) {
     );
 
   return (
-    <div
-      className="flex justify-between w-full"
-      onClick={(e) => e.preventDefault()}
-    >
+    <div className="flex gap-4 w-full" onClick={(e) => e.preventDefault()}>
       {availableSocials.map(({ platform, url }) => {
         const Icon = socialIcons[platform];
         return (
