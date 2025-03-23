@@ -53,7 +53,7 @@ const CompactBlogCard = ({ post }: CompactBlogCardProps) => {
           {post.categories.map((category) => (
             <span
               key={post._id + category._id}
-              className="text-xs font-semibold text-gray-800 bg-gray-200 px-2 py-1 rounded-full"
+              className="text-xs font-semibold font-geist text-gray-800 bg-gray-200 px-2 py-1 rounded-full"
             >
               {category.title}
             </span>
@@ -65,7 +65,9 @@ const CompactBlogCard = ({ post }: CompactBlogCardProps) => {
           <h3 className="text-xl font-bold font-geist text-gray-900 line-clamp-2 group-hover:text-gray-700">
             {post.title}
           </h3>
-          <p className="text-sm text-gray-600 line-clamp-2">{post.excerpt}</p>
+          <p className="text-sm text-gray-600 line-clamp-2 font-geist">
+            {post.excerpt}
+          </p>
         </div>
 
         {/* Author and Meta */}
