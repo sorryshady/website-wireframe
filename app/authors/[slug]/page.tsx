@@ -1,7 +1,7 @@
 import { sanityFetch } from "@/sanity/lib/client";
 import { Author, Post } from "@/sanity/types";
 import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "@portabletext/react";
+import { PortableTextBlock } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Mail, Globe } from "lucide-react";
@@ -9,6 +9,7 @@ import BlogCard from "@/components/blog-card";
 import AuthorSocials from "../components/AuthorSocials";
 import { ScrollToTop } from "@/components/scroll-to-top";
 import BackButton from "@/app/blog/components/back-button";
+import Portable from "@/components/portable";
 
 // Revalidate once per day (in seconds)
 export const revalidate = 86400;
@@ -185,7 +186,9 @@ export default async function AuthorPage({ params }: { params: Params }) {
                   About
                 </h3>
                 <div className="prose prose-sm prose-gray font-geist max-w-none">
-                  <PortableText value={author.bio!} />
+                  <Portable
+                    content={author.bio as unknown as PortableTextBlock[]}
+                  />
                 </div>
               </div>
             </div>
