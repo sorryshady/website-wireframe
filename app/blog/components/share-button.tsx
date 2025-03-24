@@ -29,37 +29,7 @@ export default function ShareButton({
   const [isOpen, setIsOpen] = useState(false);
   const [showQR, setShowQR] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const { showToast } = useToast();
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-
-  const handleNativeShare = async () => {
-    if (isMobile && navigator.share) {
-      try {
-        await navigator.share({
-          title,
-          text: description,
-          url,
-        });
-        showToast("Content shared successfully! 🎉", "success");
-      } catch (error) {
-        if ((error as Error).name !== "AbortError") {
-          console.error("Error sharing:", error);
-          showToast("Failed to share content 😕", "error");
-        }
-      }
-    } else {
-      setIsOpen(!isOpen);
-    }
-  };
 
   const handleCopyLink = async () => {
     try {
@@ -83,16 +53,16 @@ export default function ShareButton({
   return (
     <div className="relative inline-block">
       <button
-        onClick={handleNativeShare}
-        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+        onClick={() => setIsOpen(!isOpen)}
+        className="inline-flex items-center justify-center p-3 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-200 text-gray-700 hover:text-gray-900 hover:bg-white focus:outline-none"
+        title="Share this article"
       >
-        <Share2 className="w-4 h-4" />
-        Share
+        <Share2 className="w-5 h-5" />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 z-10 mt-2 w-80 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <div className="py-1">
+        <div className="absolute bottom-full right-0 mb-3 w-80 origin-bottom-right rounded-lg bg-white/80 backdrop-blur-sm shadow-xl ring-1 ring-black/5 focus:outline-none">
+          <div className="py-2">
             {/* Social Media Sharing */}
             <div className="px-4 py-2 text-sm font-semibold text-gray-500">
               Share via

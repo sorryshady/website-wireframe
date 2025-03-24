@@ -91,13 +91,6 @@ export default async function AuthorPage({ params }: { params: Params }) {
       {/* Top Navigation */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 py-4">
-          {/* <Link
-            href="/authors"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 font-geist"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Authors
-          </Link> */}
           <BackButton currentPage="authors" />
         </div>
       </div>

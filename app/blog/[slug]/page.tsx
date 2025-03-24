@@ -54,6 +54,8 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0] {
   body
 }`;
 
+const SITE_URL = "https://www.ernyg.com";
+
 export default async function BlogPostPage({ params }: { params: Params }) {
   const { slug } = await params;
   const post = await sanityFetch<Post>({
@@ -82,17 +84,16 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       id="blog"
     >
       <ScrollToTop />
-      {/* Top Navigation */}
-      <div className="bg-white border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <BackButton currentPage="blog" />
-          <ShareButton
-            title={post.title}
-            url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug.current}`}
-            description={post.excerpt}
-          />
-        </div>
+
+      {/* Share Button (Floating) */}
+      <div className="fixed bottom-20 md:bottom-24 md:right-8 right-6 z-50">
+        <ShareButton
+          title={post.title}
+          url={`${SITE_URL}/blog/${post.slug.current}`}
+          description={post.excerpt}
+        />
       </div>
+
       {/* Hero Section */}
       <div className="relative h-[40vh] w-full">
         {post.mainImage?.asset?.url && (
@@ -100,8 +101,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
             src={urlFor(post.mainImage.asset.url).url()}
             alt={post.title || ""}
             fill
-            className="object-cover"
             priority
+            className="object-cover"
           />
         )}
         <div className="absolute inset-0 bg-black/70" />
