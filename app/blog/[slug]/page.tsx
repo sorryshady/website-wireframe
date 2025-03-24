@@ -11,6 +11,7 @@ import { ScrollToTop } from "../../../components/scroll-to-top";
 import PostRecommendations from "../components/post-recommendations";
 import BackButton from "../components/back-button";
 import Portable from "@/components/portable";
+import ShareButton from "../components/share-button";
 
 // Revalidate once per week (in seconds)
 export const revalidate = 604800;
@@ -81,6 +82,17 @@ export default async function BlogPostPage({ params }: { params: Params }) {
       id="blog"
     >
       <ScrollToTop />
+      {/* Top Navigation */}
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+          <BackButton currentPage="blog" />
+          <ShareButton
+            title={post.title}
+            url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${post.slug.current}`}
+            description={post.excerpt}
+          />
+        </div>
+      </div>
       {/* Hero Section */}
       <div className="relative h-[40vh] w-full">
         {post.mainImage?.asset?.url && (
