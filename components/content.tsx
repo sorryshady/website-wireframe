@@ -7,7 +7,7 @@ const Content = () => {
       <Section1 />
       <div className="flex gap-12 items-center tracking-wider text-base sm:text-lg md:text-xl font-medium font-mont text-white">
         <a
-          href="https://ernyg.com"
+          href="/privacy"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline text-sm sm:text-base md:text-lg"
@@ -15,7 +15,7 @@ const Content = () => {
           Privacy Policy
         </a>
         <a
-          href="https://ernyg.com"
+          href="/terms"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline text-sm sm:text-base md:text-lg"
