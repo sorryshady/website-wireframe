@@ -64,11 +64,18 @@ const CookieConsent = () => {
         {!showPreferences ? (
           <div className="space-y-4">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-              <p className="text-sm md:text-base flex-1">
-                We use cookies to enhance your browsing experience, serve
-                personalized content, and analyze our traffic. By clicking
-                &ldquo;Accept All&rdquo;, you consent to our use of cookies.
-              </p>
+              <div className="space-y-2 flex-1">
+                <p className="text-sm md:text-base">
+                  We value your privacy. While we currently don&apos;t use
+                  cookies, we&apos;re asking for your consent for future website
+                  features that may use cookies to enhance your browsing
+                  experience, serve personalized content, and analyze traffic.
+                </p>
+                <p className="text-xs text-amber-400">
+                  Note: At present, no cookies are being set. This consent will
+                  apply to future features that require cookies.
+                </p>
+              </div>
               <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
                 <button
                   onClick={() => setShowPreferences(true)}
@@ -102,13 +109,20 @@ const CookieConsent = () => {
           </div>
         ) : (
           <div className="space-y-6">
-            <h3 className="text-lg font-semibold">Cookie Preferences</h3>
+            <div>
+              <h3 className="text-lg font-semibold mb-2">Cookie Preferences</h3>
+              <p className="text-sm text-amber-400">
+                Note: These preferences will be applied when cookies are
+                implemented in future updates.
+              </p>
+            </div>
             <div className="space-y-4">
               <div className="flex items-center justify-between p-4 rounded-lg border border-white/10 hover:border-white/20 transition-colors">
                 <div>
                   <p className="font-medium">Necessary Cookies</p>
                   <p className="text-sm text-gray-400">
-                    Required for the website to function properly.
+                    Will be required for core website functionality when
+                    implemented.
                   </p>
                 </div>
                 <input
@@ -122,7 +136,8 @@ const CookieConsent = () => {
                 <div>
                   <p className="font-medium">Analytics Cookies</p>
                   <p className="text-sm text-gray-400">
-                    Help us understand how visitors interact with our website.
+                    Will help us understand how visitors interact with our
+                    website (not currently in use).
                   </p>
                 </div>
                 <input
@@ -138,7 +153,8 @@ const CookieConsent = () => {
                 <div>
                   <p className="font-medium">Marketing Cookies</p>
                   <p className="text-sm text-gray-400">
-                    Used to deliver personalized advertisements.
+                    Will be used to deliver personalized advertisements (not
+                    currently in use).
                   </p>
                 </div>
                 <input

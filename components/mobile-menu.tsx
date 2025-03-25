@@ -99,7 +99,7 @@ const MobileMenu = ({
         } transform translate-x-full z-40 md:hidden`}
       >
         <div className="w-full h-full flex flex-col items-center justify-center gap-8">
-          {["About", "Services", "Projects", "Blog", "Contact"].map(
+          {["About", "Services", "Projects", "Contact", "Blog"].map(
             (item, index) => (
               <button
                 key={item}

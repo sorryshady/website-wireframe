@@ -167,7 +167,7 @@ export default function Home() {
                 />
               </div>
               <div className="nav-items hidden md:flex">
-                {["About", "Services", "Projects", "Blog", "Contact"].map(
+                {["About", "Services", "Projects", "Contact", "Blog"].map(
                   (item) => (
                     <button
                       key={item}
