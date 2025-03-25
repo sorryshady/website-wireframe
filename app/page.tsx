@@ -14,6 +14,7 @@ import { useLenis } from "lenis/react";
 import Contact from "@/components/contact";
 import MobileMenu from "@/components/mobile-menu";
 import { useRouter } from "next/navigation";
+import Blog from "@/components/blog";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -53,30 +54,26 @@ export default function Home() {
   };
 
   const navigationHandler = (target: string) => {
-    if (target === "blog") {
-      window.open("/blog", "_blank");
-    } else {
-      const element = document.getElementById(target);
-      if (element) {
-        // First close the menu if it's open
-        setIsMenuOpen(false);
+    const element = document.getElementById(target);
+    if (element) {
+      // First close the menu if it's open
+      setIsMenuOpen(false);
 
-        // Check if we're on mobile
-        const isMobile = window.innerWidth < 768;
+      // Check if we're on mobile
+      const isMobile = window.innerWidth < 768;
 
-        if (isMobile) {
-          // For mobile, use custom smooth scroll with longer duration
-          smoothScrollTo(element, 1500); // 1.5 seconds duration
-        } else {
-          // For desktop, use Lenis
-          lenis!.scrollTo(element, {
-            offset: 0,
-            duration: 1.5,
-            easing: (t) => t * (2 - t),
-            immediate: false,
-            lock: false,
-          });
-        }
+      if (isMobile) {
+        // For mobile, use custom smooth scroll with longer duration
+        smoothScrollTo(element, 1500); // 1.5 seconds duration
+      } else {
+        // For desktop, use Lenis
+        lenis!.scrollTo(element, {
+          offset: 0,
+          duration: 1.5,
+          easing: (t) => t * (2 - t),
+          immediate: false,
+          lock: false,
+        });
       }
     }
   };
@@ -254,6 +251,9 @@ export default function Home() {
             id="projects"
           >
             <Projects />
+          </section>
+          <section className="relative" id="blog">
+            <Blog />
           </section>
           <section className="relative" id="contact">
             <Contact />
