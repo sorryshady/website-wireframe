@@ -54,7 +54,7 @@ export default function Home() {
 
   const navigationHandler = (target: string) => {
     if (target === "blog") {
-      router.push("/blog");
+      window.open("/blog", "_blank");
     } else {
       const element = document.getElementById(target);
       if (element) {
@@ -167,7 +167,7 @@ export default function Home() {
                 />
               </div>
               <div className="nav-items hidden md:flex">
-                {["About", "Services", "Projects", "Contact", "Blog"].map(
+                {["About", "Services", "Projects", "Blog", "Contact"].map(
                   (item) => (
                     <button
                       key={item}
