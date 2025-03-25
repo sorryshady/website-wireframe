@@ -11,6 +11,7 @@ import "./globals.css";
 import SmoothScroller from "@/components/smooth-scroller";
 import { ToastProvider } from "@/components/toast-context";
 import Script from "next/script";
+import CookieConsent from "@/components/cookie-consent";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -263,7 +264,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${workSans.variable} ${montserrat.variable} ${oxygen.variable} ${oxygenMono.variable} antialiased`}
       >
         <SmoothScroller>
-          <ToastProvider>{children}</ToastProvider>
+          <ToastProvider>
+            {children}
+            <CookieConsent />
+          </ToastProvider>
         </SmoothScroller>
       </body>
     </html>

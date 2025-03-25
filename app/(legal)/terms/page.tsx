@@ -175,8 +175,10 @@ export default function TermsPage() {
               <h2 className="text-2xl font-semibold mb-4 font-mont">Cookies</h2>
               <p className="mb-4">
                 The website uses cookies to help personalize your online
-                experience. By accessing Ernyg, you agreed to use the required
-                cookies.
+                experience. By accessing Ernyg, you will be asked to provide
+                your consent for the use of cookies. You can choose to accept
+                all cookies, reject non-essential cookies, or manage your
+                preferences.
               </p>
               <p className="mb-4">
                 A cookie is a text file that is placed on your hard disk by a
@@ -185,17 +187,49 @@ export default function TermsPage() {
                 to you and can only be read by a web server in the domain that
                 issued the cookie to you.
               </p>
+              <p className="mb-4">We use the following types of cookies:</p>
+              <ul className="list-disc pl-6 mb-4 space-y-2">
+                <li>
+                  <strong>Necessary Cookies:</strong> These cookies are
+                  essential for the website to function properly. They enable
+                  basic functions like page navigation and access to secure
+                  areas of the website. The website cannot function properly
+                  without these cookies.
+                </li>
+                <li>
+                  <strong>Analytics Cookies:</strong> These cookies help us
+                  understand how visitors interact with our website by
+                  collecting and reporting information anonymously. This helps
+                  us improve our website&apos;s structure and content.
+                </li>
+                <li>
+                  <strong>Marketing Cookies:</strong> These cookies are used to
+                  track visitors across websites. They are used to display ads
+                  that are relevant and engaging for individual users.
+                </li>
+              </ul>
               <p className="mb-4">
-                We may use cookies to collect, store, and track information for
-                statistical or marketing purposes to operate our website. You
-                have the ability to accept or decline optional Cookies. There
-                are some required Cookies that are necessary for the operation
-                of our website. These cookies do not require your consent as
-                they always work. Please keep in mind that by accepting required
-                Cookies, you also accept third-party Cookies, which might be
-                used via third-party provided services if you use such services
-                on our website, for example, a video display window provided by
-                third parties and integrated into our website.
+                You have the ability to accept or decline optional cookies.
+                There are some required cookies that are necessary for the
+                operation of our website. These cookies do not require your
+                consent as they always work. Please keep in mind that by
+                accepting required cookies, you also accept third-party cookies,
+                which might be used via third-party provided services if you use
+                such services on our website, for example, a video display
+                window provided by third parties and integrated into our
+                website.
+              </p>
+              <p className="mb-4">
+                You can modify your cookie preferences at any time by clicking
+                on the &ldquo;Cookie Settings&rdquo; button in the cookie
+                banner. You can also delete cookies that have already been set
+                in your browser settings.
+              </p>
+              <p className="mb-4">
+                Please note that if you disable cookies, some features of this
+                website may not function properly. For more information about
+                how we use cookies and your choices regarding cookies, please
+                visit our Privacy Policy.
               </p>
             </section>
 
